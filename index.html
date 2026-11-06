@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3bido | Plateforme Moderne d'Apprentissage du Français</title>
+  <meta name="description" content="Apprenez le français facilement et gratuitement avec 3bido : grammaire, dictionnaire unilingue, traduction, bibliothèque, tuteur IA, prononciation audio et conjugaison.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Decorative Palestinian Flag Accent Ribbon (Eye-friendly & Elegant) -->
+  <div class="palestine-ribbon" title="Hommage et Solidarité avec la Palestine">
+    <div class="stripe stripe-black"></div>
+    <div class="stripe stripe-white"></div>
+    <div class="stripe stripe-green"></div>
+    <div class="ribbon-triangle"></div>
+  </div>
+
+  <!-- Background Thuluth Calligraphy "سنصلي في القدس" Watermark Overlay (Eye-Friendly & Dignified) -->
+  <div class="palestine-bg-calligraphy-watermark" aria-hidden="true">
+    <div class="watermark-seal">
+      <div class="thuluth-arabic-composition">
+        <span class="calligraphy-word w-black">سَنُـصَـلِّـي</span>
+        <span class="calligraphy-word w-red">فِـي</span>
+        <span class="calligraphy-word w-green">القُــدْس</span>
+      </div>
+      <div class="watermark-motto">« Nous prierons à Jérusalem » • فلسطين في قلوبنا</div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" onclick="window.app.navigate('home')">
+        <div class="brand-logo">
+          <span class="logo-text">3bido</span>
+          <span class="flag-badge" title="Symbole de dignité et de résilience">
+            <span class="badge-dot red"></span>
+            <span class="badge-dot green"></span>
+            <span class="badge-dot black"></span>
+          </span>
+        </div>
+        <span class="brand-subtitle" data-i18n="brand_subtitle">Apprenez le français avec passion</span>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="nav-links">
+        <button class="nav-btn active" data-target="home" onclick="window.app.navigate('home')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span data-i18n="nav_home">Accueil</span>
+        </button>
+        <button class="nav-btn" data-target="grammar" onclick="window.app.navigate('grammar')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span data-i18n="nav_grammar">Grammaire</span>
+        </button>
+        <button class="nav-btn" data-target="dictionary" onclick="window.app.navigate('dictionary')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+          <span data-i18n="nav_dictionary">Dictionnaire</span>
+        </button>
+        <button class="nav-btn" data-target="translator" onclick="window.app.navigate('translator')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          <span data-i18n="nav_translator">Traduction</span>
+        </button>
+        <button class="nav-btn" data-target="library" onclick="window.app.navigate('library')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span data-i18n="nav_library">Bibliothèque</span>
+        </button>
+        <button class="nav-btn" data-target="tutor" onclick="window.app.navigate('tutor')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span data-i18n="nav_tutor">Tuteur IA</span>
+        </button>
+        <button class="nav-btn" data-target="tts" onclick="window.app.navigate('tts')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <span data-i18n="nav_tts">Audio & TTS</span>
+        </button>
+        <button class="nav-btn" data-target="levels" onclick="window.app.navigate('levels')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span data-i18n="nav_levels">Niveaux & Verbes</span>
+        </button>
+      </nav>
+
+      <!-- User Controls, Language Switcher & Theme Toggle -->
+      <div class="nav-actions">
+        <!-- 2. Language Toggle Button (Arabic / French) -->
+        <button class="lang-toggle-btn" id="langToggleBtn" onclick="window.app.toggleLanguage()" title="Changer de langue / تبديل لغة الموقع (Français / العربية)">
+          <span class="lang-pill active" id="langPillFR">FR 🇫🇷</span>
+          <span class="lang-pill" id="langPillAR">العربية 🇵🇸</span>
+        </button>
+
+        <!-- Dark/Light Mode Switcher -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème" title="Basculer Mode Clair / Sombre">
+          <span class="theme-icon sun-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </span>
+        </button>
+
+        <!-- Auth Status Container -->
+        <div id="authNavContainer">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-lang-row">
+        <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);" data-i18n="choose_lang">Langue :</span>
+        <button class="lang-toggle-btn" onclick="window.app.toggleLanguage()">
+          <span class="lang-pill active" id="mobileLangPillFR">FR 🇫🇷</span>
+          <span class="lang-pill" id="mobileLangPillAR">العربية 🇵🇸</span>
+        </button>
+      </div>
+      <button class="mobile-nav-btn active" data-target="home" onclick="window.app.navigate('home')" data-i18n="nav_home">Accueil</button>
+      <button class="mobile-nav-btn" data-target="grammar" onclick="window.app.navigate('grammar')" data-i18n="m_grammar">1. Correcteur de Grammaire</button>
+      <button class="mobile-nav-btn" data-target="dictionary" onclick="window.app.navigate('dictionary')" data-i18n="m_dictionary">2. Dictionnaire Unilingue</button>
+      <button class="mobile-nav-btn" data-target="translator" onclick="window.app.navigate('translator')" data-i18n="m_translator">3. Traduction Instantanée</button>
+      <button class="mobile-nav-btn" data-target="library" onclick="window.app.navigate('library')" data-i18n="m_library">4. Bibliothèque Française</button>
+      <button class="mobile-nav-btn" data-target="tutor" onclick="window.app.navigate('tutor')" data-i18n="m_tutor">5. Tuteur IA Interactif</button>
+      <button class="mobile-nav-btn" data-target="tts" onclick="window.app.navigate('tts')" data-i18n="m_tts">6. Synthèse Vocale & Téléchargement</button>
+      <button class="mobile-nav-btn" data-target="levels" onclick="window.app.navigate('levels')" data-i18n="m_levels">7. Niveaux A1-B2 & Conjugaison</button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
+
+    <!-- ========================================== -->
+    <!-- SECTION 0: HOMEPAGE / ACCUEIL              -->
+    <!-- ========================================== -->
+    <section id="section-home" class="page-section active">
+      <div class="hero-container">
+        <!-- Hero Banner with elegant Palestinian aesthetics -->
+        <div class="hero-card">
+          <!-- Elegant Authentic Thuluth Calligraphy Banner in Palestinian Flag Colors -->
+          <div class="hero-calligraphy-banner" title="سَنُصَلِّي فِي القُدْس - Nous prierons à Jérusalem">
+            <div class="calligraphy-banner-dots">
+              <span class="c-dot red"></span>
+              <span class="c-dot black"></span>
+              <span class="c-dot white"></span>
+              <span class="c-dot green"></span>
+            </div>
+            <div class="calligraphy-banner-thuluth" lang="ar">سَنُـصَـلِّـي فِـي القُــدْس</div>
+            <div class="calligraphy-banner-trans" data-i18n="calligraphy_sub">« Nous prierons à Jérusalem »</div>
+          </div>
+
+          <h1 class="hero-title" data-i18n-html="hero_title">
+            Bienvenue sur <span class="highlight-brand">3bido</span>
+          </h1>
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
+            L'espace complet pour apprendre, perfectionner et pratiquer la langue française. 
+            Grammaire intelligente, dictionnaire riche, traduction bilingue, bibliothèque en libre accès, 
+            tuteur conversationnel, prononciation audio et conjugaison détaillée.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">7</span>
+              <span class="stat-label" data-i18n="stat_tools">Outils Puissants</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">A1 → B2</span>
+              <span class="stat-label" data-i18n="stat_levels">Niveaux Structurés</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label" data-i18n="stat_free">Gratuit & Interactif</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ===== Admin-Editable Welcome Message ===== -->
+        <div class="welcome-message-block" id="welcomeMessageBlock">
+          <div class="welcome-msg-display" id="welcomeMsgDisplay">
+            <div class="welcome-msg-icon">📖</div>
+            <div class="welcome-msg-text" id="welcomeMsgText">
+              أنا اسمي أحمد عبد الفتاح، في كلية اللغات والترجمة جامعة الأزهر، قسم الترجمة الفورية الفرنسية. هذا الموقع صدقة جارية على روح والدي، أرجو أن تدعوا لي وله بالرحمة والمغفرة.
+            </div>
+            <button class="admin-edit-msg-btn hidden" id="adminEditMsgBtn" onclick="window.app.welcomeMsg.startEdit()">✏️ تعديل الرسالة</button>
+          </div>
+          <div class="welcome-msg-editor hidden" id="welcomeMsgEditor">
+            <textarea id="welcomeMsgInput" rows="4" placeholder="اكتب رسالة الترحيب هنا..."></textarea>
+            <div class="welcome-msg-editor-actions">
+              <button class="btn btn-primary" onclick="window.app.welcomeMsg.save()">💾 حفظ</button>
+              <button class="btn btn-secondary" onclick="window.app.welcomeMsg.cancel()">إلغاء</button>
+            </div>
+          </div>
+        </div>
+        <!-- ===== End Welcome Message ===== -->
+        <!-- 7 Main Interactive Service Cards -->
+        <div class="section-header-centered">
+          <h2 class="section-title" data-i18n="services_heading">Explorez les 7 Espaces d'Apprentissage</h2>
+          <p class="section-desc" data-i18n="services_subheading">Cliquez sur un outil pour commencer votre séance de français</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1: Grammar -->
+          <div class="service-card" onclick="window.app.navigate('grammar')">
+            <div class="service-card-icon icon-grammar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><polyline points="15 5 19 9"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">01</div>
+              <h3 class="service-card-title" data-i18n="c1_title">Correcteur de Grammaire</h3>
+              <p class="service-card-desc" data-i18n="c1_desc">Détectez instantanément les erreurs de syntaxe, accords, conjugaisons et recevez des explications détaillées.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c1_link">Corriger un texte →</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Dictionary -->
+          <div class="service-card" onclick="window.app.navigate('dictionary')">
+            <div class="service-card-icon icon-dict">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10M6 14h6"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">02</div>
+              <h3 class="service-card-title" data-i18n="c2_title">Dictionnaire Unilingue</h3>
+              <p class="service-card-desc" data-i18n="c2_desc">Dictionnaire Français-Français complet : définitions claires, synonymes, antonymes et exemples contextuels.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c2_link">Chercher un mot →</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Translator -->
+          <div class="service-card" onclick="window.app.navigate('translator')">
+            <div class="service-card-icon icon-trans">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">03</div>
+              <h3 class="service-card-title" data-i18n="c3_title">Traduction Instantanée</h3>
+              <p class="service-card-desc" data-i18n="c3_desc">Traduisez en temps réel entre le Français et l'Arabe avec lecture audio et banque d'expressions usuelles.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c3_link">Traduire FR ⇄ AR →</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Library -->
+          <div class="service-card" onclick="window.app.navigate('library')">
+            <div class="service-card-icon icon-library">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">04</div>
+              <h3 class="service-card-title" data-i18n="c4_title">Bibliothèque Française</h3>
+              <p class="service-card-desc" data-i18n="c4_desc">Explorez et lisez des œuvres littéraires adaptées à tous les niveaux. Espace d'ajout exclusif pour l'admin 3bido.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c4_link">Consulter les livres →</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Tutor Chat -->
+          <div class="service-card" onclick="window.app.navigate('tutor')">
+            <div class="service-card-icon icon-tutor">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">05</div>
+              <h3 class="service-card-title" data-i18n="c5_title">Tuteur IA Interactif</h3>
+              <p class="service-card-desc" data-i18n="c5_desc">Discutez en direct avec un assistant pédagogique francophone : pratique libre, mises en situation et retours correctifs.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c5_link">Démarrer le dialogue →</span>
+            </div>
+          </div>
+
+          <!-- Card 6: TTS & Audio Download -->
+          <div class="service-card" onclick="window.app.navigate('tts')">
+            <div class="service-card-icon icon-tts">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">06</div>
+              <h3 class="service-card-title" data-i18n="c6_title">Synthèse Vocale & Audio</h3>
+              <p class="service-card-desc" data-i18n="c6_desc">Écoutez n'importe quel texte avec un accent français authentique et téléchargez le fichier audio sur votre appareil.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c6_link">Écouter et Télécharger →</span>
+            </div>
+          </div>
+
+          <!-- Card 7: Levels & Red Verb Conjugations -->
+          <div class="service-card card-featured" onclick="window.app.navigate('levels')">
+            <div class="service-card-icon icon-levels">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">07</div>
+              <h3 class="service-card-title" data-i18n="c7_title">Niveaux A1-B2 & Conjugaison</h3>
+              <p class="service-card-desc" data-i18n-html="c7_desc">Thématiques complètes par niveau (vie courante, voyage, travail) et tableaux de conjugaison avec verbes en <strong class="red-highlight-preview">Rouge Distinct</strong>.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c7_link">Explorer la banque de verbes →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: GRAMMAR CORRECTION              -->
+    <!-- ========================================== -->
+    <section id="section-grammar" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_01">Outil 01</div>
+          <h2 class="tool-title" data-i18n="g_title">Correcteur de Grammaire Française</h2>
+          <p class="tool-desc" data-i18n="g_desc">Saisissez ou collez votre phrase pour analyser la grammaire, la concordance des temps, les accords et la ponctuation.</p>
+        </div>
+
+        <div class="tool-box">
+          <div class="input-controls-row">
+            <span class="input-hint" data-i18n="g_hint">Exemples rapides à tester :</span>
+            <div class="example-chips">
+              <button class="chip" onclick="window.app.grammar.loadSample(1)">« Elle est allé a l'école »</button>
+              <button class="chip" onclick="window.app.grammar.loadSample(2)">« Il ont mangé des pomme rouge »</button>
+              <button class="chip" onclick="window.app.grammar.loadSample(3)">« Je veux que tu viens demain »</button>
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea id="grammarInput" data-i18n-placeholder="g_placeholder" placeholder="Écrivez ou collez votre texte en français ici (ex: Les enfants joue dans le jardin et il sont content)..." rows="6"></textarea>
+            <div class="textarea-actions">
+              <button class="icon-btn-secondary" onclick="window.app.grammar.clear()" title="Effacer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+              <button class="icon-btn-secondary" onclick="window.app.grammar.paste()" title="Coller">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="action-bar">
+            <button class="btn btn-primary" id="grammarCheckBtn" onclick="window.app.grammar.check()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="g_btn_check">Vérifier la Grammaire</span>
+            </button>
+            <span class="char-count" id="grammarCharCount">0 caractère</span>
+          </div>
+
+          <!-- Analysis Results Output -->
+          <div id="grammarResults" class="grammar-results hidden">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: FRENCH-FRENCH DICTIONARY        -->
+    <!-- ========================================== -->
+    <section id="section-dictionary" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_02">Outil 02</div>
+          <h2 class="tool-title" data-i18n="d_title">Dictionnaire Français-Français</h2>
+          <p class="tool-desc" data-i18n="d_desc">Consultez les définitions unilingues, phonétiques, synonymes, antonymes et contextes d'usage de la langue française.</p>
+        </div>
+
+        <div class="tool-box">
+          <div class="search-bar-row">
+            <div class="search-input-group">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="dictInput" data-i18n-placeholder="d_placeholder" placeholder="Rechercher un mot français (ex: liberté, maison, espoir, résilience, apprendre...)" autocomplete="off">
+              <button class="clear-input-btn" id="dictClearBtn" onclick="window.app.dict.clear()">✕</button>
+            </div>
+            <button class="btn btn-primary" onclick="window.app.dict.search()">
+              <span data-i18n="d_btn_search">Définir</span>
+            </button>
+          </div>
+
+          <!-- Suggested Words Badges -->
+          <div class="dict-suggestions">
+            <span class="dict-suggest-label" data-i18n="d_frequent">Mots fréquents :</span>
+            <div class="suggest-tags">
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('liberté')">Liberté</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('résilience')">Résilience</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('paix')">Paix</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('apprendre')">Apprendre</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('courage')">Courage</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('maison')">Maison</button>
+              <button class="tag-btn" onclick="window.app.dict.quickSearch('bienveillance')">Bienveillance</button>
+            </div>
+          </div>
+
+          <!-- Dictionary Result Box -->
+          <div id="dictResults" class="dict-results">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: INSTANT TRANSLATION (FR ⇄ AR)   -->
+    <!-- ========================================== -->
+    <section id="section-translator" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_03">Outil 03</div>
+          <h2 class="tool-title" data-i18n="t_title">Traduction Instantanée Français ⇄ Arabe</h2>
+          <p class="tool-desc" data-i18n="t_desc">Traducteur bilingue avec écoute audio, inversion de sens et bibliothèque d'expressions courantes.</p>
+        </div>
+
+        <div class="translator-container">
+          <!-- Translation Direction Header -->
+          <div class="trans-controls-top">
+            <div class="lang-selector-card source-lang" id="sourceLangLabel">
+              <span class="lang-flag">🇫🇷</span>
+              <span class="lang-name">Français</span>
+            </div>
+            <button class="swap-lang-btn" id="swapLangBtn" onclick="window.app.trans.swap()" title="Inverser les langues">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+            </button>
+            <div class="lang-selector-card target-lang" id="targetLangLabel">
+              <span class="lang-flag">🇵🇸</span>
+              <span class="lang-name">العربية (Arabe)</span>
+            </div>
+          </div>
+
+          <!-- Dual Translation Boxes -->
+          <div class="trans-boxes-grid">
+            <!-- Source Box -->
+            <div class="trans-box source-box">
+              <div class="trans-box-header">
+                <span class="box-tag" data-i18n="t_source_tag">Texte source</span>
+                <button class="mini-btn" onclick="window.app.trans.clearSource()" title="Effacer" data-i18n="t_btn_clear">Effacer</button>
+              </div>
+              <textarea id="transSourceText" data-i18n-placeholder="t_source_ph" placeholder="Entrez votre texte ici..." rows="6"></textarea>
+              <div class="trans-box-footer">
+                <div class="footer-left-tools">
+                  <button class="tool-icon-btn" onclick="window.app.trans.speakSource()" title="Écouter la prononciation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  </button>
+                  <button class="tool-icon-btn" onclick="window.app.trans.copySource()" title="Copier le texte">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <button class="btn btn-primary" onclick="window.app.trans.translate()">
+                  <span data-i18n="t_btn_trans">Traduire</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Target Box -->
+            <div class="trans-box target-box">
+              <div class="trans-box-header">
+                <span class="box-tag" data-i18n="t_target_tag">Traduction</span>
+                <span id="transStatus" class="status-indicator">Prêt</span>
+              </div>
+              <div id="transTargetText" class="trans-output-area arabic-content" dir="auto">
+                <span class="placeholder-text" data-i18n="t_target_ph">La traduction apparaîtra ici...</span>
+              </div>
+              <div class="trans-box-footer">
+                <div class="footer-left-tools">
+                  <button class="tool-icon-btn" onclick="window.app.trans.speakTarget()" title="Écouter la traduction">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  </button>
+                  <button class="tool-icon-btn" onclick="window.app.trans.copyTarget()" title="Copier la traduction">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <span class="powered-tag">Bilingue FR ⇄ AR</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Useful Everyday Expressions -->
+          <div class="useful-phrases-shelf">
+            <h3 class="shelf-title" data-i18n="t_shelf_title">Expressions Indispensables du Quotidien (Cliquez pour traduire) :</h3>
+            <div class="phrases-grid">
+              <button class="phrase-card" onclick="window.app.trans.loadPhrase('Bonjour, comment allez-vous aujourd\'hui ?')">
+                <span class="p-fr">Bonjour, comment allez-vous ?</span>
+                <span class="p-ar">مرحباً، كيف حالكم اليوم؟</span>
+              </button>
+              <button class="phrase-card" onclick="window.app.trans.loadPhrase('Pourriez-vous m\'aider s\'il vous plaît ?')">
+                <span class="p-fr">Pourriez-vous m'aider s'il vous plaît ?</span>
+                <span class="p-ar">هل يمكنك مساعدتي من فضلك؟</span>
+              </button>
+              <button class="phrase-card" onclick="window.app.trans.loadPhrase('Je suis ravi de faire votre connaissance.')">
+                <span class="p-fr">Je suis ravi de faire votre connaissance.</span>
+                <span class="p-ar">يسعدني جداً التعرف عليك.</span>
+              </button>
+              <button class="phrase-card" onclick="window.app.trans.loadPhrase('La justice et la paix triomphent toujours.')">
+                <span class="p-fr">La justice et la paix triomphent toujours.</span>
+                <span class="p-ar">العدالة والسلام ينتصران دائماً.</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: FRENCH LIBRARY (BIBLIOTHÈQUE)   -->
+    <!-- ========================================== -->
+    <section id="section-library" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_04">Outil 04</div>
+          <div class="library-header-actions">
+            <div>
+              <h2 class="tool-title" data-i18n="l_title">Bibliothèque Numérique Française</h2>
+              <p class="tool-desc" data-i18n="l_desc">Ouvrages littéraires, contes, poésies et textes classiques en accès libre pour progresser en lecture.</p>
+            </div>
+
+            <!-- ADMIN ONLY BUTTON: Upload / Add Book (Restricted to "3bido") -->
+            <div id="adminUploadContainer" class="admin-only-action hidden">
+              <button class="btn btn-admin" onclick="window.app.library.openAddModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                <span data-i18n="l_btn_add">Ajouter un Nouveau Livre (Admin 3bido)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library Filter Tabs -->
+        <div class="library-filter-bar">
+          <button class="filter-tab active" data-filter="all" onclick="window.app.library.filter('all')" data-i18n="l_filter_all">Tous les Livres</button>
+          <button class="filter-tab" data-filter="A1-A2" onclick="window.app.library.filter('A1-A2')" data-i18n="l_filter_beg">Niveau Débutant (A1-A2)</button>
+          <button class="filter-tab" data-filter="B1-B2" onclick="window.app.library.filter('B1-B2')" data-i18n="l_filter_adv">Niveau Avancé (B1-B2)</button>
+          <button class="filter-tab" data-filter="custom" onclick="window.app.library.filter('custom')" data-i18n="l_filter_custom">Ajouts Personnalisés</button>
+        </div>
+
+        <!-- Books Grid Showcase -->
+        <div id="booksGrid" class="books-grid">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: INTERACTIVE AI TUTOR CHAT       -->
+    <!-- ========================================== -->
+    <section id="section-tutor" class="page-section">
+      <div class="tool-container chat-tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_05">Outil 05</div>
+          <h2 class="tool-title" data-i18n="chat_title">Tuteur IA Interactif & Conversation</h2>
+          <p class="tool-desc" data-i18n="chat_desc">Discutez en direct en français. Le tuteur répond instantanément, stimule la conversation et signale vos erreurs grammaticales avec bienveillance.</p>
+        </div>
+
+        <div class="chat-wrapper">
+          <!-- Chat Sidebar: Conversation Scenarios -->
+          <div class="chat-sidebar">
+            <div class="chat-sidebar-header">
+              <span class="sidebar-title" data-i18n="chat_scenarios_title">Sujets de Pratique</span>
+            </div>
+            <div class="scenario-list">
+              <button class="scenario-btn active" onclick="window.app.tutor.setScenario('general')">
+                <span class="s-icon">💬</span>
+                <span class="s-text" data-i18n="sc_general">Discussion Libre</span>
+              </button>
+              <button class="scenario-btn" onclick="window.app.tutor.setScenario('restaurant')">
+                <span class="s-icon">☕</span>
+                <span class="s-text" data-i18n="sc_restaurant">Au Restaurant & Café</span>
+              </button>
+              <button class="scenario-btn" onclick="window.app.tutor.setScenario('travel')">
+                <span class="s-icon">✈️</span>
+                <span class="s-text" data-i18n="sc_travel">Voyage & Gare</span>
+              </button>
+              <button class="scenario-btn" onclick="window.app.tutor.setScenario('interview')">
+                <span class="s-icon">💼</span>
+                <span class="s-text" data-i18n="sc_interview">Entretien d'Embauche</span>
+              </button>
+              <button class="scenario-btn" onclick="window.app.tutor.setScenario('quiz')">
+                <span class="s-icon">🎯</span>
+                <span class="s-text" data-i18n="sc_quiz">Quiz & Énigmes</span>
+              </button>
+            </div>
+
+            <div class="tutor-info-box">
+              <div class="tutor-avatar">🤖</div>
+              <div class="tutor-name" data-i18n="chat_tutor_name">Professeur 3bido</div>
+              <div class="tutor-status"><span class="online-indicator"></span> <span data-i18n="chat_online">En ligne (Gemini AI)</span></div>
+              <button class="tutor-key-btn" onclick="window.app.tutor.configureApiKey()" title="Paramètres Clé API">⚙️ مفتاح API</button>
+            </div>
+          </div>
+
+          <!-- Chat Main Conversation Area -->
+          <div class="chat-main">
+            <!-- Messages Log -->
+            <div id="chatMessages" class="chat-messages">
+              <!-- Initial Welcome Message Rendered via JS -->
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-bar">
+              <div class="chat-input-box">
+                <textarea id="chatInput" data-i18n-placeholder="chat_ph" placeholder="Écrivez votre message en français (ex: Bonjour, comment vas-tu aujourd'hui ?)..." rows="2" onkeydown="window.app.tutor.handleKeyPress(event)"></textarea>
+                <div class="chat-actions">
+                  <button class="chat-action-btn" id="chatSpeechInputBtn" onclick="window.app.tutor.toggleMic()" title="Dicter la voix">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                  </button>
+                  <button class="btn btn-primary btn-send" id="chatSendBtn" onclick="window.app.tutor.sendMessage()">
+                    <span data-i18n="chat_btn_send">Envoyer</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 6: TEXT-TO-SPEECH & AUDIO DOWNLOAD -->
+    <!-- ========================================== -->
+    <section id="section-tts" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_06">Outil 06</div>
+          <h2 class="tool-title" data-i18n="tts_title">Synthèse Vocale & Téléchargement Audio</h2>
+          <p class="tool-desc" data-i18n="tts_desc">Entrez une phrase en français, écoutez la prononciation avec un accent authentique et téléchargez directement le fichier audio (.wav / .mp3) sur votre appareil.</p>
+        </div>
+
+        <div class="tool-box">
+          <!-- Voice Settings Controls -->
+          <div class="tts-settings-grid">
+            <div class="setting-item">
+              <label for="voiceSelect" data-i18n="tts_voice_label">Voix Française :</label>
+              <select id="voiceSelect" class="form-select">
+                <option value="">Chargement des voix disponibles...</option>
+              </select>
+            </div>
+            
+            <!-- Mandatory Feature: Playback Speed Selector (0.5x Slow, 0.75x, 1.0x Normal, 1.25x, 1.5x Fast) -->
+            <div class="setting-item speed-control-cell">
+              <div class="speed-label-line">
+                <label for="rateSlider"><span data-i18n="tts_speed_label">Vitesse de Lecture</span> (<span id="rateValue" class="rate-badge">1.0x</span>) :</label>
+              </div>
+              <div class="playback-speed-selector" id="playbackSpeedSelector">
+                <button type="button" class="speed-chip" data-speed="0.5" onclick="window.app.tts.setSpeed(0.5)" title="0.5x Slow">
+                  <span class="sc-val">0.5x</span>
+                  <span class="sc-label" data-i18n="spd_slow">Lent</span>
+                </button>
+                <button type="button" class="speed-chip" data-speed="0.75" onclick="window.app.tts.setSpeed(0.75)" title="0.75x">
+                  <span class="sc-val">0.75x</span>
+                  <span class="sc-label" data-i18n="spd_calm">Modéré</span>
+                </button>
+                <button type="button" class="speed-chip active" data-speed="1.0" onclick="window.app.tts.setSpeed(1.0)" title="1.0x Normal">
+                  <span class="sc-val">1.0x</span>
+                  <span class="sc-label" data-i18n="spd_normal">Normal</span>
+                </button>
+                <button type="button" class="speed-chip" data-speed="1.25" onclick="window.app.tts.setSpeed(1.25)" title="1.25x">
+                  <span class="sc-val">1.25x</span>
+                  <span class="sc-label" data-i18n="spd_lively">Vif</span>
+                </button>
+                <button type="button" class="speed-chip" data-speed="1.5" onclick="window.app.tts.setSpeed(1.5)" title="1.5x Fast">
+                  <span class="sc-val">1.5x</span>
+                  <span class="sc-label" data-i18n="spd_fast">Rapide</span>
+                </button>
+              </div>
+              <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.05" value="1.0" oninput="window.app.tts.onSliderChange(this.value)">
+            </div>
+
+            <div class="setting-item">
+              <label for="pitchSlider"><span data-i18n="tts_pitch_label">Tonalité</span> (<span id="pitchValue">1.0</span>) :</label>
+              <input type="range" id="pitchSlider" min="0.5" max="1.5" step="0.1" value="1.0" oninput="document.getElementById('pitchValue').textContent = this.value">
+            </div>
+          </div>
+
+          <!-- Sentence Quick Buttons -->
+          <div class="input-controls-row">
+            <span class="input-hint" data-i18n="tts_presets_hint">Virelangues et citations à prononcer :</span>
+            <div class="example-chips">
+              <button class="chip" onclick="window.app.tts.setPreset('Bonjour et bienvenue sur la plateforme 3bido.')">« Bienvenue sur 3bido »</button>
+              <button class="chip" onclick="window.app.tts.setPreset('Les chaussettes de l\'archiduchesse sont-elles sèches ou archi-sèches ?')">« Virelangue classique »</button>
+              <button class="chip" onclick="window.app.tts.setPreset('On ne voit bien qu\'avec le cœur. L\'essentiel est invisible pour les yeux.')">« Le Petit Prince »</button>
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea id="ttsInput" placeholder="Saisissez n'importe quel texte ou paragraphe en français à vocaliser..." rows="5">La liberté est le droit de faire tout ce que les lois permettent.</textarea>
+          </div>
+
+          <!-- Action Buttons: Play + Download Audio -->
+          <div class="tts-actions-bar">
+            <div class="tts-buttons-group">
+              <button class="btn btn-primary" id="ttsPlayBtn" onclick="window.app.tts.play()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span data-i18n="tts_btn_play">Écouter (Prononcer)</span>
+              </button>
+              <button class="btn btn-secondary" id="ttsStopBtn" onclick="window.app.tts.stop()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12"/></svg>
+                <span data-i18n="tts_btn_stop">Arrêter</span>
+              </button>
+              <button class="btn btn-download" id="ttsDownloadBtn" onclick="window.app.tts.downloadAudio()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span data-i18n="tts_btn_download">Télécharger l'Audio (.wav)</span>
+              </button>
+            </div>
+            <div id="ttsAudioStatus" class="tts-status">Prêt pour la vocalisation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 7: LEVELS A1-B2 & CONJUGATION      -->
+    <!-- ========================================== -->
+    <section id="section-levels" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_07">Outil 07</div>
+          <h2 class="tool-title" data-i18n="lvl_title">Banque Pédagogique : Niveaux A1-B2 & Conjugaison</h2>
+          <p class="tool-desc" data-i18n-html="lvl_desc">
+            Explorez le vocabulaire thématique par niveau CECRL et maîtrisez les tableaux de conjugaison où 
+            <span class="red-highlight-pill">les verbes conjugués sont surlignés en Rouge Éclatant</span> 
+            pour une mémorisation visuelle immédiate.
+          </p>
+        </div>
+
+        <!-- Master Tabs: Vocabulaire vs Conversations vs Conjugaison -->
+        <div class="tabs-header-container">
+          <div class="master-tabs">
+            <button class="master-tab active" data-tab="vocab" onclick="window.app.levels.setMasterTab('vocab')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+              <span data-i18n="lvl_tab_vocab">Vocabulaire & Phraséologie Thématique</span>
+            </button>
+            <button class="master-tab" data-tab="conversations" onclick="window.app.levels.setMasterTab('conversations')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg>
+              <span data-i18n="lvl_tab_conv">Conversations & Dialogues (Verbes en Rouge)</span>
+            </button>
+            <button class="master-tab" data-tab="conjugaison" onclick="window.app.levels.setMasterTab('conjugaison')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span data-i18n="lvl_tab_conj">Tableaux de Conjugaison (Verbes en Rouge)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-SECTION A: VOCABULARY BY LEVELS A1-B2 -->
+        <div id="levelsVocabContainer" class="levels-view active">
+          <!-- Level selector pills -->
+          <div class="level-pills-row">
+            <button class="level-pill active" data-level="A1" onclick="window.app.levels.setLevel('A1')">
+              <span class="pill-lvl">A1</span>
+              <span class="pill-title" data-i18n="lvl_a1">Débutant (Introduction & Quotidien)</span>
+            </button>
+            <button class="level-pill" data-level="A2" onclick="window.app.levels.setLevel('A2')">
+              <span class="pill-lvl">A2</span>
+              <span class="pill-title" data-i18n="lvl_a2">Élémentaire (Voyage & Sorties)</span>
+            </button>
+            <button class="level-pill" data-level="B1" onclick="window.app.levels.setLevel('B1')">
+              <span class="pill-lvl">B1</span>
+              <span class="pill-title" data-i18n="lvl_b1">Intermédiaire (Travail & Opinions)</span>
+            </button>
+            <button class="level-pill" data-level="B2" onclick="window.app.levels.setLevel('B2')">
+              <span class="pill-lvl">B2</span>
+              <span class="pill-title" data-i18n="lvl_b2">Avancé (Débats & Nuances)</span>
+            </button>
+          </div>
+
+          <!-- Vocabulary vs. Sentences Filter Switcher -->
+          <div class="vocab-mode-switcher" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem;">
+            <button class="btn btn-secondary vocab-filter-btn active" id="btnVocabAll" onclick="window.app.levels.setFilterMode('all')">📚 الكل (Tous)</button>
+            <button class="btn btn-secondary vocab-filter-btn" id="btnVocabWords" onclick="window.app.levels.setFilterMode('words')">🔤 الكلمات المفردة (Mots seuls)</button>
+            <button class="btn btn-secondary vocab-filter-btn" id="btnVocabSentences" onclick="window.app.levels.setFilterMode('sentences')">💬 الجمل التطبيقية (Phrases complètes)</button>
+          </div>
+
+          <!-- Dynamic Topics & Vocabulary Cards Container -->
+          <div id="vocabContent" class="vocab-content">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- SUB-SECTION B: THEMED CONVERSATIONS (DIALOGUES WITH CONJUGATED VERBS IN RED) -->
+        <div id="levelsConvContainer" class="levels-view hidden">
+          <!-- Level selector pills for conversations -->
+          <div class="level-pills-row">
+            <button class="conv-pill active" data-conv-level="A1" onclick="window.app.levels.setConvLevel('A1')">
+              <span class="pill-lvl">A1</span>
+              <span class="pill-title" data-i18n="conv_a1">Dialogues Débutant (Salutations, Courses, Heure & 1963)</span>
+            </button>
+            <button class="conv-pill" data-conv-level="A2" onclick="window.app.levels.setConvLevel('A2')">
+              <span class="pill-lvl">A2</span>
+              <span class="pill-title" data-i18n="conv_a2">Dialogues Élémentaire (Voyage, Ville, Loisirs & Plage)</span>
+            </button>
+            <button class="conv-pill" data-conv-level="B1" onclick="window.app.levels.setConvLevel('B1')">
+              <span class="pill-lvl">B1</span>
+              <span class="pill-title" data-i18n="conv_b1">Dialogues Intermédiaire (Chez le Médecin, Travail & Urgences)</span>
+            </button>
+            <button class="conv-pill" data-conv-level="B2" onclick="window.app.levels.setConvLevel('B2')">
+              <span class="pill-lvl">B2</span>
+              <span class="pill-title" data-i18n="conv_b2">Dialogues Avancé (Argot, Société, Débats & Confidences)</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Themed Conversations Container -->
+          <div id="convContent" class="conv-content">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- SUB-SECTION B: CONJUGATION TABLES (VERBS IN RED) -->
+        <div id="levelsConjugaisonContainer" class="levels-view hidden">
+          <!-- Conjugation Search & Verb Selector -->
+          <div class="conjugation-toolbar">
+            <div class="verb-search-box">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="verbSearchInput" data-i18n-placeholder="verb_search_ph" placeholder="Rechercher un verbe (ex: être, avoir, aller, faire, parler, prendre...)" oninput="window.app.levels.filterVerbs(this.value)">
+            </div>
+            <div class="tense-filter-group">
+              <span class="filter-label" data-i18n="tense_label">Temps :</span>
+              <select id="tenseSelect" class="form-select" onchange="window.app.levels.changeTense(this.value)">
+                <option value="all" data-i18n="t_all">Tous les temps</option>
+                <option value="present" selected data-i18n="t_pres">Présent de l'indicatif</option>
+                <option value="passe_compose" data-i18n="t_pc">Passé composé</option>
+                <option value="imparfait" data-i18n="t_imp">Imparfait</option>
+                <option value="futur" data-i18n="t_fut">Futur simple</option>
+                <option value="conditionnel" data-i18n="t_cond">Conditionnel présent</option>
+                <option value="subjonctif" data-i18n="t_subj">Subjonctif présent</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Verbs Chips -->
+          <div class="quick-verbs-row">
+            <span class="qv-title" data-i18n="qv_title">Verbes essentiels :</span>
+            <div class="qv-list" id="quickVerbsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Conjugation Tables Display Container -->
+          <div id="conjugationDisplayArea" class="conjugation-display-area">
+            <!-- Rendered via JS with distinct red verbs -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODALS: AUTH, BOOK READER, ADMIN ADD BOOK  -->
+  <!-- ========================================== -->
+
+  <!-- 1. Authentication Modal (Sign In / Register) -->
+  <div id="authModal" class="modal-backdrop hidden" onclick="window.app.auth.handleBackdropClick(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="window.app.auth.closeModal()">✕</button>
+      
+      <div class="auth-header">
+        <div class="auth-brand-logo">3bido</div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabLogin" onclick="window.app.auth.switchTab('login')" data-i18n="auth_tab_login">Se Connecter</button>
+          <button class="auth-tab" id="tabRegister" onclick="window.app.auth.switchTab('register')" data-i18n="auth_tab_register">Créer un Compte</button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" onsubmit="window.app.auth.submitLogin(event)">
+        <div class="form-group">
+          <label for="loginUsername" data-i18n="auth_user_label">Nom d'utilisateur</label>
+          <input type="text" id="loginUsername" placeholder="Entrez votre nom d'utilisateur (ex: 3bido)" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword" data-i18n="auth_pass_label">Mot de passe</label>
+          <input type="password" id="loginPassword" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
+        </div>
+        <div class="auth-admin-hint" data-i18n-html="auth_admin_hint">
+          <span>💡 <strong>Compte Administrateur :</strong> nom <code>3bido</code> (mot de passe libre ou <code>3bido2025</code>)</span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="auth_btn_login">Se Connecter</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form hidden" onsubmit="window.app.auth.submitRegister(event)">
+        <div class="form-group">
+          <label for="regUsername" data-i18n="auth_choose_user">Choisir un nom d'utilisateur</label>
+          <input type="text" id="regUsername" placeholder="Votre pseudonyme (ex: Sami, Lina...)" required minlength="3">
+        </div>
+        <div class="form-group">
+          <label for="regPassword" data-i18n="auth_pass_label">Mot de passe</label>
+          <input type="password" id="regPassword" placeholder="Minimum 4 caractères" required minlength="4">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="auth_btn_register">Créer mon Compte</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Book Reader Modal -->
+  <div id="readerModal" class="modal-backdrop hidden" onclick="window.app.library.handleReaderBackdrop(event)">
+    <div class="modal-card reader-card">
+      <div class="reader-header">
+        <div class="reader-meta">
+          <span class="reader-level-badge" id="readerLevel">A2</span>
+          <h3 class="reader-title" id="readerTitle">Titre de l'œuvre</h3>
+          <span class="reader-author" id="readerAuthor">Auteur</span>
+        </div>
+        <div class="reader-controls">
+          <button class="reader-tool-btn" onclick="window.app.library.adjustFontSize(-1)" title="Diminuer la police">A-</button>
+          <button class="reader-tool-btn" onclick="window.app.library.adjustFontSize(1)" title="Agrandir la police">A+</button>
+          <button class="reader-tool-btn" onclick="window.app.library.readAloud()" title="Écouter le texte en français">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+          <button class="modal-close-btn" onclick="window.app.library.closeReader()">✕</button>
+        </div>
+      </div>
+      <div class="reader-body" id="readerContent">
+        <!-- Rendered Book Content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Admin Add Book Modal (Exclusive for 3bido) -->
+  <div id="addBookModal" class="modal-backdrop hidden" onclick="window.app.library.handleAddBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="window.app.library.closeAddModal()">✕</button>
+      <div class="modal-header">
+        <div class="admin-badge-inline" data-i18n="admin_zone_badge">Zone Admin 3bido</div>
+        <h3 class="modal-title" data-i18n="modal_add_title">Ajouter un Nouveau Livre à la Bibliothèque</h3>
+        <p class="modal-desc" data-i18n="modal_add_desc">Ce livre sera immédiatement enregistré et accessible à tous les visiteurs.</p>
+      </div>
+      <form id="addBookForm" onsubmit="window.app.library.submitNewBook(event)">
+        <div class="form-group">
+          <label for="bookTitle" data-i18n="modal_book_title">Titre du Livre *</label>
+          <input type="text" id="bookTitle" placeholder="Ex: Le Tour du Monde en 80 Jours" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookAuthor" data-i18n="modal_book_author">Auteur *</label>
+            <input type="text" id="bookAuthor" placeholder="Ex: Jules Verne" required>
+          </div>
+          <div class="form-group">
+            <label for="bookLevel" data-i18n="modal_book_level">Niveau CECRL *</label>
+            <select id="bookLevel" class="form-select" required>
+              <option value="A1">A1 - Débutant</option>
+              <option value="A2">A2 - Élémentaire</option>
+              <option value="B1" selected>B1 - Intermédiaire</option>
+              <option value="B2">B2 - Avancé</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bookDesc" data-i18n="modal_book_desc">Courte Description / Résumé *</label>
+          <textarea id="bookDesc" rows="2" placeholder="Présentation succincte de l'ouvrage..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bookContent" data-i18n="modal_book_content">Contenu du Texte (Chapitre ou texte intégral) *</label>
+          <textarea id="bookContent" rows="7" placeholder="Collez le texte français du livre ou de l'extrait ici..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="modal_book_submit">Publier le Livre dans la Bibliothèque</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toastNotification" class="toast-container hidden">
+    <div class="toast-content">
+      <span class="toast-icon">ℹ️</span>
+      <span class="toast-message" id="toastMessage">Notification</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="f-brand">3bido</span>
+          <span class="f-tag" data-i18n="footer_brand_tag">Apprentissage Moderne du Français</span>
+        </div>
+        <p class="f-desc" data-i18n="footer_desc">Conçu avec dévouement pour tous les apprenants francophones à travers le monde. Solidarité, culture et savoir partagé.</p>
+      </div>
+      <div class="footer-center">
+        <div class="flag-tribute">
+          <span class="flag-visual">
+            <span class="fv-stripe fv-black"></span>
+            <span class="fv-stripe fv-white"></span>
+            <span class="fv-stripe fv-green"></span>
+            <span class="fv-triangle"></span>
+          </span>
+          <span class="flag-text" data-i18n="solidarity_text">Solidarité & Paix • Palestine dans nos cœurs 🇵🇸</span>
+        </div>
+      </div>
+      <div class="footer-right">
+        <span>© <span id="currentYear">2026</span> <strong>3bido</strong> — <span data-i18n="rights_text">Tous droits réservés.</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
