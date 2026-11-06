@@ -67,7 +67,7 @@ window.app.i18n = {
       c3_desc: "Traduisez en temps réel entre le Français et l'Arabe avec lecture audio et banque d'expressions usuelles.",
       c3_link: "Traduire FR ⇄ AR →",
       c4_title: "Bibliothèque Française",
-      c4_desc: "Explorez et lisez des œuvres littéraires adaptées à tous les niveaux. Espace d'ajout exclusif pour l'admin 3bido.",
+      c4_desc: "Explorez et lisez des œuvres littéraires adaptées à tous les niveaux. Espace d'ajout exclusif pour l'admin عبيدو.",
       c4_link: "Consulter les livres →",
       c5_title: "Tuteur IA Interactif",
       c5_desc: "Discutez en direct avec un assistant pédagogique francophone : pratique libre, mises en situation et retours correctifs.",
@@ -103,7 +103,7 @@ window.app.i18n = {
       tool_04: "Outil 04",
       l_title: "Bibliothèque Numérique Française",
       l_desc: "Ouvrages littéraires, contes, poésies et textes classiques en accès libre pour progresser en lecture.",
-      l_btn_add: "Ajouter un Nouveau Livre (Admin 3bido)",
+      l_btn_add: "Ajouter un Nouveau Livre (Admin عبيدو)",
       l_filter_all: "Tous les Livres",
       l_filter_beg: "Niveau Débutant (A1-A2)",
       l_filter_adv: "Niveau Avancé (B1-B2)",
@@ -161,14 +161,16 @@ window.app.i18n = {
       auth_btn_login: "Se Connecter",
       auth_choose_user: "Choisir un nom d'utilisateur",
       auth_btn_register: "Créer mon Compte",
-      admin_zone_badge: "Zone Admin 3bido",
+      admin_zone_badge: "Zone Admin عبيدو",
       modal_add_title: "Ajouter un Nouveau Livre à la Bibliothèque",
       modal_add_desc: "Ce livre sera immédiatement enregistré et accessible à tous les visiteurs.",
       modal_book_title: "Titre du Livre *",
       modal_book_author: "Auteur *",
       modal_book_level: "Niveau CECRL *",
       modal_book_desc: "Courte Description / Résumé *",
-      modal_book_content: "Contenu du Texte (Chapitre ou texte intégral) *",
+      modal_book_content: "Contenu du Texte (Chapitre ou texte intégral)",
+      modal_book_pdf: "📄 Fichier PDF du Livre (Optionnel)",
+      modal_book_pdf_hint: "Taille max recommandée : 4 Mo. Le texte OU le PDF est requis.",
       modal_book_submit: "Publier le Livre dans la Bibliothèque",
       footer_brand_tag: "Apprentissage Moderne du Français",
       footer_desc: "Conçu avec dévouement pour tous les apprenants francophones à travers le monde. Solidarité, culture et savoir partagé.",
@@ -228,7 +230,7 @@ window.app.i18n = {
       c3_desc: "ترجمة دقيقة في الوقت الحقيقي بين الفرنسية والعربية مدعومة بالنطق الصوتي وتبديل الاتجاه.",
       c3_link: "ترجمة فرنسي ⇄ عربي ←",
       c4_title: "المكتبة الفرنسية",
-      c4_desc: "اقرأ روائع الأدب الفرنسي المصنفة حسب المستويات، مع ميزة رفع الكتب الخاصة بالمشرف 3bido.",
+      c4_desc: "اقرأ روائع الأدب الفرنسي المصنفة حسب المستويات، مع ميزة رفع الكتب الخاصة بالمشرف عبيدو.",
       c4_link: "تصفح وقراءة الكتب ←",
       c5_title: "معلم الذكاء الاصطناعي",
       c5_desc: "تحدث مباشرة مع مساعد لغوي ذكي: حوار حر، سيناريوهات عملية (مطعم، سفر، مقابلة عمل) وتصحيح الأخطاء.",
@@ -264,7 +266,7 @@ window.app.i18n = {
       tool_04: "الأداة 04",
       l_title: "المكتبة الرقمية الفرنسية",
       l_desc: "مؤلفات أدبية وقصص وروايات كلاسيكية للقراءة الحرة وتطوير الفهم اللغوي.",
-      l_btn_add: "إضافة كتاب جديد (حساب 3bido)",
+      l_btn_add: "إضافة كتاب جديد (حساب عبيدو)",
       l_filter_all: "جميع الكتب",
       l_filter_beg: "مستوى مبتدئ (A1-A2)",
       l_filter_adv: "مستوى متقدم (B1-B2)",
@@ -278,7 +280,7 @@ window.app.i18n = {
       sc_travel: "السفر ومحطة القطار",
       sc_interview: "مقابلة العمل",
       sc_quiz: "اختبار وألغاز لغوية",
-      chat_tutor_name: "الأستاذ عبيدو (3bido)",
+      chat_tutor_name: "الأستاذ عبيدو",
       chat_online: "متصل الآن",
       chat_ph: "اكتب رسالتك بالفرنسية (أو انقر على المايك للتحدث)...",
       chat_btn_send: "إرسال",
@@ -322,14 +324,16 @@ window.app.i18n = {
       auth_btn_login: "تسجيل الدخول",
       auth_choose_user: "اختر اسم المستخدم",
       auth_btn_register: "إنشاء الحساب",
-      admin_zone_badge: "لوحة تحكم المشرف 3bido",
+      admin_zone_badge: "لوحة تحكم المشرف عبيدو",
       modal_add_title: "إضافة كتاب جديد إلى المكتبة الرقمية",
       modal_add_desc: "سيتم حفظ هذا الكتاب وإتاحته فورياً لجميع القراء والزوار.",
       modal_book_title: "عنوان الكتاب *",
       modal_book_author: "المؤلف *",
       modal_book_level: "المستوى CECRL *",
       modal_book_desc: "وصف موجز / ملخص *",
-      modal_book_content: "محتوى النص (فصل أو النص الكامل) *",
+      modal_book_content: "محتوى النص (فصل أو النص الكامل)",
+      modal_book_pdf: "📄 ملف PDF الكتاب (اختياري)",
+      modal_book_pdf_hint: "الحجم الأقصى الموصى به: 4 ميجابايت. النص أو ملف PDF مطلوب.",
       modal_book_submit: "نشر الكتاب في المكتبة",
       footer_brand_tag: "المنصة الحديثة لتعلّم اللغة الفرنسية",
       footer_desc: "صُممت بإتقان لجميع عشاق ومتعلمي اللغة الفرنسية حول العالم. تضامن، ثقافة، وعلم متاح للجميع.",
@@ -548,16 +552,18 @@ window.app.speakFrench = function(text, rate = null, pitch = 1.0) {
 
 /* ===================================================================
    3. AUTHENTICATION & ADMIN SYSTEM
-   Admin username: "3bido" (Strictly Unlocks Book Upload)
+   Admin username: "عبيدو" (Strictly Unlocks Book Upload)
    =================================================================== */
 window.app.auth = {
   currentUser: null,
+  ADMIN_USERNAME: 'عبيدو',
+  ADMIN_DEFAULT_PASSWORD: '112200',
 
   init() {
     // Seed default admin user in localStorage if not exists
     const users = this.getUsers();
-    if (!users.some(u => u.username.toLowerCase() === '3bido')) {
-      users.push({ username: '3bido', password: '3bido2025', role: 'admin' });
+    if (!users.some(u => u.username === this.ADMIN_USERNAME)) {
+      users.push({ username: this.ADMIN_USERNAME, password: this.ADMIN_DEFAULT_PASSWORD, role: 'admin' });
       localStorage.setItem('3bido_users', JSON.stringify(users));
     }
 
@@ -583,7 +589,7 @@ window.app.auth = {
   },
 
   isAdmin() {
-    return this.currentUser && this.currentUser.username.trim().toLowerCase() === '3bido';
+    return this.currentUser && this.currentUser.username.trim() === this.ADMIN_USERNAME;
   },
 
   renderNavAuth() {
@@ -685,15 +691,9 @@ window.app.auth = {
     }
 
     const users = this.getUsers();
-    let user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+    const user = users.find(u => u.username === username);
 
-    if (username.toLowerCase() === '3bido') {
-      if (!user) {
-        user = { username: '3bido', password: password, role: 'admin' };
-        users.push(user);
-        localStorage.setItem('3bido_users', JSON.stringify(users));
-      }
-    } else if (!user || user.password !== password) {
+    if (!user || user.password !== password) {
       window.app.showToast(isAr ? 'بيانات الدخول غير صحيحة.' : 'Identifiants incorrects. Veuillez réessayer.', '❌');
       return;
     }
@@ -706,7 +706,7 @@ window.app.auth = {
 
     if (window.app.welcomeMsg) window.app.welcomeMsg.updateAdminVisibility();
     if (this.isAdmin()) {
-      window.app.showToast(isAr ? 'أهلاً بالمشرف 3bido! تم تفعيل ميزة إضافة الكتب.' : 'Bienvenue Administrateur 3bido ! Mode gestion débloqué.', '👑');
+      window.app.showToast(isAr ? 'أهلاً بالمشرف عبيدو! تم تفعيل ميزة إضافة الكتب.' : 'Bienvenue Administrateur عبيدو ! Mode gestion débloqué.', '👑');
     } else {
       window.app.showToast(isAr ? `أهلاً بك يا ${this.currentUser.username}!` : `Bienvenue, ${this.currentUser.username} !`, '✨');
     }
@@ -724,13 +724,16 @@ window.app.auth = {
     }
 
     const users = this.getUsers();
-    if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+    if (username === this.ADMIN_USERNAME) {
+      window.app.showToast(isAr ? 'اسم المستخدم هذا محجوز للمشرف.' : 'Ce nom d\'utilisateur est réservé à l\'admin.', '⚠️');
+      return;
+    }
+    if (users.some(u => u.username === username)) {
       window.app.showToast(isAr ? 'اسم المستخدم هذا محجوز بالفعل.' : 'Ce nom d\'utilisateur est déjà utilisé.', '⚠️');
       return;
     }
 
-    const isAdm = username.toLowerCase() === '3bido';
-    const newUser = { username, password, role: isAdm ? 'admin' : 'user' };
+    const newUser = { username, password, role: 'user' };
     users.push(newUser);
     localStorage.setItem('3bido_users', JSON.stringify(users));
 
@@ -761,7 +764,7 @@ window.app.auth = {
     }
 
     const users = this.getUsers();
-    let user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+    let user = users.find(u => u.username === username);
 
     if (!user) {
       window.app.showToast(isAr ? 'اسم المستخدم غير موجود.' : 'Utilisateur introuvable.', '❌');
@@ -776,7 +779,7 @@ window.app.auth = {
     user.password = newPassword;
     localStorage.setItem('3bido_users', JSON.stringify(users));
 
-    if (this.currentUser && this.currentUser.username.toLowerCase() === username.toLowerCase()) {
+    if (this.currentUser && this.currentUser.username === username) {
       this.currentUser.password = newPassword;
       localStorage.setItem('3bido_current_user', JSON.stringify(this.currentUser));
     }
@@ -1464,7 +1467,7 @@ window.app.trans = {
 
 /* ===================================================================
    7. SECTION 4: FRENCH LIBRARY & ADMIN UPLOAD
-   "Add New Book" unlocked EXCLUSIVELY for username "3bido"
+   "Add New Book" unlocked EXCLUSIVELY for username "عبيدو"
    =================================================================== */
 window.app.library = {
   defaultBooks: [
@@ -1713,6 +1716,11 @@ Un bouquet de houx vert et de bruyère en fleur.`
             <button class="btn-read" onclick="window.app.library.openReader('${book.id}')">
               📖 ${isAr ? 'قراءة الكتاب' : 'Lire l\'Œuvre'}
             </button>
+            ${book.pdfData ? `
+              <button class="btn-pdf" onclick="window.app.library.openPdf('${book.id}')">
+                📄 ${isAr ? 'فتح PDF' : 'Ouvrir PDF'}
+              </button>
+            ` : ''}
             ${isAdmin && book.id.startsWith('custom-') ? `
               <button class="btn-delete-book" onclick="window.app.library.deleteBook('${book.id}')">${isAr ? 'حذف' : 'Supprimer'}</button>
             ` : ''}
@@ -1769,10 +1777,36 @@ Un bouquet de houx vert et de bruyère en fleur.`
     window.app.showToast(window.app.lang === 'ar' ? 'قراءة المقطع صوتياً بالفرنسية...' : 'Lecture audio du passage...', '🔊');
   },
 
+  openPdf(bookId) {
+    const book = this.getAllBooks().find(b => b.id === bookId);
+    if (!book || !book.pdfData) {
+      window.app.showToast(window.app.lang === 'ar' ? 'لا يوجد ملف PDF لهذا الكتاب.' : 'Aucun fichier PDF pour ce livre.', '⚠️');
+      return;
+    }
+    // Open the PDF base64 data in a new browser tab
+    const newTab = window.open();
+    if (newTab) {
+      newTab.document.write(`
+        <!DOCTYPE html>
+        <html><head><title>${this.escape(book.title)} - PDF</title></head>
+        <body style="margin:0;padding:0;height:100vh;">
+          <iframe src="${book.pdfData}" style="width:100%;height:100%;border:none;"></iframe>
+        </body></html>
+      `);
+      newTab.document.close();
+    } else {
+      // Fallback: create download link
+      const a = document.createElement('a');
+      a.href = book.pdfData;
+      a.download = `${book.title}.pdf`;
+      a.click();
+    }
+  },
+
   // Admin Upload Modal
   openAddModal() {
     if (!window.app.auth.isAdmin()) {
-      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف 3bido.' : 'Accès restreint au compte 3bido.', '⚠️');
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
       return;
     }
     const modal = document.getElementById('addBookModal');
@@ -1802,30 +1836,69 @@ Un bouquet de houx vert et de bruyère en fleur.`
     const level = document.getElementById('bookLevel').value;
     const desc = document.getElementById('bookDesc').value.trim();
     const content = document.getElementById('bookContent').value.trim();
+    const pdfInput = document.getElementById('bookPdfFile');
+    const pdfFile = pdfInput && pdfInput.files[0];
     const isAr = window.app.lang === 'ar';
 
-    if (!title || !author || !content) {
-      window.app.showToast(isAr ? 'يرجى ملء جميع الحقول المطلوبة.' : 'Veuillez remplir tous les champs obligatoires.', '⚠️');
+    if (!title || !author) {
+      window.app.showToast(isAr ? 'يرجى ملء العنوان والمؤلف.' : 'Veuillez remplir le titre et l\'auteur.', '⚠️');
       return;
     }
 
+    if (!content && !pdfFile) {
+      window.app.showToast(isAr ? 'يرجى إدخال النص أو رفع ملف PDF.' : 'Veuillez saisir du texte ou téléverser un PDF.', '⚠️');
+      return;
+    }
+
+    // If there's a PDF file, read it as base64
+    if (pdfFile) {
+      if (pdfFile.size > 5 * 1024 * 1024) {
+        window.app.showToast(isAr ? 'حجم الملف كبير جداً! الحد الأقصى 5 ميجابايت.' : 'Fichier trop volumineux ! Maximum 5 Mo.', '⚠️');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const pdfData = reader.result; // base64 data URL
+        this._saveBook(title, author, level, desc, content, pdfData);
+      };
+      reader.onerror = () => {
+        window.app.showToast(isAr ? 'حدث خطأ في قراءة الملف.' : 'Erreur de lecture du fichier.', '❌');
+      };
+      reader.readAsDataURL(pdfFile);
+    } else {
+      this._saveBook(title, author, level, desc, content, null);
+    }
+  },
+
+  _saveBook(title, author, level, desc, content, pdfData) {
+    const isAr = window.app.lang === 'ar';
     const newBook = {
       id: `custom-${Date.now()}`,
       title,
       author,
       level,
       desc,
-      content
+      content: content || '',
+      pdfData: pdfData || null
     };
 
-    const customBooks = this.getCustomBooks();
-    customBooks.unshift(newBook);
-    localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+    try {
+      const customBooks = this.getCustomBooks();
+      customBooks.unshift(newBook);
+      localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
 
-    document.getElementById('addBookForm').reset();
-    this.closeAddModal();
-    this.renderBooks();
-    window.app.showToast(isAr ? `تمت إضافة كتاب « ${title} » إلى المكتبة!` : `Livre « ${title} » ajouté avec succès !`, '🎉');
+      document.getElementById('addBookForm').reset();
+      this.closeAddModal();
+      this.renderBooks();
+      window.app.showToast(isAr ? `تمت إضافة كتاب « ${title} » إلى المكتبة!` : `Livre « ${title} » ajouté avec succès !`, '🎉');
+    } catch (err) {
+      if (err.name === 'QuotaExceededError' || err.code === 22) {
+        window.app.showToast(isAr ? 'مساحة التخزين ممتلئة! حاول ملف أصغر.' : 'Stockage plein ! Essayez un fichier plus petit.', '❌');
+      } else {
+        window.app.showToast(isAr ? 'حدث خطأ في الحفظ.' : 'Erreur de sauvegarde.', '❌');
+      }
+    }
   },
 
   deleteBook(id) {
@@ -8966,16 +9039,23 @@ window.app.welcomeMsg = {
   },
 
   updateAdminVisibility() {
-    const isAdmin = window.app.auth && window.app.auth.currentUser && window.app.auth.currentUser.username === '3bido';
+    const isAdmin = window.app.auth && window.app.auth.isAdmin();
     const btn = document.getElementById('adminEditMsgBtn');
+    const editor = document.getElementById('welcomeMsgEditor');
     if (btn) {
       if (isAdmin) btn.classList.remove('hidden');
       else btn.classList.add('hidden');
     }
+    // If not admin, also hide the editor and show the display (in case it was open)
+    if (!isAdmin) {
+      if (editor) editor.classList.add('hidden');
+      const display = document.getElementById('welcomeMsgDisplay');
+      if (display) display.classList.remove('hidden');
+    }
   },
 
   startEdit() {
-    const isAdmin = window.app.auth && window.app.auth.currentUser && window.app.auth.currentUser.username === '3bido';
+    const isAdmin = window.app.auth && window.app.auth.isAdmin();
     if (!isAdmin) return;
     const input = document.getElementById('welcomeMsgInput');
     const display = document.getElementById('welcomeMsgDisplay');
@@ -8988,7 +9068,7 @@ window.app.welcomeMsg = {
   },
 
   save() {
-    const isAdmin = window.app.auth && window.app.auth.currentUser && window.app.auth.currentUser.username === '3bido';
+    const isAdmin = window.app.auth && window.app.auth.isAdmin();
     if (!isAdmin) return;
     const input = document.getElementById('welcomeMsgInput');
     const val = input ? input.value.trim() : '';

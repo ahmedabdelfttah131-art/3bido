@@ -2570,6 +2570,45 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, select:f
   color: var(--text-secondary);
 }
 
+.form-file-input {
+  padding: 0.6rem;
+  border: 2px dashed var(--border-color, #ccc);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--bg-card, #f9f9f9);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+
+.form-file-input:hover {
+  border-color: var(--flag-green, #009736);
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted, #888);
+  margin: 0;
+}
+
+.btn-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.7rem;
+  background: var(--flag-red, #ce1126);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn-pdf:hover {
+  opacity: 0.85;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;

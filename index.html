@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" data-theme="light" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -233,7 +233,7 @@
             <div class="service-card-content">
               <div class="service-number">04</div>
               <h3 class="service-card-title" data-i18n="c4_title">Bibliothèque Française</h3>
-              <p class="service-card-desc" data-i18n="c4_desc">Explorez et lisez des œuvres littéraires adaptées à tous les niveaux. Espace d'ajout exclusif pour l'admin 3bido.</p>
+              <p class="service-card-desc" data-i18n="c4_desc">Explorez et lisez des œuvres littéraires adaptées à tous les niveaux. Espace d'ajout exclusif pour l'admin عبيدو.</p>
             </div>
             <div class="service-card-footer">
               <span class="card-action-link" data-i18n="c4_link">Consulter les livres →</span>
@@ -499,7 +499,7 @@
             <div id="adminUploadContainer" class="admin-only-action hidden">
               <button class="btn btn-admin" onclick="window.app.library.openAddModal()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                <span data-i18n="l_btn_add">Ajouter un Nouveau Livre (Admin 3bido)</span>
+                <span data-i18n="l_btn_add">Ajouter un Nouveau Livre (Admin عبيدو)</span>
               </button>
             </div>
           </div>
@@ -847,7 +847,7 @@
       <form id="loginForm" class="auth-form" onsubmit="window.app.auth.submitLogin(event)">
         <div class="form-group">
           <label for="loginUsername" data-i18n="auth_user_label">Nom d'utilisateur</label>
-          <input type="text" id="loginUsername" placeholder="Entrez votre nom d'utilisateur (ex: 3bido)" required autocomplete="username">
+          <input type="text" id="loginUsername" placeholder="Entrez votre nom d'utilisateur (ex: عبيدو)" required autocomplete="username">
         </div>
         <div class="form-group">
           <label for="loginPassword" data-i18n="auth_pass_label">Mot de passe</label>
@@ -873,7 +873,7 @@
       <form id="changePassForm" class="auth-form hidden" onsubmit="window.app.auth.submitChangePassword(event)">
         <div class="form-group">
           <label for="cpUsername" data-i18n="auth_user_label">Nom d'utilisateur</label>
-          <input type="text" id="cpUsername" placeholder="Nom d'utilisateur (ex: 3bido)" required>
+          <input type="text" id="cpUsername" placeholder="Nom d'utilisateur (ex: عبيدو)" required>
         </div>
         <div class="form-group">
           <label for="cpOldPassword" data-i18n="auth_old_pass_label">Ancien mot de passe</label>
@@ -917,7 +917,7 @@
     <div class="modal-card">
       <button class="modal-close-btn" onclick="window.app.library.closeAddModal()">✕</button>
       <div class="modal-header">
-        <div class="admin-badge-inline" data-i18n="admin_zone_badge">Zone Admin 3bido</div>
+        <div class="admin-badge-inline" data-i18n="admin_zone_badge">Zone Admin عبيدو</div>
         <h3 class="modal-title" data-i18n="modal_add_title">Ajouter un Nouveau Livre à la Bibliothèque</h3>
         <p class="modal-desc" data-i18n="modal_add_desc">Ce livre sera immédiatement enregistré et accessible à tous les visiteurs.</p>
       </div>
@@ -946,8 +946,13 @@
           <textarea id="bookDesc" rows="2" placeholder="Présentation succincte de l'ouvrage..." required></textarea>
         </div>
         <div class="form-group">
-          <label for="bookContent" data-i18n="modal_book_content">Contenu du Texte (Chapitre ou texte intégral) *</label>
-          <textarea id="bookContent" rows="7" placeholder="Collez le texte français du livre ou de l'extrait ici..." required></textarea>
+          <label for="bookContent" data-i18n="modal_book_content">Contenu du Texte (Chapitre ou texte intégral)</label>
+          <textarea id="bookContent" rows="7" placeholder="Collez le texte français du livre ou de l'extrait ici..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bookPdfFile" data-i18n="modal_book_pdf">📄 Fichier PDF du Livre (Optionnel)</label>
+          <input type="file" id="bookPdfFile" accept=".pdf" class="form-file-input">
+          <p class="form-hint" data-i18n="modal_book_pdf_hint">Taille max recommandée : 4 Mo. Le texte OU le PDF est requis.</p>
         </div>
         <button type="submit" class="btn btn-primary btn-block" data-i18n="modal_book_submit">Publier le Livre dans la Bibliothèque</button>
       </form>
