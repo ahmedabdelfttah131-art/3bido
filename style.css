@@ -435,21 +435,27 @@ body::after {
   color: var(--flag-red);
 }
 
-/* Mobile Toggle */
+/* Hamburger Menu Button - Always visible on all screen sizes */
 .mobile-menu-toggle {
-  display: none;
+  display: flex !important;
   background: transparent;
   border: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 5px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm, 0.4rem);
+  transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--bg-card-subtle);
 }
 
 .mobile-menu-toggle span {
   display: block;
-  width: 24px;
-  height: 2px;
+  width: 22px;
+  height: 2.5px;
   background-color: var(--text-primary);
   border-radius: 2px;
   transition: var(--transition);
