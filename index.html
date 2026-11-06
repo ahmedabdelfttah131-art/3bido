@@ -866,6 +866,7 @@
         <div class="auth-tabs">
           <button class="auth-tab active" id="tabLogin" onclick="window.app.auth.switchTab('login')" data-i18n="auth_tab_login">Se Connecter</button>
           <button class="auth-tab" id="tabRegister" onclick="window.app.auth.switchTab('register')" data-i18n="auth_tab_register">Créer un Compte</button>
+          <button class="auth-tab" id="tabChangePass" onclick="window.app.auth.switchTab('changePass')" data-i18n="auth_tab_changepass">Changer MDP</button>
         </div>
       </div>
 
@@ -878,9 +879,6 @@
         <div class="form-group">
           <label for="loginPassword" data-i18n="auth_pass_label">Mot de passe</label>
           <input type="password" id="loginPassword" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
-        </div>
-        <div class="auth-admin-hint" data-i18n-html="auth_admin_hint">
-          <span>💡 <strong>Compte Administrateur :</strong> nom <code>3bido</code> (mot de passe libre ou <code>3bido2025</code>)</span>
         </div>
         <button type="submit" class="btn btn-primary btn-block" data-i18n="auth_btn_login">Se Connecter</button>
       </form>
@@ -896,6 +894,23 @@
           <input type="password" id="regPassword" placeholder="Minimum 4 caractères" required minlength="4">
         </div>
         <button type="submit" class="btn btn-primary btn-block" data-i18n="auth_btn_register">Créer mon Compte</button>
+      </form>
+
+      <!-- Change Password Form -->
+      <form id="changePassForm" class="auth-form hidden" onsubmit="window.app.auth.submitChangePassword(event)">
+        <div class="form-group">
+          <label for="cpUsername" data-i18n="auth_user_label">Nom d'utilisateur</label>
+          <input type="text" id="cpUsername" placeholder="Nom d'utilisateur (ex: 3bido)" required>
+        </div>
+        <div class="form-group">
+          <label for="cpOldPassword" data-i18n="auth_old_pass_label">Ancien mot de passe</label>
+          <input type="password" id="cpOldPassword" placeholder="Votre ancien mot de passe" required>
+        </div>
+        <div class="form-group">
+          <label for="cpNewPassword" data-i18n="auth_new_pass_label">Nouveau mot de passe</label>
+          <input type="password" id="cpNewPassword" placeholder="Nouveau mot de passe (min 4 caractères)" required minlength="4">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="auth_btn_changepass">Modifier le mot de passe</button>
       </form>
     </div>
   </div>

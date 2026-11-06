@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ===================================================================
  * 3bido - Modern French Learning Platform
  * Complete Application Logic
@@ -152,9 +152,12 @@ window.app.i18n = {
       qv_title: "Verbes essentiels :",
       auth_tab_login: "Se Connecter",
       auth_tab_register: "Créer un Compte",
+      auth_tab_changepass: "Changer MDP",
+      auth_old_pass_label: "Ancien mot de passe",
+      auth_new_pass_label: "Nouveau mot de passe",
+      auth_btn_changepass: "Modifier le mot de passe",
       auth_user_label: "Nom d'utilisateur",
       auth_pass_label: "Mot de passe",
-      auth_admin_hint: "<span>💡 <strong>Compte Administrateur :</strong> nom <code>3bido</code> (mot de passe libre ou <code>3bido2025</code>)</span>",
       auth_btn_login: "Se Connecter",
       auth_choose_user: "Choisir un nom d'utilisateur",
       auth_btn_register: "Créer mon Compte",
@@ -310,9 +313,12 @@ window.app.i18n = {
       qv_title: "أفعال أساسية:",
       auth_tab_login: "تسجيل الدخول",
       auth_tab_register: "إنشاء حساب جديد",
+      auth_tab_changepass: "تغيير كلمة المرور",
+      auth_old_pass_label: "كلمة المرور القديمة",
+      auth_new_pass_label: "كلمة المرور الجديدة",
+      auth_btn_changepass: "حفظ كلمة المرور الجديدة",
       auth_user_label: "اسم المستخدم",
       auth_pass_label: "كلمة المرور",
-      auth_admin_hint: "<span>💡 <strong>حساب المشرف:</strong> اسم المستخدم <code>3bido</code> (كلمة المرور <code>3bido2025</code>)</span>",
       auth_btn_login: "تسجيل الدخول",
       auth_choose_user: "اختر اسم المستخدم",
       auth_btn_register: "إنشاء الحساب",
@@ -594,6 +600,9 @@ window.app.auth = {
           <div class="user-avatar-mini">${firstLetter}</div>
           <span class="user-name-mini">${this.escape(this.currentUser.username)}</span>
           ${isAdm ? `<span class="admin-tag-badge">${isAr ? 'مشرف' : 'Admin'}</span>` : ''}
+          <button class="btn-logout" onclick="window.app.auth.openModal('changePass')" title="${isAr ? 'تغيير كلمة المرور' : 'Changer mot de passe'}" style="margin: 0 4px; padding: 2px 5px; font-size: 0.8rem; background: transparent; border: none; cursor: pointer;">
+            🔑
+          </button>
           <button class="btn-logout" onclick="window.app.auth.logout()" title="${isAr ? 'تسجيل الخروج' : 'Se déconnecter'}">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           </button>
@@ -640,19 +649,27 @@ window.app.auth = {
   switchTab(tab) {
     const tabLogin = document.getElementById('tabLogin');
     const tabRegister = document.getElementById('tabRegister');
+    const tabChangePass = document.getElementById('tabChangePass');
     const formLogin = document.getElementById('loginForm');
     const formRegister = document.getElementById('registerForm');
+    const formChangePass = document.getElementById('changePassForm');
+
+    [tabLogin, tabRegister, tabChangePass].forEach(t => t && t.classList.remove('active'));
+    [formLogin, formRegister, formChangePass].forEach(f => f && f.classList.add('hidden'));
 
     if (tab === 'login') {
-      tabLogin.classList.add('active');
-      tabRegister.classList.remove('active');
-      formLogin.classList.remove('hidden');
-      formRegister.classList.add('hidden');
-    } else {
-      tabLogin.classList.remove('active');
-      tabRegister.classList.add('active');
-      formLogin.classList.add('hidden');
-      formRegister.classList.remove('hidden');
+      if (tabLogin) tabLogin.classList.add('active');
+      if (formLogin) formLogin.classList.remove('hidden');
+    } else if (tab === 'register') {
+      if (tabRegister) tabRegister.classList.add('active');
+      if (formRegister) formRegister.classList.remove('hidden');
+    } else if (tab === 'changePass') {
+      if (tabChangePass) tabChangePass.classList.add('active');
+      if (formChangePass) formChangePass.classList.remove('hidden');
+      if (this.currentUser) {
+        const cpUser = document.getElementById('cpUsername');
+        if (cpUser) cpUser.value = this.currentUser.username;
+      }
     }
   },
 
@@ -724,6 +741,48 @@ window.app.auth = {
     this.closeModal();
     if (window.app.welcomeMsg) window.app.welcomeMsg.updateAdminVisibility();
     window.app.showToast(isAr ? `تم إنشاء الحساب بنجاح! مرحباً ${username}` : `Compte créé avec succès ! Bienvenue ${username}`, '🎉');
+  },
+
+  submitChangePassword(e) {
+    e.preventDefault();
+    const username = document.getElementById('cpUsername').value.trim();
+    const oldPassword = document.getElementById('cpOldPassword').value.trim();
+    const newPassword = document.getElementById('cpNewPassword').value.trim();
+    const isAr = window.app.lang === 'ar';
+
+    if (!username || !oldPassword || !newPassword) {
+      window.app.showToast(isAr ? 'يرجى ملء جميع الحقول.' : 'Veuillez renseigner tous les champs.', '⚠️');
+      return;
+    }
+
+    if (newPassword.length < 4) {
+      window.app.showToast(isAr ? 'كلمة المرور يجب أن لا تقل عن 4 أحرف.' : 'Le mot de passe doit comporter au moins 4 caractères.', '⚠️');
+      return;
+    }
+
+    const users = this.getUsers();
+    let user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+
+    if (!user) {
+      window.app.showToast(isAr ? 'اسم المستخدم غير موجود.' : 'Utilisateur introuvable.', '❌');
+      return;
+    }
+
+    if (user.password !== oldPassword) {
+      window.app.showToast(isAr ? 'كلمة المرور القديمة غير صحيحة.' : 'L\'ancien mot de passe est incorrect.', '❌');
+      return;
+    }
+
+    user.password = newPassword;
+    localStorage.setItem('3bido_users', JSON.stringify(users));
+
+    if (this.currentUser && this.currentUser.username.toLowerCase() === username.toLowerCase()) {
+      this.currentUser.password = newPassword;
+      localStorage.setItem('3bido_current_user', JSON.stringify(this.currentUser));
+    }
+
+    this.closeModal();
+    window.app.showToast(isAr ? 'تم تغيير كلمة المرور بنجاح! ✅' : 'Mot de passe modifié avec succès ! ✅', '🔒');
   },
 
   logout() {

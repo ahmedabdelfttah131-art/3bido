@@ -2989,23 +2989,93 @@ html[dir="rtl"] .message-bubble.user .msg-content {
 
 @media (max-width: 640px) {
   .hero-title {
-    font-size: 2.25rem;
+    font-size: 1.85rem;
+    line-height: 1.3;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
   .hero-card {
-    padding: 2.5rem 1.25rem;
+    padding: 1.75rem 1rem;
+    border-radius: var(--radius-md, 0.75rem);
   }
   .hero-stats {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+  .stat-item {
+    width: 100%;
+    padding: 0.75rem;
   }
   .tool-box {
-    padding: 1.25rem;
+    padding: 1rem;
   }
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   .level-pills-row {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .master-tabs-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .master-tab {
+    width: 100%;
+    justify-content: center;
+  }
+  .vocab-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+  .vocab-card {
+    padding: 0.85rem 1rem;
+  }
+  .vocab-mode-switcher {
+    flex-wrap: wrap;
+  }
+  .vocab-mode-switcher button {
+    flex: 1 1 100%;
+  }
+  .dialogue-turn {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.85rem;
+  }
+  .speed-chips-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+  .speed-chip {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .modal-card {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 1.25rem 1rem;
+    margin: 1rem auto;
+  }
+  .auth-tabs {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .auth-tab {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .chat-wrapper {
+    height: auto;
+  }
+  .chat-messages {
+    height: 380px;
+    padding: 0.75rem;
+  }
+  .chat-input-bar {
+    padding: 0.5rem;
   }
   .form-row {
     grid-template-columns: 1fr;
@@ -3014,6 +3084,18 @@ html[dir="rtl"] .message-bubble.user .msg-content {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 1rem;
+  }
+  .calligraphy-banner-thuluth {
+    font-size: 1.6rem !important;
+  }
+  .welcome-message-block {
+    padding: 1.25rem 1rem;
+    margin: 1rem 0;
+  }
+  .welcome-msg-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
   }
 }
 
