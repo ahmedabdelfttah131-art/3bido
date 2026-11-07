@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ===================================================================
  * 3bido - Modern French Learning Platform
  * Complete Application Logic
@@ -2322,50 +2322,16 @@ Un bouquet de houx vert et de bruyère en fleur.`
 window.app.videos = {
   activeFilter: 'all',
 
-  defaultVideos: [
-    {
-      id: 'vid-def-1',
-      title: "L'Alphabet Français et la Phonétique",
-      titleAr: "الأبجدية الفرنسية والنطق الصحيح للأصوات",
-      level: "A1",
-      category: "Prononciation",
-      desc: "Apprenez à prononcer chaque lettre et les sons fondamentaux du français avec clarté.",
-      url: "https://www.youtube.com/watch?v=wXWpB8iZ238",
-      isCustom: false
-    },
-    {
-      id: 'vid-def-2',
-      title: "Les Salutations et Présentations du Quotidien",
-      titleAr: "التحيات والتعريف بالنفس في الحياة اليومية",
-      level: "A1",
-      category: "Communication",
-      desc: "Dialogues essentiels pour saluer, se présenter et engager la conversation.",
-      url: "https://www.youtube.com/watch?v=hd0_GZHHMrE",
-      isCustom: false
-    },
-    {
-      id: 'vid-def-3',
-      title: "Commander au Restaurant et au Café en France",
-      titleAr: "كيف تطلب في المطعم والمقهى بالفرنسية",
-      level: "A2",
-      category: "Vie Quotidienne",
-      desc: "Expressions pratiques et vocabulaire indispensable pour commander repas et boissons.",
-      url: "https://www.youtube.com/watch?v=DfZD5G4a2hE",
-      isCustom: false
-    },
-    {
-      id: 'vid-def-4',
-      title: "Comprendre les Français quand ils parlent vite",
-      titleAr: "كيف تفهم الفرنسيين عندما يتحدثون بسرعة",
-      level: "B1-B2",
-      category: "Compréhension Orale",
-      desc: "Astuces concrètes pour décoder les liaisons, élisions et le rythme du français parlé réel.",
-      url: "https://www.youtube.com/watch?v=kR2tJq9222Y",
-      isCustom: false
-    }
-  ],
+  defaultVideos: [],
 
   init() {
+    try {
+      const custom = JSON.parse(localStorage.getItem('3bido_custom_videos')) || [];
+      const cleaned = custom.filter(v => !v.id.startsWith('vid-def-'));
+      if (cleaned.length !== custom.length) {
+        localStorage.setItem('3bido_custom_videos', JSON.stringify(cleaned));
+      }
+    } catch (e) {}
     this.renderVideos();
   },
 
@@ -2418,7 +2384,11 @@ window.app.videos = {
     }
 
     if (list.length === 0) {
-      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">${isAr ? 'لا توجد فيديوهات مطابقة لهذا التصنيف.' : 'Aucune vidéo trouvée pour ce filtre.'}</div>`;
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3.5rem 1.5rem; color: var(--text-muted); background: var(--bg-card); border-radius: var(--radius-lg); border: 1.5px dashed var(--border-color);">
+        <div style="font-size: 2.2rem; margin-bottom: 0.6rem;">🎬</div>
+        <p style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-primary);">${isAr ? 'لا توجد فيديوهات في هذا القسم حالياً.' : 'Aucune vidéo disponible pour le moment.'}</p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">${isAr ? 'يمكن للمشرف عبيدو إضافة فيديوهات جديدة عبر زر « + إضافة فيديو جديد » بالأعلى.' : 'L\'administrateur peut ajouter de nouvelles vidéos via le bouton ci-dessus.'}</p>
+      </div>`;
       return;
     }
 
