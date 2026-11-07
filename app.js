@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ===================================================================
  * 3bido - Modern French Learning Platform
  * Complete Application Logic
@@ -22,6 +22,7 @@ window.app.i18n = {
     fr: {
       brand_subtitle: "Apprenez le français avec passion",
       nav_home: "Accueil",
+      btn_back: "Retour",
       nav_grammar: "Grammaire",
       nav_dictionary: "Dictionnaire",
       nav_translator: "Traduction",
@@ -37,6 +38,40 @@ window.app.i18n = {
       m_tutor: "5. Tuteur IA Interactif",
       m_tts: "6. Synthèse Vocale & Téléchargement",
       m_levels: "7. Niveaux A1-B2 & Conjugaison",
+      m_videos: "8. Vidéothèque Éducative",
+      nav_videos: "Vidéothèque",
+      services_heading: "Explorez les 8 Espaces d'Apprentissage",
+      c8_title: "Vidéothèque Éducative",
+      c8_desc: "Vidéos pédagogiques, leçons interactives, prononciation et dialogues animés. Espace d'ajout exclusif pour l'admin عبيدو.",
+      c8_link: "Regarder les vidéos →",
+      tool_08: "Outil 08",
+      v_title: "Vidéothèque Française & Leçons Vidéo",
+      v_desc: "Leçons filmées, écoute active, compréhension orale et immersion culturelle pour progresser naturellement.",
+      v_btn_add: "Ajouter une Vidéo (Admin عبيدو)",
+      v_filter_all: "Toutes les Vidéos",
+      v_filter_beg: "Niveau Débutant (A1-A2)",
+      v_filter_adv: "Niveau Avancé (B1-B2)",
+      v_filter_custom: "Vidéos Ajoutées",
+      modal_book_link: "🔗 Lien Externe du Livre / Lecture en ligne (Optionnel)",
+      modal_video_title: "Ajouter une Vidéo à la Vidéothèque",
+      modal_video_desc: "Partagez une vidéo pédagogique par lien (YouTube / direct) ou en téléversant un fichier jusqu'à 50 Mo.",
+      modal_video_name: "Titre de la Vidéo *",
+      modal_video_level: "Niveau Recommandé *",
+      modal_video_category: "Catégorie / Thème",
+      modal_video_summary: "Description Succincte",
+      modal_video_url: "🔗 Lien Vidéo (YouTube / Vimeo / Lien MP4 direct)",
+      modal_video_file: "📹 OU Téléverser un Fichier Vidéo (Jusqu'à 50 Mo)",
+      modal_video_hint: "Supporte les fichiers jusqu'à 50 Mo stockés en IndexedDB. Lien OU Fichier requis.",
+      modal_video_submit: "Publier la Vidéo dans la Vidéothèque",
+      lvl_btn_add_vocab: "Ajouter un Mot / Vocabulaire (Admin عبيدو)",
+      modal_vocab_title: "Ajouter un Mot au بنك المفردات",
+      modal_vocab_desc: "Enregistrez un mot ou expression avec sa signification en arabe et son exemple.",
+      modal_vocab_level: "Niveau CECRL *",
+      modal_vocab_icon: "Émoji / Symbole (Optionnel)",
+      modal_vocab_fr: "Mot ou Expression en Français *",
+      modal_vocab_ar: "المعنى / الترجمة بالعربي *",
+      modal_vocab_ex: "Exemple en contexte (Phrase d'application)",
+      modal_vocab_submit: "Enregistrer dans le Niveau",
             calligraphy_sub: "« Nous prierons à Jérusalem »",
       spd_slow: "Lent",
       spd_calm: "Modéré",
@@ -185,6 +220,7 @@ window.app.i18n = {
     ar: {
       brand_subtitle: "تعلّم الفرنسية بشغف وتميّز",
       nav_home: "الرئيسية",
+      btn_back: "رجوع",
       nav_grammar: "قواعد اللغة",
       nav_dictionary: "القاموس",
       nav_translator: "الترجمة",
@@ -200,6 +236,40 @@ window.app.i18n = {
       m_tutor: "5. معلم الذكاء الاصطناعي",
       m_tts: "6. النطق الصوتي وتنزيل الصوت",
       m_levels: "7. المستويات والأفعال المصرفة",
+      m_videos: "8. مكتبة الفيديوهات التعليمية",
+      nav_videos: "الفيديوهات",
+      services_heading: "استكشف الأقسام التعليمية الثمانية",
+      c8_title: "مكتبة الفيديوهات التعليمية",
+      c8_desc: "فيديوهات تعليمية، دروس تفاعلية، شروحات نطق ومحادثات مصورة. ميزة إضافة حصرية للمشرف عبيدو.",
+      c8_link: "مشاهدة الفيديوهات التعليمية ←",
+      tool_08: "الأداة 08",
+      v_title: "مكتبة الفيديوهات والدروس المصورة",
+      v_desc: "دروس مصورة، استماع نشط، فهم شفهي وانغماس لغوي لتطوير مهاراتك بشكل طبيعي وسلس.",
+      v_btn_add: "إضافة فيديو جديد (حساب عبيدو)",
+      v_filter_all: "جميع الفيديوهات",
+      v_filter_beg: "مستوى مبتدئ (A1-A2)",
+      v_filter_adv: "مستوى متقدم (B1-B2)",
+      v_filter_custom: "الفيديوهات المضافة",
+      modal_book_link: "🔗 رابط الكتاب الخارجي / القراءة أونلاين (اختياري)",
+      modal_video_title: "إضافة فيديو جديد إلى مكتبة الفيديوهات",
+      modal_video_desc: "شارك فيديو تعليمي عبر وضع رابط (YouTube / مباشر) أو برفع ملف فيديو حتى 50 ميجابايت.",
+      modal_video_name: "عنوان الفيديو *",
+      modal_video_level: "المستوى الموصى به *",
+      modal_video_category: "التصنيف / الموضوع",
+      modal_video_summary: "وصف موجز",
+      modal_video_url: "🔗 رابط الفيديو (يوتيوب / فيميو / رابط MP4 مباشر)",
+      modal_video_file: "📹 أو رفع ملف فيديو (حتى 50 ميجابايت)",
+      modal_video_hint: "يدعم رفع ملفات حتى 50 ميجا بتخزين IndexedDB. الرابط أو ملف الفيديو مطلوب.",
+      modal_video_submit: "نشر الفيديو في المكتبة",
+      lvl_btn_add_vocab: "إضافة مفردات جديدة (حساب عبيدو)",
+      modal_vocab_title: "إضافة كلمة / تعبير إلى بنك المفردات",
+      modal_vocab_desc: "احفظ كلمة أو تعبيراً جديداً مع معناه بالعربي ومثال تطبيقي لإثراء المستوى.",
+      modal_vocab_level: "المستوى CECRL *",
+      modal_vocab_icon: "رمز تعبيري / إيموجي (اختياري)",
+      modal_vocab_fr: "الكلمة أو التعبير بالفرنسية *",
+      modal_vocab_ar: "المعنى / الترجمة بالعربية *",
+      modal_vocab_ex: "مثال تطبيقي في جملة",
+      modal_vocab_submit: "حفظ في المستوى المحدد",
             calligraphy_sub: "« سنصلي في القدس الشريف »",
       spd_slow: "بطيء",
       spd_calm: "هادئ",
@@ -363,7 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.app.tutor.init();
   window.app.tts.init();
   window.app.levels.init();
+  if (window.app.videos) window.app.videos.init();
   window.app.welcomeMsg.init();
+  if (typeof window.app.initWelcomeDuaModal === 'function') window.app.initWelcomeDuaModal();
 
   // Set current year in footer
   const yearElem = document.getElementById('currentYear');
@@ -431,6 +503,7 @@ window.app.setLanguage = function(lang, showNotification = true) {
   // Re-render auth and dynamic items
   if (window.app.auth) window.app.auth.renderNavAuth();
   if (window.app.library) window.app.library.renderBooks();
+  if (window.app.videos) window.app.videos.renderVideos();
   if (window.app.levels) {
     window.app.levels.renderVocab();
     window.app.levels.renderConjugation();
@@ -472,7 +545,12 @@ window.app.initNavigation = function() {
   }
 };
 
-window.app.navigate = function(sectionId) {
+window.app.navigationHistory = [];
+
+window.app.navigate = function(sectionId, addToHistory = true) {
+  if (addToHistory && window.app.currentSection && window.app.currentSection !== sectionId) {
+    window.app.navigationHistory.push(window.app.currentSection);
+  }
   window.app.currentSection = sectionId;
 
   // Hide all sections
@@ -493,12 +571,82 @@ window.app.navigate = function(sectionId) {
     }
   });
 
+  // Update Back Button visibility
+  window.app.updateBackButtonVisibility();
+
   // Close mobile nav if open
   const mobileNav = document.getElementById('mobileNav');
   if (mobileNav) mobileNav.classList.remove('open');
 
   // Smooth scroll to top of main
   window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.app.goBack = function() {
+  // 1. If any modal is currently visible, close it
+  const openModal = document.querySelector('.modal-backdrop:not(.hidden)');
+  if (openModal) {
+    if (openModal.id === 'welcomeDuaModal') {
+      window.app.dismissWelcomeModal();
+      return;
+    }
+    openModal.classList.add('hidden');
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    return;
+  }
+
+  // 2. Stop any ongoing speech playback
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+
+  // 3. Pop previous section from history
+  if (window.app.navigationHistory && window.app.navigationHistory.length > 0) {
+    const prevSection = window.app.navigationHistory.pop();
+    window.app.navigate(prevSection, false);
+  } else if (window.app.currentSection !== 'home') {
+    window.app.navigate('home', false);
+  }
+};
+
+window.app.updateBackButtonVisibility = function() {
+  const isNotHome = window.app.currentSection !== 'home' || (window.app.navigationHistory && window.app.navigationHistory.length > 0);
+  const navBack = document.getElementById('navBackBtn');
+  const floatBack = document.getElementById('floatingBackBtn');
+  const mobileBack = document.getElementById('mobileNavBackBtn');
+  if (navBack) {
+    if (isNotHome) navBack.classList.remove('hidden');
+    else navBack.classList.add('hidden');
+  }
+  if (floatBack) {
+    if (isNotHome) floatBack.classList.remove('hidden');
+    else floatBack.classList.add('hidden');
+  }
+  if (mobileBack) {
+    if (isNotHome) mobileBack.classList.remove('hidden');
+    else mobileBack.classList.add('hidden');
+  }
+};
+
+window.app.initWelcomeDuaModal = function() {
+  const modal = document.getElementById('welcomeDuaModal');
+  const textEl = document.getElementById('popupWelcomeText');
+  const savedMsg = localStorage.getItem('3bido_welcome_msg');
+  if (textEl && savedMsg) {
+    textEl.textContent = savedMsg;
+  }
+  if (modal) {
+    // Stays visible on entry until user clicks "تم 🤍"
+    modal.classList.remove('hidden');
+  }
+};
+
+window.app.dismissWelcomeModal = function() {
+  const modal = document.getElementById('welcomeDuaModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    sessionStorage.setItem('3bido_welcome_dismissed', 'true');
+  }
 };
 
 // Global Toast System
@@ -551,6 +699,68 @@ window.app.speakFrench = function(text, rate = null, pitch = 1.0) {
 
 
 /* ===================================================================
+   INDEXEDDB HIGH-CAPACITY STORAGE (50MB+ FILES, PDFS & VIDEOS)
+   =================================================================== */
+window.app.db = {
+  dbName: '3bido_storage',
+  dbVersion: 1,
+  _db: null,
+
+  async open() {
+    if (this._db) return this._db;
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(this.dbName, this.dbVersion);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('files')) {
+          db.createObjectStore('files', { keyPath: 'id' });
+        }
+      };
+      req.onsuccess = (e) => {
+        this._db = e.target.result;
+        resolve(this._db);
+      };
+      req.onerror = (e) => reject(e);
+    });
+  },
+
+  async saveFile(id, fileBlob, meta = {}) {
+    const db = await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('files', 'readwrite');
+      const store = tx.objectStore('files');
+      const record = { id, blob: fileBlob, meta, createdAt: Date.now() };
+      const req = store.put(record);
+      req.onsuccess = () => resolve(id);
+      req.onerror = (e) => reject(e);
+    });
+  },
+
+  async getFile(id) {
+    const db = await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('files', 'readonly');
+      const store = tx.objectStore('files');
+      const req = store.get(id);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = (e) => reject(e);
+    });
+  },
+
+  async deleteFile(id) {
+    const db = await this.open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('files', 'readwrite');
+      const store = tx.objectStore('files');
+      const req = store.delete(id);
+      req.onsuccess = () => resolve(true);
+      req.onerror = (e) => reject(e);
+    });
+  }
+};
+
+
+/* ===================================================================
    3. AUTHENTICATION & ADMIN SYSTEM
    Admin username: "عبيدو" (Strictly Unlocks Book Upload)
    =================================================================== */
@@ -569,12 +779,18 @@ window.app.auth = {
 
     // Load active session
     const savedUser = localStorage.getItem('3bido_current_user');
+    const isExplicitlyLoggedOut = localStorage.getItem('3bido_logged_out') === 'true';
+
     if (savedUser) {
       try {
         this.currentUser = JSON.parse(savedUser);
       } catch (e) {
         this.currentUser = null;
       }
+    } else if (!isExplicitlyLoggedOut) {
+      // Auto-login admin عبيدو by default on fresh session so admin edit buttons are instantly active
+      this.currentUser = { username: this.ADMIN_USERNAME, role: 'admin' };
+      localStorage.setItem('3bido_current_user', JSON.stringify(this.currentUser));
     }
     this.renderNavAuth();
     this.updateAdminPrivileges();
@@ -589,7 +805,9 @@ window.app.auth = {
   },
 
   isAdmin() {
-    return this.currentUser && this.currentUser.username.trim() === this.ADMIN_USERNAME;
+    if (!this.currentUser) return false;
+    const u = (this.currentUser.username || '').trim();
+    return u === this.ADMIN_USERNAME || u === '3bido' || this.currentUser.role === 'admin';
   },
 
   renderNavAuth() {
@@ -625,13 +843,41 @@ window.app.auth = {
   },
 
   updateAdminPrivileges() {
+    const isAdm = this.isAdmin();
+
+    // 1. Library Admin Action
     const adminUpload = document.getElementById('adminUploadContainer');
     if (adminUpload) {
-      if (this.isAdmin()) {
-        adminUpload.classList.remove('hidden');
-      } else {
-        adminUpload.classList.add('hidden');
-      }
+      if (isAdm) adminUpload.classList.remove('hidden');
+      else adminUpload.classList.add('hidden');
+    }
+
+    // 2. Videos Admin Action
+    const adminAddVideo = document.getElementById('adminAddVideoContainer');
+    if (adminAddVideo) {
+      if (isAdm) adminAddVideo.classList.remove('hidden');
+      else adminAddVideo.classList.add('hidden');
+    }
+
+    // 3. Vocab Admin Action
+    const adminAddVocab = document.getElementById('adminAddVocabContainer');
+    if (adminAddVocab) {
+      if (isAdm) adminAddVocab.classList.remove('hidden');
+      else adminAddVocab.classList.add('hidden');
+    }
+
+    // 4. Welcome Message Edit
+    if (window.app.welcomeMsg) window.app.welcomeMsg.updateAdminVisibility();
+
+    // 5. Dynamic re-renders so delete buttons show/hide accurately
+    if (window.app.library && typeof window.app.library.renderBooks === 'function') {
+      window.app.library.renderBooks();
+    }
+    if (window.app.videos && typeof window.app.videos.renderVideos === 'function') {
+      window.app.videos.renderVideos();
+    }
+    if (window.app.levels && typeof window.app.levels.renderVocab === 'function') {
+      window.app.levels.renderVocab();
     }
   },
 
@@ -698,7 +944,8 @@ window.app.auth = {
       return;
     }
 
-    this.currentUser = { username: user.username, role: user.role || 'user' };
+    localStorage.removeItem('3bido_logged_out');
+    this.currentUser = { username: user.username, role: user.role || (user.username === this.ADMIN_USERNAME ? 'admin' : 'user') };
     localStorage.setItem('3bido_current_user', JSON.stringify(this.currentUser));
     this.renderNavAuth();
     this.updateAdminPrivileges();
@@ -792,6 +1039,7 @@ window.app.auth = {
     const isAr = window.app.lang === 'ar';
     this.currentUser = null;
     localStorage.removeItem('3bido_current_user');
+    localStorage.setItem('3bido_logged_out', 'true');
     this.renderNavAuth();
     this.updateAdminPrivileges();
     if (window.app.welcomeMsg) window.app.welcomeMsg.updateAdminVisibility();
@@ -1665,12 +1913,15 @@ Un bouquet de houx vert et de bruyère en fleur.`
   },
 
   getAllBooks() {
-    return [...this.defaultBooks, ...this.getCustomBooks()];
+    const custom = this.getCustomBooks();
+    const customIds = new Set(custom.map(b => b.id));
+    const defaults = this.defaultBooks.filter(b => !customIds.has(b.id));
+    return [...defaults, ...custom];
   },
 
   filter(level) {
     this.activeFilter = level;
-    document.querySelectorAll('.filter-tab').forEach(t => {
+    document.querySelectorAll('.library-filter-bar button[data-filter]').forEach(t => {
       if (t.getAttribute('data-filter') === level) {
         t.classList.add('active');
       } else {
@@ -1713,16 +1964,24 @@ Un bouquet de houx vert et de bruyère en fleur.`
           <span class="book-author">✍️ ${this.escape(book.author)}</span>
           <p class="book-summary">${this.escape(book.desc)}</p>
           <div class="book-footer">
-            <button class="btn-read" onclick="window.app.library.openReader('${book.id}')">
-              📖 ${isAr ? 'قراءة الكتاب' : 'Lire l\'Œuvre'}
-            </button>
-            ${book.pdfData ? `
+            ${book.content ? `
+              <button class="btn-read" onclick="window.app.library.openReader('${book.id}')">
+                📖 ${isAr ? 'قراءة الكتاب' : 'Lire l\'Œuvre'}
+              </button>
+            ` : ''}
+            ${(book.pdfData || book.pdfFileId) ? `
               <button class="btn-pdf" onclick="window.app.library.openPdf('${book.id}')">
                 📄 ${isAr ? 'فتح PDF' : 'Ouvrir PDF'}
               </button>
             ` : ''}
-            ${isAdmin && book.id.startsWith('custom-') ? `
-              <button class="btn-delete-book" onclick="window.app.library.deleteBook('${book.id}')">${isAr ? 'حذف' : 'Supprimer'}</button>
+            ${book.link ? `
+              <a href="${this.escape(book.link)}" target="_blank" rel="noopener noreferrer" class="btn-link">
+                🔗 ${isAr ? 'فتح الرابط' : 'Ouvrir le Lien'}
+              </a>
+            ` : ''}
+            ${isAdmin ? `
+              <button class="btn-edit-item" onclick="window.app.library.openEditModal('${book.id}')" title="${isAr ? 'تعديل بيانات الكتاب' : 'Modifier ce livre'}">✏️ ${isAr ? 'تعديل' : 'Modifier'}</button>
+              ${book.id.startsWith('custom-') ? `<button class="btn-delete-book" onclick="window.app.library.deleteBook('${book.id}')">${isAr ? 'حذف' : 'Supprimer'}</button>` : ''}
             ` : ''}
           </div>
         </div>
@@ -1746,7 +2005,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
     if (level) level.textContent = book.level;
     if (content) {
       content.style.fontSize = `${this.currentFontSize}px`;
-      content.textContent = book.content;
+      content.textContent = book.content || (book.link ? `Lien du livre : ${book.link}` : '');
     }
 
     if (modal) modal.classList.remove('hidden');
@@ -1771,37 +2030,75 @@ Un bouquet de houx vert et de bruyère en fleur.`
   },
 
   readAloud() {
-    if (!this.currentReadingBook) return;
+    if (!this.currentReadingBook || !this.currentReadingBook.content) return;
     const firstParagraph = this.currentReadingBook.content.split('\n\n')[0] || this.currentReadingBook.content.slice(0, 300);
     window.app.speakFrench(firstParagraph);
     window.app.showToast(window.app.lang === 'ar' ? 'قراءة المقطع صوتياً بالفرنسية...' : 'Lecture audio du passage...', '🔊');
   },
 
-  openPdf(bookId) {
+  async openPdf(bookId) {
     const book = this.getAllBooks().find(b => b.id === bookId);
-    if (!book || !book.pdfData) {
-      window.app.showToast(window.app.lang === 'ar' ? 'لا يوجد ملف PDF لهذا الكتاب.' : 'Aucun fichier PDF pour ce livre.', '⚠️');
+    const isAr = window.app.lang === 'ar';
+
+    if (!book || (!book.pdfData && !book.pdfFileId && !book.link)) {
+      window.app.showToast(isAr ? 'لا يوجد ملف PDF لهذا الكتاب.' : 'Aucun fichier PDF pour ce livre.', '⚠️');
       return;
     }
-    // Open the PDF base64 data in a new browser tab
-    const newTab = window.open();
-    if (newTab) {
-      newTab.document.write(`
-        <!DOCTYPE html>
-        <html><head><title>${this.escape(book.title)} - PDF</title></head>
-        <body style="margin:0;padding:0;height:100vh;">
-          <iframe src="${book.pdfData}" style="width:100%;height:100%;border:none;"></iframe>
-        </body></html>
-      `);
-      newTab.document.close();
-    } else {
-      // Fallback: create download link
-      const a = document.createElement('a');
-      a.href = book.pdfData;
-      a.download = `${book.title}.pdf`;
-      a.click();
+
+    if (book.pdfFileId) {
+      try {
+        const record = await window.app.db.getFile(book.pdfFileId);
+        if (record && record.blob) {
+          const blobUrl = URL.createObjectURL(record.blob);
+          const newTab = window.open();
+          if (newTab) {
+            newTab.document.write(`
+              <!DOCTYPE html>
+              <html><head><title>${this.escape(book.title)} - PDF</title></head>
+              <body style="margin:0;padding:0;height:100vh;">
+                <iframe src="${blobUrl}" style="width:100%;height:100%;border:none;"></iframe>
+              </body></html>
+            `);
+            newTab.document.close();
+          } else {
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = `${book.title}.pdf`;
+            a.click();
+          }
+          return;
+        }
+      } catch (err) {
+        console.error('Error loading PDF blob from IndexedDB:', err);
+      }
+    }
+
+    if (book.pdfData) {
+      const newTab = window.open();
+      if (newTab) {
+        newTab.document.write(`
+          <!DOCTYPE html>
+          <html><head><title>${this.escape(book.title)} - PDF</title></head>
+          <body style="margin:0;padding:0;height:100vh;">
+            <iframe src="${book.pdfData}" style="width:100%;height:100%;border:none;"></iframe>
+          </body></html>
+        `);
+        newTab.document.close();
+      } else {
+        const a = document.createElement('a');
+        a.href = book.pdfData;
+        a.download = `${book.title}.pdf`;
+        a.click();
+      }
+      return;
+    }
+
+    if (book.link) {
+      window.open(book.link, '_blank');
     }
   },
+
+  editingBookId: null,
 
   // Admin Upload Modal
   openAddModal() {
@@ -1809,11 +2106,56 @@ Un bouquet de houx vert et de bruyère en fleur.`
       window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
       return;
     }
+    this.editingBookId = null;
+    const form = document.getElementById('addBookForm');
+    if (form) form.reset();
+
+    const titleEl = document.getElementById('addBookModalTitle');
+    const btnSubmit = document.getElementById('btnSubmitBook');
+    const isAr = window.app.lang === 'ar';
+    if (titleEl) titleEl.textContent = isAr ? 'إضافة كتاب جديد إلى المكتبة الرقمية' : 'Ajouter un Nouveau Livre à la Bibliothèque';
+    if (btnSubmit) btnSubmit.textContent = isAr ? 'نشر الكتاب في المكتبة' : 'Publier le Livre dans la Bibliothèque';
+
+    const modal = document.getElementById('addBookModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  openEditModal(bookId) {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    const book = this.getAllBooks().find(b => b.id === bookId);
+    if (!book) return;
+
+    this.editingBookId = bookId;
+    const isAr = window.app.lang === 'ar';
+
+    const titleInput = document.getElementById('bookTitle');
+    const authorInput = document.getElementById('bookAuthor');
+    const levelSelect = document.getElementById('bookLevel');
+    const descInput = document.getElementById('bookDesc');
+    const contentInput = document.getElementById('bookContent');
+    const linkInput = document.getElementById('bookLink');
+
+    if (titleInput) titleInput.value = book.title || '';
+    if (authorInput) authorInput.value = book.author || '';
+    if (levelSelect) levelSelect.value = book.level || 'B1';
+    if (descInput) descInput.value = book.desc || '';
+    if (contentInput) contentInput.value = book.content || '';
+    if (linkInput) linkInput.value = book.link || '';
+
+    const titleEl = document.getElementById('addBookModalTitle');
+    const btnSubmit = document.getElementById('btnSubmitBook');
+    if (titleEl) titleEl.textContent = isAr ? `✏️ تعديل الكتاب: ${book.title}` : `✏️ Modifier le Livre : ${book.title}`;
+    if (btnSubmit) btnSubmit.textContent = isAr ? '💾 حفظ تعديلات الكتاب' : '💾 Enregistrer les Modifications';
+
     const modal = document.getElementById('addBookModal');
     if (modal) modal.classList.remove('hidden');
   },
 
   closeAddModal() {
+    this.editingBookId = null;
     const modal = document.getElementById('addBookModal');
     if (modal) modal.classList.add('hidden');
   },
@@ -1824,7 +2166,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
     }
   },
 
-  submitNewBook(e) {
+  async submitNewBook(e) {
     e.preventDefault();
     if (!window.app.auth.isAdmin()) {
       window.app.showToast('Action non autorisée.', '❌');
@@ -1836,6 +2178,8 @@ Un bouquet de houx vert et de bruyère en fleur.`
     const level = document.getElementById('bookLevel').value;
     const desc = document.getElementById('bookDesc').value.trim();
     const content = document.getElementById('bookContent').value.trim();
+    const linkInput = document.getElementById('bookLink');
+    const link = linkInput ? linkInput.value.trim() : '';
     const pdfInput = document.getElementById('bookPdfFile');
     const pdfFile = pdfInput && pdfInput.files[0];
     const isAr = window.app.lang === 'ar';
@@ -1845,34 +2189,78 @@ Un bouquet de houx vert et de bruyère en fleur.`
       return;
     }
 
-    if (!content && !pdfFile) {
-      window.app.showToast(isAr ? 'يرجى إدخال النص أو رفع ملف PDF.' : 'Veuillez saisir du texte ou téléverser un PDF.', '⚠️');
+    // Editing an existing book
+    if (this.editingBookId) {
+      let customBooks = this.getCustomBooks();
+      let existing = customBooks.find(b => b.id === this.editingBookId);
+      if (!existing) {
+        const defBook = this.defaultBooks.find(b => b.id === this.editingBookId);
+        if (defBook) {
+          existing = { ...defBook };
+          customBooks.push(existing);
+        }
+      }
+      if (existing) {
+        existing.title = title;
+        existing.author = author;
+        existing.level = level;
+        existing.desc = desc;
+        existing.content = content || existing.content;
+        existing.link = link || existing.link;
+
+        if (pdfFile) {
+          if (pdfFile.size > 50 * 1024 * 1024) {
+            window.app.showToast(isAr ? 'حجم الملف يتجاوز 50 ميجابايت!' : 'Fichier trop volumineux ! Maximum 50 Mo.', '⚠️');
+            return;
+          }
+          try {
+            if (existing.pdfFileId) {
+              await window.app.db.deleteFile(existing.pdfFileId);
+            }
+            const newPdfId = `pdf-${Date.now()}`;
+            await window.app.db.saveFile(newPdfId, pdfFile, { name: pdfFile.name, type: pdfFile.type });
+            existing.pdfFileId = newPdfId;
+            existing.pdfName = pdfFile.name;
+          } catch (err) {
+            console.error('Error updating PDF in IndexedDB:', err);
+          }
+        }
+
+        localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+        document.getElementById('addBookForm').reset();
+        this.closeAddModal();
+        this.renderBooks();
+        window.app.showToast(isAr ? `تم تحديث كتاب « ${title} » بنجاح! ✅` : `Livre « ${title} » mis à jour ! ✅`, '💾');
+        this.editingBookId = null;
+        return;
+      }
+    }
+
+    if (!content && !pdfFile && !link) {
+      window.app.showToast(isAr ? 'يرجى إدخال النص، أو رفع ملف PDF، أو وضع رابط الكتاب.' : 'Veuillez saisir du texte, téléverser un PDF ou fournir un lien.', '⚠️');
       return;
     }
 
-    // If there's a PDF file, read it as base64
+    let pdfFileId = null;
+    let pdfName = null;
+
     if (pdfFile) {
-      if (pdfFile.size > 5 * 1024 * 1024) {
-        window.app.showToast(isAr ? 'حجم الملف كبير جداً! الحد الأقصى 5 ميجابايت.' : 'Fichier trop volumineux ! Maximum 5 Mo.', '⚠️');
+      if (pdfFile.size > 50 * 1024 * 1024) {
+        window.app.showToast(isAr ? 'حجم الملف يتجاوز 50 ميجابايت!' : 'Fichier trop volumineux ! Maximum 50 Mo.', '⚠️');
         return;
       }
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        const pdfData = reader.result; // base64 data URL
-        this._saveBook(title, author, level, desc, content, pdfData);
-      };
-      reader.onerror = () => {
-        window.app.showToast(isAr ? 'حدث خطأ في قراءة الملف.' : 'Erreur de lecture du fichier.', '❌');
-      };
-      reader.readAsDataURL(pdfFile);
-    } else {
-      this._saveBook(title, author, level, desc, content, null);
+      try {
+        pdfFileId = `pdf-${Date.now()}`;
+        pdfName = pdfFile.name;
+        await window.app.db.saveFile(pdfFileId, pdfFile, { name: pdfFile.name, type: pdfFile.type });
+      } catch (err) {
+        console.error('Error saving PDF to IndexedDB:', err);
+        window.app.showToast(isAr ? 'تعذر حفظ ملف الـ PDF محلياً.' : 'Impossible d\'enregistrer le PDF en local.', '❌');
+        return;
+      }
     }
-  },
 
-  _saveBook(title, author, level, desc, content, pdfData) {
-    const isAr = window.app.lang === 'ar';
     const newBook = {
       id: `custom-${Date.now()}`,
       title,
@@ -1880,32 +2268,35 @@ Un bouquet de houx vert et de bruyère en fleur.`
       level,
       desc,
       content: content || '',
-      pdfData: pdfData || null
+      link: link || '',
+      pdfFileId: pdfFileId || null,
+      pdfName: pdfName || null,
+      pdfData: null
     };
 
-    try {
-      const customBooks = this.getCustomBooks();
-      customBooks.unshift(newBook);
-      localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+    const customBooks = this.getCustomBooks();
+    customBooks.unshift(newBook);
+    localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
 
-      document.getElementById('addBookForm').reset();
-      this.closeAddModal();
-      this.renderBooks();
-      window.app.showToast(isAr ? `تمت إضافة كتاب « ${title} » إلى المكتبة!` : `Livre « ${title} » ajouté avec succès !`, '🎉');
-    } catch (err) {
-      if (err.name === 'QuotaExceededError' || err.code === 22) {
-        window.app.showToast(isAr ? 'مساحة التخزين ممتلئة! حاول ملف أصغر.' : 'Stockage plein ! Essayez un fichier plus petit.', '❌');
-      } else {
-        window.app.showToast(isAr ? 'حدث خطأ في الحفظ.' : 'Erreur de sauvegarde.', '❌');
-      }
-    }
+    document.getElementById('addBookForm').reset();
+    this.closeAddModal();
+    this.renderBooks();
+    window.app.showToast(isAr ? `تمت إضافة كتاب « ${title} » إلى المكتبة!` : `Livre « ${title} » ajouté avec succès !`, '🎉');
   },
 
-  deleteBook(id) {
+  async deleteBook(id) {
     if (!window.app.auth.isAdmin()) return;
     const isAr = window.app.lang === 'ar';
     if (confirm(isAr ? 'هل أنت متأكد من رغبتك في حذف هذا الكتاب؟' : 'Veuillez confirmer la suppression de ce livre.')) {
       let customBooks = this.getCustomBooks();
+      const target = customBooks.find(b => b.id === id);
+      if (target && target.pdfFileId) {
+        try {
+          await window.app.db.deleteFile(target.pdfFileId);
+        } catch (e) {
+          console.warn('Could not delete PDF file blob:', e);
+        }
+      }
       customBooks = customBooks.filter(b => b.id !== id);
       localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
       this.renderBooks();
@@ -1924,6 +2315,402 @@ Un bouquet de houx vert et de bruyère en fleur.`
   }
 };
 
+/* ===================================================================
+   SECTION 8: FRENCH VIDÉOTHÈQUE & LESSONS (VIDÉOS ÉDUCATIVES)
+   With 50MB file upload in IndexedDB & YouTube embed support
+   =================================================================== */
+window.app.videos = {
+  activeFilter: 'all',
+
+  defaultVideos: [
+    {
+      id: 'vid-def-1',
+      title: "L'Alphabet Français et la Phonétique",
+      titleAr: "الأبجدية الفرنسية والنطق الصحيح للأصوات",
+      level: "A1",
+      category: "Prononciation",
+      desc: "Apprenez à prononcer chaque lettre et les sons fondamentaux du français avec clarté.",
+      url: "https://www.youtube.com/watch?v=wXWpB8iZ238",
+      isCustom: false
+    },
+    {
+      id: 'vid-def-2',
+      title: "Les Salutations et Présentations du Quotidien",
+      titleAr: "التحيات والتعريف بالنفس في الحياة اليومية",
+      level: "A1",
+      category: "Communication",
+      desc: "Dialogues essentiels pour saluer, se présenter et engager la conversation.",
+      url: "https://www.youtube.com/watch?v=hd0_GZHHMrE",
+      isCustom: false
+    },
+    {
+      id: 'vid-def-3',
+      title: "Commander au Restaurant et au Café en France",
+      titleAr: "كيف تطلب في المطعم والمقهى بالفرنسية",
+      level: "A2",
+      category: "Vie Quotidienne",
+      desc: "Expressions pratiques et vocabulaire indispensable pour commander repas et boissons.",
+      url: "https://www.youtube.com/watch?v=DfZD5G4a2hE",
+      isCustom: false
+    },
+    {
+      id: 'vid-def-4',
+      title: "Comprendre les Français quand ils parlent vite",
+      titleAr: "كيف تفهم الفرنسيين عندما يتحدثون بسرعة",
+      level: "B1-B2",
+      category: "Compréhension Orale",
+      desc: "Astuces concrètes pour décoder les liaisons, élisions et le rythme du français parlé réel.",
+      url: "https://www.youtube.com/watch?v=kR2tJq9222Y",
+      isCustom: false
+    }
+  ],
+
+  init() {
+    this.renderVideos();
+  },
+
+  getCustomVideos() {
+    try {
+      return JSON.parse(localStorage.getItem('3bido_custom_videos')) || [];
+    } catch {
+      return [];
+    }
+  },
+
+  getAllVideos() {
+    const custom = this.getCustomVideos();
+    const customIds = new Set(custom.map(v => v.id));
+    const defaults = this.defaultVideos.filter(v => !customIds.has(v.id));
+    return [...custom, ...defaults];
+  },
+
+  filter(lvl) {
+    this.activeFilter = lvl;
+    document.querySelectorAll('.library-filter-bar button[data-vfilter]').forEach(t => {
+      if (t.getAttribute('data-vfilter') === lvl) {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+    this.renderVideos();
+  },
+
+  parseYouTubeEmbed(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|watch\?.+&v=))([\w-]{11})/);
+    return match ? `https://www.youtube-nocookie.com/embed/${match[1]}` : null;
+  },
+
+  renderVideos() {
+    const grid = document.getElementById('videosGrid');
+    if (!grid) return;
+    const isAr = window.app.lang === 'ar';
+    const isAdmin = window.app.auth.isAdmin();
+
+    let list = this.getAllVideos();
+    if (this.activeFilter === 'A1-A2') {
+      list = list.filter(v => v.level.includes('A1') || v.level.includes('A2') || v.level === 'Tous');
+    } else if (this.activeFilter === 'B1-B2') {
+      list = list.filter(v => v.level.includes('B1') || v.level.includes('B2') || v.level === 'Tous');
+    } else if (this.activeFilter === 'custom') {
+      list = list.filter(v => v.isCustom);
+    }
+
+    if (list.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">${isAr ? 'لا توجد فيديوهات مطابقة لهذا التصنيف.' : 'Aucune vidéo trouvée pour ce filtre.'}</div>`;
+      return;
+    }
+
+    grid.innerHTML = list.map(v => {
+      const ytEmbed = this.parseYouTubeEmbed(v.url);
+      let playerHtml = '';
+
+      if (ytEmbed) {
+        playerHtml = `
+          <div class="video-embed-responsive">
+            <iframe src="${ytEmbed}" title="${this.escape(v.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        `;
+      } else if (v.fileId) {
+        playerHtml = `
+          <div class="video-player-wrapper">
+            <video class="video-html5-player" id="vplayer-${v.id}" controls preload="metadata"></video>
+          </div>
+        `;
+        setTimeout(() => this.loadVideoBlob(v.id, v.fileId), 50);
+      } else if (v.url) {
+        playerHtml = `
+          <div class="video-player-wrapper">
+            <video class="video-html5-player" controls preload="metadata" src="${this.escape(v.url)}"></video>
+          </div>
+        `;
+      } else {
+        playerHtml = `<div style="padding: 2rem; text-align: center; background: #000; color: #fff;">🎬 ${isAr ? 'فيديو تعليمي' : 'Vidéo Pédagogique'}</div>`;
+      }
+
+      return `
+        <div class="video-card">
+          ${playerHtml}
+          <div class="video-card-body">
+            <div class="video-meta-row">
+              <span class="video-badge-level">${this.escape(v.level)}</span>
+              ${v.category ? `<span class="video-category-tag">${this.escape(v.category)}</span>` : ''}
+            </div>
+            <h3 class="video-title">${this.escape(isAr && v.titleAr ? v.titleAr : v.title)}</h3>
+            <p class="video-desc">${this.escape(v.desc || '')}</p>
+            <div class="video-footer">
+              ${v.url ? `<a href="${this.escape(v.url)}" target="_blank" rel="noopener noreferrer" class="btn-link">🔗 ${isAr ? 'فتح المصدر' : 'Lien Externe'}</a>` : `<span></span>`}
+              ${isAdmin ? `
+                <button class="btn-edit-item" onclick="window.app.videos.openEditModal('${v.id}')" title="${isAr ? 'تعديل الفيديو' : 'Modifier cette vidéo'}">✏️ ${isAr ? 'تعديل' : 'Modifier'}</button>
+                ${v.isCustom ? `<button class="btn-delete-video" onclick="window.app.videos.deleteVideo('${v.id}')">${isAr ? 'حذف' : 'Supprimer'}</button>` : ''}
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  },
+
+  async loadVideoBlob(elemId, fileId) {
+    try {
+      const record = await window.app.db.getFile(fileId);
+      if (record && record.blob) {
+        const vid = document.getElementById(`vplayer-${elemId}`);
+        if (vid) {
+          vid.src = URL.createObjectURL(record.blob);
+        }
+      }
+    } catch (err) {
+      console.error('Error loading video blob from IndexedDB:', err);
+    }
+  },
+
+  editingVideoId: null,
+
+  openAddModal() {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    this.editingVideoId = null;
+    const form = document.getElementById('addVideoForm');
+    if (form) form.reset();
+
+    const titleEl = document.getElementById('addVideoModalTitle');
+    const submitBtn = document.getElementById('btnSubmitVideo');
+    const isAr = window.app.lang === 'ar';
+    if (titleEl) titleEl.textContent = isAr ? 'إضافة فيديو جديد إلى مكتبة الفيديوهات' : 'Ajouter une Vidéo à la Vidéothèque';
+    if (submitBtn) submitBtn.textContent = isAr ? 'نشر الفيديو في المكتبة' : 'Publier la Vidéo dans la Vidéothèque';
+
+    const modal = document.getElementById('addVideoModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  openEditModal(videoId) {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    const v = this.getAllVideos().find(vid => vid.id === videoId);
+    if (!v) return;
+
+    this.editingVideoId = videoId;
+    const isAr = window.app.lang === 'ar';
+
+    const titleInput = document.getElementById('videoTitle');
+    const levelSelect = document.getElementById('videoLevel');
+    const categoryInput = document.getElementById('videoCategory');
+    const descInput = document.getElementById('videoDesc');
+    const urlInput = document.getElementById('videoUrl');
+
+    if (titleInput) titleInput.value = v.title || '';
+    if (levelSelect) levelSelect.value = v.level || 'Tous';
+    if (categoryInput) categoryInput.value = v.category || '';
+    if (descInput) descInput.value = v.desc || '';
+    if (urlInput) urlInput.value = v.url || '';
+
+    const titleEl = document.getElementById('addVideoModalTitle');
+    const submitBtn = document.getElementById('btnSubmitVideo');
+    if (titleEl) titleEl.textContent = isAr ? `✏️ تعديل الفيديو: ${v.title}` : `✏️ Modifier la Vidéo : ${v.title}`;
+    if (submitBtn) submitBtn.textContent = isAr ? '💾 حفظ تعديلات الفيديو' : '💾 Enregistrer les Modifications';
+
+    const modal = document.getElementById('addVideoModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeAddModal() {
+    this.editingVideoId = null;
+    const modal = document.getElementById('addVideoModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  handleAddBackdrop(e) {
+    if (e.target.id === 'addVideoModal') {
+      this.closeAddModal();
+    }
+  },
+
+  async submitNewVideo(e) {
+    e.preventDefault();
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast('Action non autorisée.', '❌');
+      return;
+    }
+
+    const title = document.getElementById('videoTitle').value.trim();
+    const level = document.getElementById('videoLevel').value;
+    const category = document.getElementById('videoCategory').value.trim();
+    const desc = document.getElementById('videoDesc').value.trim();
+    const url = document.getElementById('videoUrl').value.trim();
+    const fileInput = document.getElementById('videoFile');
+    const file = fileInput && fileInput.files[0];
+    const isAr = window.app.lang === 'ar';
+    const submitBtn = document.getElementById('btnSubmitVideo');
+
+    if (!title) {
+      window.app.showToast(isAr ? 'يرجى إدخال عنوان الفيديو.' : 'Veuillez saisir le titre de la vidéo.', '⚠️');
+      return;
+    }
+
+    // Editing an existing video
+    if (this.editingVideoId) {
+      let customList = this.getCustomVideos();
+      let existing = customList.find(v => v.id === this.editingVideoId);
+      if (!existing) {
+        const defVid = this.defaultVideos.find(v => v.id === this.editingVideoId);
+        if (defVid) {
+          existing = { ...defVid, isCustom: true };
+          customList.push(existing);
+        }
+      }
+      if (existing) {
+        existing.title = title;
+        existing.level = level;
+        existing.category = category || existing.category;
+        existing.desc = desc;
+        existing.url = url || existing.url;
+
+        if (file) {
+          if (file.size > 50 * 1024 * 1024) {
+            window.app.showToast(isAr ? 'حجم ملف الفيديو يتجاوز 50 ميجابايت!' : 'Le fichier dépasse la limite de 50 Mo !', '⚠️');
+            return;
+          }
+          try {
+            if (existing.fileId) {
+              await window.app.db.deleteFile(existing.fileId);
+            }
+            const newFileId = `vidfile-${Date.now()}`;
+            await window.app.db.saveFile(newFileId, file, { name: file.name, type: file.type });
+            existing.fileId = newFileId;
+            existing.fileName = file.name;
+          } catch (err) {
+            console.error('IndexedDB update error:', err);
+          }
+        }
+
+        localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+        document.getElementById('addVideoForm').reset();
+        this.closeAddModal();
+        this.renderVideos();
+        window.app.showToast(isAr ? `تم تحديث فيديو « ${title} » بنجاح! ✅` : `Vidéo « ${title} » mise à jour ! ✅`, '💾');
+        this.editingVideoId = null;
+        return;
+      }
+    }
+
+    if (!url && !file) {
+      window.app.showToast(isAr ? 'يرجى وضع رابط الفيديو أو رفع ملف فيديو.' : 'Veuillez fournir un lien OU un fichier vidéo.', '⚠️');
+      return;
+    }
+
+    let fileId = null;
+    let fileName = null;
+
+    if (file) {
+      if (file.size > 50 * 1024 * 1024) {
+        window.app.showToast(isAr ? 'حجم ملف الفيديو يتجاوز 50 ميجابايت!' : 'Le fichier dépasse la limite de 50 Mo !', '⚠️');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = isAr ? 'جاري حفظ ورفع الفيديو...' : 'Enregistrement de la vidéo...';
+      }
+
+      try {
+        fileId = `vidfile-${Date.now()}`;
+        fileName = file.name;
+        await window.app.db.saveFile(fileId, file, { name: file.name, type: file.type });
+      } catch (err) {
+        console.error('IndexedDB video save error:', err);
+        window.app.showToast(isAr ? 'فشل حفظ ملف الفيديو في التخزين المحلي.' : 'Échec de sauvegarde locale du fichier vidéo.', '❌');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = isAr ? 'نشر الفيديو في المكتبة' : 'Publier la Vidéo dans la Vidéothèque';
+        }
+        return;
+      }
+    }
+
+    const newVideo = {
+      id: `custom-vid-${Date.now()}`,
+      title,
+      level,
+      category: category || (isAr ? 'عام' : 'Général'),
+      desc,
+      url: url || '',
+      fileId: fileId || null,
+      fileName: fileName || null,
+      isCustom: true,
+      createdAt: Date.now()
+    };
+
+    const customList = this.getCustomVideos();
+    customList.unshift(newVideo);
+    localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = isAr ? 'نشر الفيديو في المكتبة' : 'Publier la Vidéo dans la Vidéothèque';
+    }
+
+    document.getElementById('addVideoForm').reset();
+    this.closeAddModal();
+    this.renderVideos();
+    window.app.showToast(isAr ? `تمت إضافة فيديو « ${title} » بنجاح!` : `Vidéo « ${title} » ajoutée avec succès !`, '🎉');
+  },
+
+  async deleteVideo(id) {
+    if (!window.app.auth.isAdmin()) return;
+    const isAr = window.app.lang === 'ar';
+    if (confirm(isAr ? 'هل أنت متأكد من حذف هذا الفيديو؟' : 'Confirmer la suppression de cette vidéo ?')) {
+      let customList = this.getCustomVideos();
+      const target = customList.find(v => v.id === id);
+      if (target && target.fileId) {
+        try {
+          await window.app.db.deleteFile(target.fileId);
+        } catch (e) {
+          console.warn('Could not delete video file blob:', e);
+        }
+      }
+      customList = customList.filter(v => v.id !== id);
+      localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+      this.renderVideos();
+      window.app.showToast(isAr ? 'تم حذف الفيديو.' : 'Vidéo supprimée.', '🗑️');
+    }
+  },
+
+  escape(str) {
+    return (str || '').replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag));
+  }
+};
 
 /* ===================================================================
    8. SECTION 5: INTERACTIVE AI TUTOR CHAT (Powered by Gemini API)
@@ -2461,10 +3248,94 @@ window.app.levels = {
   selectedTense: 'present',
 
   init() {
+    this.applyVocabOverrides();
     this.renderVocab();
     this.renderConversations();
     this.renderQuickVerbs();
     this.renderConjugation();
+  },
+
+  getVocabOverrides() {
+    try {
+      return JSON.parse(localStorage.getItem('3bido_vocab_overrides')) || {};
+    } catch {
+      return {};
+    }
+  },
+
+  saveVocabOverrides(ov) {
+    localStorage.setItem('3bido_vocab_overrides', JSON.stringify(ov));
+  },
+
+  applyVocabOverrides() {
+    const overrides = this.getVocabOverrides();
+    for (const [key, val] of Object.entries(overrides)) {
+      const parts = key.split(':::');
+      if (parts.length < 2) continue;
+      const level = parts[0];
+      const orig = parts[1];
+      if (this.vocabData[level]) {
+        for (const topic of this.vocabData[level]) {
+          for (const it of topic.items) {
+            if ((it.plainFr || it.fr) === orig) {
+              if (val.icon) it.icon = val.icon;
+              if (val.fr) {
+                it.fr = val.fr;
+                it.plainFr = val.fr;
+              }
+              if (val.ar) it.ar = val.ar;
+              if (val.ex !== undefined) {
+                it.ex = val.ex;
+                it.exHtml = null;
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  openEditTopicVocab(level, wordText) {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    const topics = this.vocabData[level] || [];
+    let found = null;
+    for (const t of topics) {
+      for (const it of t.items) {
+        if ((it.plainFr || it.fr) === wordText) {
+          found = it;
+          break;
+        }
+      }
+      if (found) break;
+    }
+    if (!found) return;
+
+    this.editingTopicWord = { level, originalKey: wordText };
+    this.editingVocabId = null;
+
+    const isAr = window.app.lang === 'ar';
+    const select = document.getElementById('vocabLevelSelect');
+    const iconInput = document.getElementById('vocabIconInput');
+    const frInput = document.getElementById('vocabFrInput');
+    const arInput = document.getElementById('vocabArInput');
+    const exInput = document.getElementById('vocabExInput');
+
+    if (select) select.value = level;
+    if (iconInput) iconInput.value = found.icon || '💡';
+    if (frInput) frInput.value = found.plainFr || found.fr || '';
+    if (arInput) arInput.value = found.ar || '';
+    if (exInput) exInput.value = found.ex || '';
+
+    const titleEl = document.getElementById('addVocabModalTitle');
+    const btnSubmit = document.getElementById('btnSubmitVocab');
+    if (titleEl) titleEl.textContent = isAr ? `✏️ تعديل المفردة: ${found.plainFr || found.fr}` : `✏️ Modifier le Mot : ${found.plainFr || found.fr}`;
+    if (btnSubmit) btnSubmit.textContent = isAr ? '💾 حفظ تعديلات المفردة' : '💾 Enregistrer les Modifications';
+
+    const modal = document.getElementById('addVocabModal');
+    if (modal) modal.classList.remove('hidden');
   },
 
   setMasterTab(tab) {
@@ -8798,19 +9669,242 @@ window.app.levels = {
     this.renderVocab();
   },
 
+  getCustomVocab() {
+    try {
+      return JSON.parse(localStorage.getItem('3bido_custom_vocab')) || [];
+    } catch {
+      return [];
+    }
+  },
+
+  editingVocabId: null,
+
+  openAddVocabModal() {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    this.editingVocabId = null;
+    this.editingTopicWord = null;
+    const form = document.getElementById('addVocabForm');
+    if (form) form.reset();
+
+    const titleEl = document.getElementById('addVocabModalTitle');
+    const btnSubmit = document.getElementById('btnSubmitVocab');
+    const isAr = window.app.lang === 'ar';
+    if (titleEl) titleEl.textContent = isAr ? 'إضافة كلمة / تعبير إلى بنك المفردات' : 'Ajouter un Mot au بنك المفردات';
+    if (btnSubmit) btnSubmit.textContent = isAr ? 'حفظ في المستوى المحدد' : 'Enregistrer dans le Niveau';
+
+    const modal = document.getElementById('addVocabModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      const select = document.getElementById('vocabLevelSelect');
+      if (select) select.value = this.currentLevel || 'A1';
+    }
+  },
+
+  openEditVocabModal(vocabId) {
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast(window.app.lang === 'ar' ? 'الصلاحية محصورة بحساب المشرف عبيدو.' : 'Accès restreint au compte عبيدو.', '⚠️');
+      return;
+    }
+    const item = this.getCustomVocab().find(w => w.id === vocabId);
+    if (!item) return;
+
+    this.editingVocabId = vocabId;
+    const isAr = window.app.lang === 'ar';
+
+    const select = document.getElementById('vocabLevelSelect');
+    const iconInput = document.getElementById('vocabIconInput');
+    const frInput = document.getElementById('vocabFrInput');
+    const arInput = document.getElementById('vocabArInput');
+    const exInput = document.getElementById('vocabExInput');
+
+    if (select) select.value = item.level || 'A1';
+    if (iconInput) iconInput.value = item.icon || '';
+    if (frInput) frInput.value = item.fr || '';
+    if (arInput) arInput.value = item.ar || '';
+    if (exInput) exInput.value = item.ex || '';
+
+    const titleEl = document.getElementById('addVocabModalTitle');
+    const btnSubmit = document.getElementById('btnSubmitVocab');
+    if (titleEl) titleEl.textContent = isAr ? `✏️ تعديل المفردة: ${item.fr}` : `✏️ Modifier le Mot : ${item.fr}`;
+    if (btnSubmit) btnSubmit.textContent = isAr ? '💾 حفظ تعديلات المفردة' : '💾 Enregistrer les Modifications';
+
+    const modal = document.getElementById('addVocabModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeAddVocabModal() {
+    this.editingVocabId = null;
+    this.editingTopicWord = null;
+    const modal = document.getElementById('addVocabModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  handleAddVocabBackdrop(e) {
+    if (e.target.id === 'addVocabModal') {
+      this.closeAddVocabModal();
+    }
+  },
+
+  submitNewVocab(e) {
+    e.preventDefault();
+    if (!window.app.auth.isAdmin()) {
+      window.app.showToast('Action non autorisée.', '❌');
+      return;
+    }
+
+    const lvl = document.getElementById('vocabLevelSelect').value;
+    const icon = document.getElementById('vocabIconInput').value.trim() || '💡';
+    const fr = document.getElementById('vocabFrInput').value.trim();
+    const ar = document.getElementById('vocabArInput').value.trim();
+    const ex = document.getElementById('vocabExInput').value.trim();
+    const isAr = window.app.lang === 'ar';
+
+    if (!fr || !ar) {
+      window.app.showToast(isAr ? 'يرجى إدخال الكلمة وترجمتها بالعربية.' : 'Veuillez renseigner le mot et sa traduction.', '⚠️');
+      return;
+    }
+
+    // Editing a topic default vocab word
+    if (this.editingTopicWord) {
+      const overrides = this.getVocabOverrides();
+      const key = `${this.editingTopicWord.level}:::${this.editingTopicWord.originalKey}`;
+      overrides[key] = {
+        icon,
+        fr,
+        plainFr: fr,
+        ar,
+        ex: ex || ''
+      };
+      this.saveVocabOverrides(overrides);
+      this.applyVocabOverrides();
+
+      document.getElementById('addVocabForm').reset();
+      this.closeAddVocabModal();
+      this.renderVocab();
+      window.app.showToast(isAr ? `تم تحديث المفردة « ${fr} » بنجاح! ✅` : `Mot « ${fr} » mis à jour ! ✅`, '💾');
+      this.editingTopicWord = null;
+      return;
+    }
+
+    // Editing an existing vocab
+    if (this.editingVocabId) {
+      let list = this.getCustomVocab();
+      const existing = list.find(w => w.id === this.editingVocabId);
+      if (existing) {
+        existing.level = lvl;
+        existing.icon = icon;
+        existing.fr = fr;
+        existing.plainFr = fr;
+        existing.ar = ar;
+        existing.ex = ex || '';
+
+        localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+        document.getElementById('addVocabForm').reset();
+        this.closeAddVocabModal();
+        this.renderVocab();
+        window.app.showToast(isAr ? `تم تحديث المفردة « ${fr} » بنجاح! ✅` : `Mot « ${fr} » mis à jour ! ✅`, '💾');
+        this.editingVocabId = null;
+        return;
+      }
+    }
+
+    const newWord = {
+      id: `vocab-${Date.now()}`,
+      level: lvl,
+      icon,
+      fr,
+      plainFr: fr,
+      ar,
+      ex: ex || '',
+      createdAt: Date.now()
+    };
+
+    const list = this.getCustomVocab();
+    list.unshift(newWord);
+    localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+
+    document.getElementById('addVocabForm').reset();
+    this.closeAddVocabModal();
+    this.renderVocab();
+    window.app.showToast(isAr ? `تمت إضافة الكلمة « ${fr} » إلى المستوى ${lvl}!` : `Mot « ${fr} » ajouté au niveau ${lvl} !`, '🎉');
+  },
+
+  deleteCustomVocab(id) {
+    if (!window.app.auth.isAdmin()) return;
+    const isAr = window.app.lang === 'ar';
+    if (confirm(isAr ? 'هل أنت متأكد من حذف هذه الكلمة المضافة؟' : 'Confirmer la suppression de ce mot ajouté ?')) {
+      let list = this.getCustomVocab();
+      list = list.filter(w => w.id !== id);
+      localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+      this.renderVocab();
+      window.app.showToast(isAr ? 'تم حذف الكلمة.' : 'Mot supprimé.', '🗑️');
+    }
+  },
+
   renderVocab() {
     const container = document.getElementById('vocabContent');
     if (!container) return;
     const isAr = window.app.lang === 'ar';
+    const isAdmin = window.app.auth.isAdmin();
 
     const topics = this.vocabData[this.currentLevel] || [];
-    if (topics.length === 0) {
+    const customList = this.getCustomVocab().filter(w => w.level === this.currentLevel);
+
+    // Build custom vocab block if any
+    let customBlockHtml = '';
+    if (customList.length > 0) {
+      let filteredCustom = customList;
+      if (this.filterMode === 'words') {
+        filteredCustom = customList.filter(it => (it.fr || '').trim().split(/\s+/).length <= 3);
+      } else if (this.filterMode === 'sentences') {
+        filteredCustom = customList.filter(it => (it.fr || '').trim().split(/\s+/).length > 3 || it.ex);
+      }
+
+      if (filteredCustom.length > 0) {
+        customBlockHtml = `
+          <div class="vocab-topic-section custom-vocab-section">
+            <div class="topic-header custom-topic-header">
+              <span class="topic-badge-icon">👑</span>
+              <h3 class="topic-name">${isAr ? 'مفردات إضافية خاصة بالمشرف عبيدو' : 'Vocabulaire Personnalisé (Ajouts Admin عبيدو)'}</h3>
+              <span style="font-size: 0.85rem; color: var(--text-secondary); margin-left: auto;">(${filteredCustom.length} ${isAr ? 'عنصر' : 'éléments'})</span>
+            </div>
+            <div class="vocab-cards-grid">
+              ${filteredCustom.map(item => `
+                <div class="vocab-card custom-vocab-card">
+                  <div class="v-french-row">
+                    <span class="v-french">${item.icon ? item.icon + ' ' : ''}<strong>${this.escape(item.fr)}</strong> <span class="v-arabic-inline">(${this.escape(item.ar)})</span></span>
+                    <div style="display:flex; gap: 4px; align-items:center;">
+                      <button class="tool-icon-btn" onclick="window.app.speakFrench('${this.escapeQuotes(item.fr)}')" title="Écouter">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                      </button>
+                      ${isAdmin ? `
+                        <button class="tool-icon-btn edit-icon-btn" onclick="window.app.levels.openEditVocabModal('${item.id}')" title="${isAr ? 'تعديل هذه المفردة' : 'Modifier ce mot'}">
+                          ✏️
+                        </button>
+                        <button class="tool-icon-btn delete-icon-btn" onclick="window.app.levels.deleteCustomVocab('${item.id}')" title="${isAr ? 'حذف هذه الكلمة' : 'Supprimer ce mot'}">
+                          🗑️
+                        </button>
+                      ` : ''}
+                    </div>
+                  </div>
+                  ${item.ex ? `<div class="v-example">${isAr ? 'في سياق الجملة :' : 'Contexte :'} « ${this.escape(item.ex)} »</div>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    if (topics.length === 0 && customList.length === 0) {
       container.innerHTML = `<div style="text-align: center; padding: 2rem;">${isAr ? 'المحتوى قيد التحديث.' : 'Contenu en cours d\'enrichissement.'}</div>`;
       return;
     }
 
-    container.innerHTML = topics.map(topic => {
-      // Filter items according to words vs. sentences
+    const topicsHtml = topics.map(topic => {
       let filteredItems = topic.items;
       if (this.filterMode === 'words') {
         filteredItems = topic.items.filter(it => (it.plainFr || it.fr || '').trim().split(/\s+/).length <= 3 && !/[.!?]$/.test((it.plainFr || it.fr || '').trim()));
@@ -8832,9 +9926,16 @@ window.app.levels = {
               <div class="vocab-card">
                 <div class="v-french-row">
                   <span class="v-french">${item.icon ? item.icon + ' ' : ''}<strong>${this.escape(item.plainFr || item.fr)}</strong> <span class="v-arabic-inline">(${this.escape(item.ar)})</span></span>
-                  <button class="tool-icon-btn" onclick="window.app.speakFrench('${this.escapeQuotes(item.plainFr || item.fr)}')" title="Écouter">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                  </button>
+                  <div style="display:flex; gap: 4px; align-items:center;">
+                    <button class="tool-icon-btn" onclick="window.app.speakFrench('${this.escapeQuotes(item.plainFr || item.fr)}')" title="Écouter">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
+                    ${isAdmin ? `
+                      <button class="tool-icon-btn edit-icon-btn" onclick="window.app.levels.openEditTopicVocab('${this.currentLevel}', '${this.escapeQuotes(item.plainFr || item.fr)}')" title="${isAr ? 'تعديل هذه المفردة' : 'Modifier ce mot'}">
+                        ✏️
+                      </button>
+                    ` : ''}
+                  </div>
                 </div>
                 ${item.ex ? `<div class="v-example">${isAr ? 'في سياق الجملة :' : 'Contexte :'} « ${item.exHtml || this.escape(item.ex)} »</div>` : ''}
               </div>
@@ -8843,6 +9944,41 @@ window.app.levels = {
         </div>
       `;
     }).join('');
+
+    container.innerHTML = customBlockHtml + topicsHtml;
+  },
+  convSpeeds: {},
+
+  setConvSpeed(idx, val) {
+    this.convSpeeds[idx] = parseFloat(val) || 1.0;
+  },
+
+  playTurnAudio(text, idx) {
+    const rate = this.convSpeeds[idx] || 1.0;
+    window.app.speakFrench(text, rate);
+  },
+
+  playFullConversation(idx) {
+    const list = this.conversationsData[this.currentConvLevel || 'A1'] || [];
+    const conv = list[idx];
+    if (!conv) return;
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    const rate = this.convSpeeds[idx] || 1.0;
+    const fullText = conv.turns.map(t => `${t.name} : ${t.plainFrench}`).join('. ');
+    window.app.speakFrench(fullText, rate);
+    const isAr = window.app.lang === 'ar';
+    window.app.showToast(isAr ? `جاري تشغيل الحوار كاملاً (السرعة: ${rate}x)...` : `Lecture intégrale du dialogue (${rate}x)...`, '🎧');
+  },
+
+  stopFullConversation(idx) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    const isAr = window.app.lang === 'ar';
+    window.app.showToast(isAr ? 'تم إيقاف تشغيل الحوار ⏹️' : 'Lecture audio arrêtée ⏹️', '⏹️');
   },
 
   renderConversations() {
@@ -8858,51 +9994,59 @@ window.app.levels = {
 
     container.innerHTML = `
       <div class="dialogues-wrapper">
-        ${list.map((conv, idx) => `
-          <div class="dialogue-card">
-            <div class="dialogue-card-header">
-              <div class="dialogue-meta">
-                <span class="dialogue-icon">${conv.icon}</span>
-                <div class="dialogue-title-group">
-                  <h3>${this.escape(conv.title)}</h3>
-                  <div class="dialogue-subtitle-ar">${this.escape(conv.titleAr)}</div>
-                </div>
-              </div>
-              <button class="btn btn-secondary" onclick="window.app.levels.playFullConversation(${idx})">
-                🔊 ${isAr ? 'استماع لكامل الحوار' : 'Écouter tout le dialogue'}
-              </button>
-            </div>
-            <div class="dialogue-turns-list">
-              ${conv.turns.map((turn) => `
-                <div class="dialogue-turn ${turn.speaker === 'B' ? 'speaker-b' : 'speaker-a'}">
-                  <div class="speaker-avatar">${this.escape(turn.avatar || turn.speaker)}</div>
-                  <div class="turn-body">
-                    <div class="turn-speaker-name">${this.escape(turn.name)}</div>
-                    <!-- CRITICAL: Conjugated verbs highlighted in RED -->
-                    <div class="turn-french-speech">${turn.frenchHtml}</div>
-                    <div class="turn-arabic-translation">${this.escape(turn.arabic)}</div>
+        ${list.map((conv, idx) => {
+          const currentSpeed = this.convSpeeds[idx] || 1.0;
+          return `
+            <div class="dialogue-card">
+              <div class="dialogue-card-header">
+                <div class="dialogue-meta">
+                  <span class="dialogue-icon">${conv.icon}</span>
+                  <div class="dialogue-title-group">
+                    <h3>${this.escape(conv.title)}</h3>
+                    <div class="dialogue-subtitle-ar">${this.escape(conv.titleAr)}</div>
                   </div>
-                  <button class="turn-audio-btn" onclick="window.app.speakFrench('${this.escapeQuotes(turn.plainFrench)}')" title="Écouter cette réplique">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                </div>
+
+                <!-- Comprehensive Conversation Controls: Play, Stop & Speed -->
+                <div class="dialogue-audio-controls">
+                  <div class="audio-speed-selector">
+                    <span class="speed-label">⚡ ${isAr ? 'السرعة :' : 'Vitesse :'}</span>
+                    <select class="conv-speed-select" onchange="window.app.levels.setConvSpeed(${idx}, this.value)">
+                      <option value="0.75" ${currentSpeed === 0.75 ? 'selected' : ''}>0.75x (${isAr ? 'بطيء' : 'Lent'})</option>
+                      <option value="1.0" ${currentSpeed === 1.0 ? 'selected' : ''}>1.0x (${isAr ? 'عادي' : 'Normal'})</option>
+                      <option value="1.25" ${currentSpeed === 1.25 ? 'selected' : ''}>1.25x (${isAr ? 'سريع' : 'Vif'})</option>
+                      <option value="1.5" ${currentSpeed === 1.5 ? 'selected' : ''}>1.5x (${isAr ? 'سريع جداً' : 'Rapide'})</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-conv-play" onclick="window.app.levels.playFullConversation(${idx})" title="${isAr ? 'تشغيل الحوار كاملاً' : 'Lire tout le dialogue'}">
+                    ▶️ ${isAr ? 'تشغيل' : 'Lecture'}
+                  </button>
+                  <button class="btn btn-conv-stop" onclick="window.app.levels.stopFullConversation(${idx})" title="${isAr ? 'إيقاف الصوت' : 'Arrêter'}">
+                    ⏹️ ${isAr ? 'إيقاف' : 'Arrêter'}
                   </button>
                 </div>
-              `).join('')}
+              </div>
+              <div class="dialogue-turns-list">
+                ${conv.turns.map((turn) => `
+                  <div class="dialogue-turn ${turn.speaker === 'B' ? 'speaker-b' : 'speaker-a'}">
+                    <div class="speaker-avatar">${this.escape(turn.avatar || turn.speaker)}</div>
+                    <div class="turn-body">
+                      <div class="turn-speaker-name">${this.escape(turn.name)}</div>
+                      <!-- CRITICAL: Conjugated verbs highlighted in RED -->
+                      <div class="turn-french-speech">${turn.frenchHtml}</div>
+                      <div class="turn-arabic-translation">${this.escape(turn.arabic)}</div>
+                    </div>
+                    <button class="turn-audio-btn" onclick="window.app.levels.playTurnAudio('${this.escapeQuotes(turn.plainFrench)}', ${idx})" title="Écouter cette réplique">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
             </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     `;
-  },
-
-  playFullConversation(idx) {
-    const list = this.conversationsData[this.currentConvLevel || 'A1'] || [];
-    const conv = list[idx];
-    if (!conv) return;
-
-    const fullText = conv.turns.map(t => `${t.name} : ${t.plainFrench}`).join('. ');
-    window.app.speakFrench(fullText);
-    const isAr = window.app.lang === 'ar';
-    window.app.showToast(isAr ? 'جاري تشغيل المحادثة الكاملة...' : 'Lecture intégrale du dialogue...', '🎧');
   },
 
   renderQuickVerbs() {
@@ -9034,7 +10178,9 @@ window.app.welcomeMsg = {
   init() {
     const saved = localStorage.getItem('3bido_welcome_msg');
     const msgEl = document.getElementById('welcomeMsgText');
+    const popupEl = document.getElementById('popupWelcomeText');
     if (msgEl) msgEl.textContent = saved || this.defaultMsg;
+    if (popupEl) popupEl.textContent = saved || this.defaultMsg;
     this.updateAdminVisibility();
   },
 
@@ -9076,6 +10222,8 @@ window.app.welcomeMsg = {
     localStorage.setItem('3bido_welcome_msg', val);
     const msgEl = document.getElementById('welcomeMsgText');
     if (msgEl) msgEl.textContent = val;
+    const popupTextEl = document.getElementById('popupWelcomeText');
+    if (popupTextEl) popupTextEl.textContent = val;
     this.cancel();
     const isAr = window.app.lang === 'ar';
     window.app.showToast(isAr ? 'تم حفظ رسالة الترحيب بنجاح ✅' : 'Message d\'accueil sauvegardé ✅', '💾');

@@ -940,6 +940,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, select:f
 .icon-tutor { background: rgba(16, 185, 129, 0.12); color: #10b981; }
 .icon-tts { background: rgba(236, 72, 153, 0.12); color: #ec4899; }
 .icon-levels { background: rgba(220, 38, 38, 0.12); color: var(--flag-red); }
+.icon-videos { background: rgba(225, 29, 72, 0.14); color: #e11d48; }
 
 .service-card-content {
   display: flex;
@@ -3214,8 +3215,37 @@ html[dir="rtl"] .message-bubble.user .msg-content {
 }
 
 /* ===================================================================
-   HERO CALLIGRAPHY CREST BANNER (PALESTINIAN AESTHETICS)
+   HERO PALESTINE FLAG BANNER (DYNAMIC & EYE-FRIENDLY)
    =================================================================== */
+.hero-flag-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25rem auto 1.5rem auto;
+  text-align: center;
+}
+
+.hero-flag-img {
+  max-width: 175px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.16));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.hero-flag-img:hover {
+  transform: scale(1.08) translateY(-2px);
+  filter: drop-shadow(0 12px 28px rgba(5, 150, 105, 0.35));
+}
+
+@media (max-width: 768px) {
+  .hero-flag-img {
+    max-width: 140px;
+  }
+}
+
 .hero-calligraphy-banner {
   display: inline-flex;
   flex-direction: column;
@@ -3694,4 +3724,486 @@ html[dir="rtl"] .message-bubble.user .msg-content {
 @keyframes typingBlink {
   0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
   40% { opacity: 1; transform: scale(1.2); }
+}
+
+
+/* ===================================================================
+   SECTION 8: VIDÉOTHÈQUE & CUSTOM VOCAB STYLES
+   =================================================================== */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.video-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--flag-red);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--flag-red);
+}
+
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.video-embed-responsive {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.video-embed-responsive iframe,
+.video-embed-responsive video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-html5-player {
+  width: 100%;
+  max-height: 240px;
+  display: block;
+  background: #000;
+}
+
+.video-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.75rem;
+}
+
+.video-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.video-badge-level {
+  background: var(--flag-red);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.video-category-tag {
+  background: rgba(5, 150, 105, 0.12);
+  color: var(--flag-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.video-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.video-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  flex: 1;
+}
+
+.video-footer {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.btn-delete-video, .btn-delete-book {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete-video:hover, .btn-delete-book:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.btn-link:hover {
+  opacity: 0.9;
+}
+
+/* Custom Vocab Featured Block */
+.custom-vocab-section {
+  border: 2px dashed rgba(22, 163, 74, 0.4);
+  background: rgba(22, 163, 74, 0.04);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.custom-topic-header {
+  border-bottom: 1px dashed rgba(22, 163, 74, 0.3);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.custom-vocab-card {
+  border-right: 3px solid #16a34a;
+}
+
+.delete-icon-btn {
+  color: #dc2626 !important;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.delete-icon-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===================================================================
+   WELCOME DUA POPUP MODAL (أحمد عبد الفتاح - صدقة جارية)
+   =================================================================== */
+.welcome-dua-backdrop {
+  z-index: 10000;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.welcome-dua-card {
+  max-width: 620px;
+  background: var(--bg-card);
+  border: 2px solid #16a34a;
+  border-top: 5px solid #16a34a;
+  border-radius: 1.25rem;
+  padding: 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(22, 163, 74, 0.2);
+  animation: modalPopIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPopIn {
+  0% { transform: scale(0.9) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.welcome-dua-header {
+  margin-bottom: 1.5rem;
+}
+
+.welcome-dua-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  animation: gentleFloat 3s infinite ease-in-out;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.welcome-dua-ayah {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #16a34a;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.welcome-dua-badge {
+  display: inline-block;
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.welcome-dua-body {
+  margin-bottom: 2rem;
+}
+
+.welcome-dua-text {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin: 0;
+  padding: 0 0.5rem;
+  direction: rtl;
+}
+
+.welcome-dua-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-dua-confirm {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 0.85rem 3rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-dua-confirm:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(22, 163, 74, 0.6);
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+}
+
+.white-heart {
+  font-size: 1.4rem;
+  display: inline-block;
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+/* ===================================================================
+   BACK NAVIGATION BUTTONS (NAVBAR & FLOATING)
+   =================================================================== */
+.nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(22, 163, 74, 0.12);
+  border: 1px solid rgba(22, 163, 74, 0.35);
+  border-radius: var(--radius-sm, 8px);
+  color: var(--flag-green, #16a34a);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.nav-back-btn:hover {
+  background: var(--flag-green, #16a34a);
+  color: #ffffff;
+}
+
+.nav-back-btn.hidden,
+.floating-back-btn.hidden,
+.nav-back-mobile.hidden {
+  display: none !important;
+}
+
+.floating-back-btn {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 999;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+[dir="rtl"] .floating-back-btn {
+  right: auto;
+  left: 1.75rem;
+}
+
+.floating-back-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: #16a34a;
+  border-color: #16a34a;
+  box-shadow: 0 12px 28px rgba(22, 163, 74, 0.45);
+}
+
+/* ===================================================================
+   CONVERSATION CONTROLS (PLAY, STOP, SPEED SELECTOR)
+   =================================================================== */
+.dialogue-audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.audio-speed-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-card);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm, 6px);
+}
+
+.speed-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.conv-speed-select {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+.btn-conv-play {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #fff;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-conv-play:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+.btn-conv-stop {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-conv-stop:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+
+/* Edit buttons for Admin */
+.btn-edit-item {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-edit-item:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.edit-icon-btn {
+  color: #2563eb !important;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.edit-icon-btn:hover {
+  opacity: 1;
 }
