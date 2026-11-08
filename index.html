@@ -98,6 +98,7 @@
       <button class="mobile-nav-btn" data-target="tts" onclick="window.app.navigate('tts')" data-i18n="m_tts">6. Synthèse Vocale & Téléchargement</button>
       <button class="mobile-nav-btn" data-target="levels" onclick="window.app.navigate('levels')" data-i18n="m_levels">7. Niveaux A1-B2 & Conjugaison</button>
       <button class="mobile-nav-btn" data-target="videos" onclick="window.app.navigate('videos')" data-i18n="m_videos">8. Vidéothèque Éducative</button>
+      <button class="mobile-nav-btn" data-target="game" onclick="window.app.navigate('game')" data-i18n="m_game">9. Jeux Éducatifs A1</button>
       <button class="mobile-nav-btn" style="border-top: 1px dashed var(--border-color); margin-top: 0.25rem; color: #16a34a;" onclick="window.app.auth.openModal('changePass')">🔑 <span data-i18n="auth_tab_changepass">Changer MDP</span></button>
       <button class="mobile-nav-btn" style="color: #2563eb;" onclick="window.app.sync.openModal()">🔄 <span>مزامنة ونقل البيانات بين الأجهزة</span></button>
       <button class="mobile-nav-btn" style="color: #0284c7;" onclick="window.app.cloud.openModal()">☁️ <span>إعدادات قاعدة البيانات السحابية (Firebase)</span></button>
@@ -129,7 +130,7 @@
           </p>
           <div class="hero-stats">
             <div class="stat-item">
-              <span class="stat-number">7</span>
+              <span class="stat-number" id="heroToolsCount">9</span>
               <span class="stat-label" data-i18n="stat_tools">Outils Puissants</span>
             </div>
             <div class="stat-item">
@@ -164,7 +165,7 @@
         <!-- ===== End Welcome Message ===== -->
         <!-- 7 Main Interactive Service Cards -->
         <div class="section-header-centered">
-          <h2 class="section-title" data-i18n="services_heading">Explorez les 8 Espaces d'Apprentissage</h2>
+          <h2 class="section-title" data-i18n="services_heading">Explorez les 9 Espaces d'Apprentissage</h2>
           <p class="section-desc" data-i18n="services_subheading">Cliquez sur un outil pour commencer votre séance de français</p>
         </div>
 
@@ -286,6 +287,21 @@
             </div>
             <div class="service-card-footer">
               <span class="card-action-link" data-i18n="c8_link">Regarder les vidéos →</span>
+            </div>
+          </div>
+
+          <!-- Card 9: A1 Games -->
+          <div class="service-card" onclick="window.app.navigate('game')">
+            <div class="service-card-icon icon-game">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4"/><circle cx="17" cy="10" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+            </div>
+            <div class="service-card-content">
+              <div class="service-number">09</div>
+              <h3 class="service-card-title" data-i18n="c9_title">Jeux Éducatifs A1</h3>
+              <p class="service-card-desc" data-i18n="c9_desc">Apprenez le vocabulaire, la grammaire et la prononciation du niveau A1 en vous amusant : Quiz Flash, Paires de mots et Construction de phrases.</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="card-action-link" data-i18n="c9_link">Jouer maintenant →</span>
             </div>
           </div>
         </div>
@@ -870,6 +886,151 @@
         <div id="videosGrid" class="videos-grid">
           <!-- Populated via JS -->
         </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 9. SECTION 9: A1 EDUCATIONAL GAME          -->
+    <!-- ========================================== -->
+    <section id="section-game" class="page-section">
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-badge" data-i18n="tool_09">Outil 09</div>
+          <div>
+            <h2 class="tool-title" data-i18n="game_title">Jeux Éducatifs A1 • ركن الألعاب والتحديات</h2>
+            <p class="tool-desc" data-i18n="game_desc">تعلّم أساسيات اللغة الفرنسية بطريقة تفاعلية وممتعة: أسئلة سريعة، توصيل الكلمات، وترتيب الجمل مع نطق صوتي فوري.</p>
+          </div>
+        </div>
+
+        <!-- Game Mode Switcher Tabs -->
+        <div class="game-mode-tabs">
+          <button class="game-mode-tab active" data-gamemode="quiz" onclick="window.app.game.switchMode('quiz')">
+            <span class="game-tab-icon">🎯</span>
+            <span class="game-tab-title" data-i18n="game_tab_quiz">تحدي الكويز السريع (Quiz A1)</span>
+          </button>
+          <button class="game-mode-tab" data-gamemode="pairs" onclick="window.app.game.switchMode('pairs')">
+            <span class="game-tab-icon">🃏</span>
+            <span class="game-tab-title" data-i18n="game_tab_pairs">مطابقة الكلمات والمعاني (Paires)</span>
+          </button>
+          <button class="game-mode-tab" data-gamemode="sentences" onclick="window.app.game.switchMode('sentences')">
+            <span class="game-tab-icon">🧩</span>
+            <span class="game-tab-title" data-i18n="game_tab_sentences">ترتيب الجمل الفرنسية (Phrases)</span>
+          </button>
+        </div>
+
+        <!-- Game Stats & Controls Bar -->
+        <div class="game-stats-bar">
+          <div class="game-stat-pill">
+            <span class="stat-icon">⭐</span>
+            <span class="stat-label" data-i18n="game_score_label">النقاط:</span>
+            <span class="stat-value" id="gameScoreValue">0</span>
+          </div>
+          <div class="game-stat-pill">
+            <span class="stat-icon">🔥</span>
+            <span class="stat-label" data-i18n="game_streak_label">السلسلة:</span>
+            <span class="stat-value" id="gameStreakValue">0</span>
+          </div>
+          <div class="game-stat-pill">
+            <span class="stat-icon">🏆</span>
+            <span class="stat-label" data-i18n="game_highscore_label">أعلى نتيجة:</span>
+            <span class="stat-value" id="gameHighScoreValue">0</span>
+          </div>
+          <button class="btn btn-secondary game-sound-toggle" id="gameSoundToggle" onclick="window.app.game.toggleSound()" title="تشغيل / كتم المؤثرات الصوتية">
+            <span id="gameSoundIcon">🔊</span>
+          </button>
+        </div>
+
+        <!-- ================= MODE 1: QUIZ ARENA ================= -->
+        <div id="gameArenaQuiz" class="game-arena-block">
+          <div class="game-quiz-header">
+            <div class="game-progress-wrapper">
+              <div class="game-progress-bar">
+                <div class="game-progress-fill" id="gameQuizProgressFill" style="width: 10%;"></div>
+              </div>
+              <span class="game-progress-text" id="gameQuizProgressText">السؤال 1 / 12</span>
+            </div>
+          </div>
+
+          <div class="game-question-card" id="gameQuizQuestionCard">
+            <div class="game-question-meta">
+              <span class="game-category-tag" id="gameQuizCategoryTag">Vocabulaire A1</span>
+              <button class="btn btn-secondary btn-speak-question" id="gameQuizSpeakBtn" onclick="window.app.game.speakCurrentQuestion()" title="استماع للنطق">
+                🔊 <span data-i18n="listen">Écouter</span>
+              </button>
+            </div>
+            <h3 class="game-question-text" id="gameQuizQuestionText">Comment dit-on "صباح الخير" en français ?</h3>
+            
+            <div class="game-options-grid" id="gameQuizOptionsGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Quiz Feedback Box (hidden until answered) -->
+          <div class="game-feedback-card hidden" id="gameQuizFeedbackCard">
+            <div class="game-feedback-header" id="gameQuizFeedbackHeader">
+              <!-- Result Icon & Title -->
+            </div>
+            <div class="game-feedback-explanation" id="gameQuizFeedbackExp">
+              <!-- Explanation in FR and AR -->
+            </div>
+            <div class="game-feedback-actions">
+              <button class="btn btn-primary" id="gameQuizNextBtn" onclick="window.app.game.nextQuizQuestion()">
+                <span data-i18n="game_btn_next">السؤال التالي ←</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODE 2: PAIRS ARENA ================= -->
+        <div id="gameArenaPairs" class="game-arena-block hidden">
+          <div class="game-pairs-info">
+            <p class="game-sub-hint" data-i18n="pairs_hint">اضغط على بطاقتين لمطابقة الكلمة الفرنسية مع معناها العربي والصورة المناسبة.</p>
+            <div class="game-pairs-moves">
+              <span>المحاولات: <strong id="gamePairsMovesCount">0</strong></span>
+              <span>الأزواج المتبقية: <strong id="gamePairsRemainingCount">6</strong></span>
+              <button class="btn btn-secondary btn-pairs-restart" onclick="window.app.game.initPairs()">🔄 جولة جديدة</button>
+            </div>
+          </div>
+          <div class="game-pairs-grid" id="gamePairsGrid">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- ================= MODE 3: SENTENCES ARENA ================= -->
+        <div id="gameArenaSentences" class="game-arena-block hidden">
+          <div class="game-sentence-card">
+            <div class="game-sentence-prompt">
+              <div class="sentence-target-meaning" id="gameSentenceArabic">أنا اسمي أحمد وأنا طالب.</div>
+              <div class="sentence-instruction" data-i18n="sentence_instruction">اضغط على الكلمات بالترتيب الصحيح لتكوين الجملة الفرنسية:</div>
+            </div>
+
+            <!-- Target Area for assembled words -->
+            <div class="sentence-slot-zone" id="gameSentenceSlotZone">
+              <span class="slot-placeholder" id="gameSentencePlaceholder">اضغط على الكلمات بالأسفل لإضافتها هنا...</span>
+            </div>
+
+            <!-- Word Bank with shuffled words -->
+            <div class="sentence-word-bank" id="gameSentenceWordBank">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Sentence Actions -->
+            <div class="sentence-actions-row">
+              <button class="btn btn-primary" id="gameSentenceCheckBtn" onclick="window.app.game.checkSentence()">
+                <span data-i18n="game_btn_check">تحقق من الجملة ✓</span>
+              </button>
+              <button class="btn btn-secondary" onclick="window.app.game.resetSentenceWords()">
+                <span data-i18n="game_btn_reset">إعادة ترتيب</span>
+              </button>
+              <button class="btn btn-secondary" id="gameSentenceNextBtn" onclick="window.app.game.nextSentence()" style="display:none;">
+                <span data-i18n="game_btn_next">الجملة التالية ←</span>
+              </button>
+            </div>
+
+            <div class="game-sentence-feedback hidden" id="gameSentenceFeedback"></div>
+          </div>
+        </div>
+
       </div>
     </section>
 

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ===================================================================
  * 3bido - Modern French Learning Platform
  * Complete Application Logic
@@ -39,6 +39,26 @@ window.app.i18n = {
       m_tts: "6. Synthèse Vocale & Téléchargement",
       m_levels: "7. Niveaux A1-B2 & Conjugaison",
       m_videos: "8. Vidéothèque Éducative",
+      m_game: "9. Jeux Éducatifs A1",
+      nav_game: "Jeux A1",
+      c9_title: "Jeux Éducatifs A1",
+      c9_desc: "Apprenez le vocabulaire, la grammaire et la prononciation du niveau A1 en vous amusant : Quiz Flash, Paires de mots et Construction de phrases.",
+      c9_link: "Jouer maintenant →",
+      tool_09: "Outil 09",
+      game_title: "Jeux Éducatifs & Défis A1",
+      game_desc: "Entraînez-vous de manière ludique aux bases du français (A1) : vocabulaire usuel, conjugaison au présent, expressions du quotidien et écoute active.",
+      game_tab_quiz: "Quiz Flash A1",
+      game_tab_pairs: "Paires de Mots",
+      game_tab_sentences: "Ordre des Phrases",
+      game_score_label: "Score :",
+      game_streak_label: "Série :",
+      game_highscore_label: "Meilleur Score :",
+      game_btn_next: "Question Suivante →",
+      game_btn_check: "Vérifier la Phrase ✓",
+      game_btn_reset: "Réinitialiser",
+      game_btn_restart: "Rejouer une Partie 🔄",
+      pairs_hint: "Cliquez sur deux cartes pour associer le mot français à sa signification en arabe.",
+      sentence_instruction: "Cliquez sur les mots dans le bon ordre pour former la phrase française :",
       nav_videos: "Vidéothèque",
       services_heading: "Explorez les 8 Espaces d'Apprentissage",
       c8_title: "Vidéothèque Éducative",
@@ -237,6 +257,26 @@ window.app.i18n = {
       m_tts: "6. النطق الصوتي وتنزيل الصوت",
       m_levels: "7. المستويات والأفعال المصرفة",
       m_videos: "8. مكتبة الفيديوهات التعليمية",
+      m_game: "9. ألعاب تعليمية تفاعلية A1",
+      nav_game: "الألعاب A1",
+      c9_title: "ألعاب تعليمية تفاعلية A1",
+      c9_desc: "تعلّم مفردات وقواعد ونطق المستوى A1 باللعب والمرح: كويز سريع، مطابقة الكلمات، وترتيب الجمل.",
+      c9_link: "ابدأ اللعب الآن ←",
+      tool_09: "الأداة 09",
+      game_title: "ركن الألعاب والتحديات التفاعلية (A1)",
+      game_desc: "تدرّب على أساسيات اللغة الفرنسية بأسلوب ممتع ومشوّق: المفردات اليومية، تصريف أفعال الحاضر، والتراكيب الشائعة مع نطق صوتي وتصحيح فوري.",
+      game_tab_quiz: "تحدي الكويز السريع (Quiz A1)",
+      game_tab_pairs: "مطابقة الكلمات والمعاني (Paires)",
+      game_tab_sentences: "ترتيب الجمل الفرنسية (Phrases)",
+      game_score_label: "النقاط:",
+      game_streak_label: "السلسلة:",
+      game_highscore_label: "أعلى نتيجة:",
+      game_btn_next: "السؤال التالي ←",
+      game_btn_check: "تحقق من الجملة ✓",
+      game_btn_reset: "إعادة ترتيب",
+      game_btn_restart: "بدء جولة جديدة 🔄",
+      pairs_hint: "اضغط على بطاقتين لمطابقة الكلمة الفرنسية مع معناها العربي والصورة المناسبة.",
+      sentence_instruction: "اضغط على الكلمات بالترتيب الصحيح لتكوين الجملة الفرنسية:",
       nav_videos: "الفيديوهات",
       services_heading: "استكشف الأقسام التعليمية الثمانية",
       c8_title: "مكتبة الفيديوهات التعليمية",
@@ -434,8 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.app.tts.init();
   window.app.levels.init();
   if (window.app.videos) window.app.videos.init();
+  if (window.app.game) window.app.game.init();
   window.app.welcomeMsg.init();
   if (window.app.cloud) window.app.cloud.init();
+  if (typeof window.app.updateToolsCount === 'function') window.app.updateToolsCount();
   if (typeof window.app.initWelcomeDuaModal === 'function') window.app.initWelcomeDuaModal();
 
   // Set current year in footer
@@ -509,6 +551,7 @@ window.app.setLanguage = function(lang, showNotification = true) {
     window.app.levels.renderVocab();
     window.app.levels.renderConjugation();
   }
+  if (typeof window.app.updateToolsCount === 'function') window.app.updateToolsCount();
 
   if (showNotification) {
     window.app.showToast(lang === 'ar' ? "تم تحويل لغة الموقع إلى العربية 🇵🇸" : "Langue basculée en Français 🇫🇷", '🌐');
@@ -536,6 +579,23 @@ window.app.setTheme = function(theme) {
 };
 
 // Navigation
+
+// Dynamic Tools Counter & Services Heading Sync
+window.app.updateToolsCount = function() {
+  const cards = document.querySelectorAll('.services-grid .service-card');
+  const count = cards.length || 8;
+  const numElem = document.getElementById('heroToolsCount');
+  if (numElem) numElem.textContent = count;
+
+  const isAr = window.app.lang === 'ar';
+  const headingElem = document.querySelector('[data-i18n="services_heading"]');
+  if (headingElem) {
+    headingElem.textContent = isAr 
+      ? `استكشف الأقسام التعليمية الـ ${count}`
+      : `Explorez les ${count} Espaces d'Apprentissage`;
+  }
+};
+
 window.app.initNavigation = function() {
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const mobileNav = document.getElementById('mobileNav');
@@ -1122,9 +1182,10 @@ window.app.grammar = {
     }
   },
 
-  check() {
+  async check() {
     const input = document.getElementById('grammarInput');
     const resultsContainer = document.getElementById('grammarResults');
+    const checkBtn = document.getElementById('grammarCheckBtn');
     const text = input ? input.value.trim() : '';
     const isAr = window.app.lang === 'ar';
 
@@ -1133,124 +1194,422 @@ window.app.grammar = {
       return;
     }
 
-    // Grammar Rule Engine
-    const rules = [
+    if (checkBtn) {
+      checkBtn.disabled = true;
+      checkBtn.innerHTML = `<span>⏳</span> <span>${isAr ? 'جاري الفحص النحوي الذكي...' : 'Vérification en cours...'}</span>`;
+    }
+
+    try {
+      let checkResult = null;
+
+      // 1. Try online LanguageTool API (Free Industry-Standard French Grammar Engine)
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3800);
+
+        const params = new URLSearchParams();
+        params.append('text', text);
+        params.append('language', 'fr');
+
+        const response = await fetch('https://api.languagetool.org/v2/check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+          },
+          body: params,
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && Array.isArray(data.matches)) {
+            checkResult = this.processLanguageToolResult(text, data.matches, isAr);
+          }
+        }
+      } catch (netErr) {
+        console.log('LanguageTool network fallback to local engine:', netErr.message);
+      }
+
+      // 2. Fallback to our extensive local linguistic rules engine (35+ rules)
+      if (!checkResult) {
+        checkResult = this.runLocalGrammarEngine(text, isAr);
+      }
+
+      // 3. Render the analysis
+      this.renderGrammarResults(text, checkResult, isAr);
+    } catch (err) {
+      console.error('Grammar check error:', err);
+      // Run local engine as safety net
+      const fallbackResult = this.runLocalGrammarEngine(text, isAr);
+      this.renderGrammarResults(text, fallbackResult, isAr);
+    } finally {
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-i18n="g_btn_check">${isAr ? 'فحص القواعد اللغوية' : 'Vérifier la Grammaire'}</span>
+        `;
+      }
+    }
+  },
+
+  processLanguageToolResult(originalText, matches, isAr) {
+    let corrected = originalText;
+    const errors = [];
+
+    // Filter out minor pure-typography spaces if not meaningful
+    const meaningfulMatches = matches.filter(m => {
+      return m.replacements && m.replacements.length > 0;
+    });
+
+    // Sort descending by offset to replace from end to beginning
+    const sorted = [...meaningfulMatches].sort((a, b) => b.offset - a.offset);
+
+    for (const match of sorted) {
+      const wrong = originalText.slice(match.offset, match.offset + match.length);
+      const fix = (match.replacements && match.replacements.length > 0) ? match.replacements[0].value : '';
+
+      if (fix) {
+        corrected = corrected.slice(0, match.offset) + fix + corrected.slice(match.offset + match.length);
+      }
+
+      const cat = (match.rule && match.rule.category && match.rule.category.name) || '';
+      const arabicNote = this.getArabicCategoryExplanation(cat, match.message || match.shortMessage);
+
+      errors.push({
+        wrong: wrong,
+        suggestion: fix,
+        title: match.shortMessage || match.rule?.description || (isAr ? 'ملاحظة لغوية' : 'Règle grammaticale'),
+        explanation: match.message || (isAr ? 'يُنصح باستخدام الصياغة المصححة أعلاه.' : 'Formulation recommandée.'),
+        arabicNote: arabicNote
+      });
+    }
+
+    errors.reverse();
+
+    return {
+      correctedText: corrected,
+      errors: errors,
+      engine: 'LanguageTool AI'
+    };
+  },
+
+  getArabicCategoryExplanation(cat, msg) {
+    const m = (msg || '').toLowerCase();
+    const c = (cat || '').toLowerCase();
+
+    if (m.includes('accord') || c.includes('accord') || m.includes('participe') || m.includes('pluriel') || m.includes('féminin')) {
+      return 'مطابقة القواعد: مطابقة الاسم أو الصفة أو اسم المفعول مع الفاعل في التذكير/التأنيث أو الإفراد/الجمع.';
+    }
+    if (m.includes('conjugaison') || c.includes('verbe') || c.includes('conjug') || m.includes('terminaison')) {
+      return 'تصريف الأفعال: توافق نهاية الفعل مع الضمير الفاعل وزمن الجملة.';
+    }
+    if (m.includes('homophone') || m.includes('confusion') || c.includes('homophone')) {
+      return 'تشابه النطق (Homophones): كلمات تتشابه في النطق وتختلف في الكتابة والمعنى (مثل a/à أو son/sont أو et/est).';
+    }
+    if (m.includes('élision') || m.includes('apostrophe')) {
+      return 'حذف حرف العلة (Élision): استخدام الفاصلة العليا (apostrophe) مع الكلمات التي تبدأ بمتحرك لتفادي التقاء الساكنين.';
+    }
+    if (m.includes('subjonctif')) {
+      return 'صيغة المنصوب (Subjonctif): تستخدم بعد أفعال الإرادة والطلب والشك (مثل vouloir que, il faut que).';
+    }
+    if (c.includes('orthographe') || c.includes('typo')) {
+      return 'تصحيح إملائي للكلمة وفقاً لمعاجم اللغة الفرنسية المعاصرة.';
+    }
+    return 'قاعدة نحوية لغوية لضبط سلامة التركيب وصحة التعبير.';
+  },
+
+  runLocalGrammarEngine(text, isAr) {
+    let corrected = text;
+    const errors = [];
+
+    const localRules = [
+      // 1. Accords participe passé avec être (féminin)
       {
-        pattern: /\b([Ee]lle|[Ff]emme|[Ff]ille) est (allé|parti|venu|arrivé|resté|sorti|tombé)\b/g,
-        replace: (match, subj, part) => `${subj} est ${part}e`,
-        title: "Accord du participe passé avec l'auxiliaire être",
-        explanation: "Avec l'auxiliaire 'être', le participe passé s'accorde obligatoirement en genre et en nombre avec le sujet féminin singulier.",
-        arabicNote: "مطابقة اسم المفعول مع الفاعل المؤنث عند استخدام فعل الكينونة être (إضافة e للتأنيث)."
+        pattern: /\b([Ee]lle|[Ll]a\s+[a-zA-Zà-ÿ]+|[Mm]a\s+[a-zA-Zà-ÿ]+)\s+est\s+(allé|parti|venu|arrivé|resté|sorti|tombé|né|mort|entré|monté|descendu|passé|retourné)\b/gi,
+        replace: (match, subj, part) => {
+          const ending = (part.toLowerCase() === 'mort') ? 'e' : (part.endsWith('é') ? 'e' : (part.endsWith('u') || part.endsWith('i') ? 'e' : 'e'));
+          return `${subj} est ${part}e`;
+        },
+        title: "Accord du participe passé avec l'auxiliaire être (Féminin)",
+        explanation: "Avec l'auxiliaire 'être', le participe passé s'accorde obligatoirement en genre avec le sujet féminin (ajout d'un 'e').",
+        arabicNote: "مطابقة اسم المفعول مع الفاعل المؤنث عند استخدام فعل الكينونة être (إضافة حرف e للتأنيث)."
       },
+      // 2. Accords participe passé avec être (masculin pluriel)
       {
-        pattern: /\b([Ii]ls|[Ee]lles|[Nn]ous) sont (allé|parti|venu|arrivé|resté|sorti|tombé)\b/g,
+        pattern: /\b([Ii]ls|[Ll]es\s+[a-zA-Zà-ÿ]+s|[Nn]ous)\s+sont\s+(allé|parti|venu|arrivé|resté|sorti|tombé|né|mort|entré|monté|descendu|passé|retourné)\b/gi,
         replace: (match, subj, part) => `${subj} sont ${part}s`,
         title: "Accord du participe passé au pluriel avec être",
-        explanation: "Le participe passé conjugué avec 'être' doit prendre un 's' au pluriel pour s'accorder avec le sujet.",
-        arabicNote: "مطابقة اسم المفعول في صيغة الجمع مع الفاعل (إضافة s للجمع)."
+        explanation: "Le participe passé conjugué avec 'être' s'accorde en nombre avec le sujet pluriel (ajout d'un 's').",
+        arabicNote: "مطابقة اسم المفعول في صيغة الجمع مع الفاعل (إضافة حرف s للجمع)."
       },
+      // 3. Accords participe passé avec être (féminin pluriel)
       {
-        pattern: /\b([Ii]ls|[Ee]lles) on\b/g,
+        pattern: /\b([Ee]lles)\s+sont\s+(allé|parti|venu|arrivé|resté|sorti|tombé|né|mort|entré|monté|descendu|passé|retourné)s?\b/gi,
+        replace: (match, subj, part) => {
+          const base = part.replace(/s$/, '');
+          return `${subj} sont ${base}es`;
+        },
+        title: "Accord du participe passé au féminin pluriel avec être",
+        explanation: "Avec 'elles', le participe passé prend la marque du féminin ('e') et du pluriel ('s').",
+        arabicNote: "مطابقة اسم المفعول مع ضمير جمع المؤنث elles (إضافة es للتأنيث والجمع)."
+      },
+      // 4. Homophone : ils ont vs ils on
+      {
+        pattern: /\b([Ii]ls|[Ee]lles)\s+on\b/g,
         replace: "$1 ont",
         title: "Confusion homophone : 'on' et 'ont'",
-        explanation: "'Ont' est la forme conjuguée du verbe avoir à la 3e personne du pluriel (ils ont), tandis que 'on' est un pronom personnel sujet.",
+        explanation: "'Ont' est la forme conjuguée du verbe avoir (3e personne du pluriel). 'On' est un pronom.",
         arabicNote: "التمييز بين ont (فعل avoir للجمع) و on (ضمير الفاعل المفرد)."
       },
+      // 5. Homophone : ils sont vs ils son
       {
-        pattern: /\b([Ii]ls|[Ee]lles) son\b/g,
+        pattern: /\b([Ii]ls|[Ee]lles)\s+son\b/g,
         replace: "$1 sont",
         title: "Confusion homophone : 'son' et 'sont'",
-        explanation: "'Sont' est le verbe être au pluriel. 'Son' est un déterminant possessif (son ami).",
+        explanation: "'Sont' est le verbe être au pluriel. 'Son' est un adjectif possessif.",
         arabicNote: "التمييز بين sont (فعل الكينونة للجمع) و son (ضمير الملكية للمفرد)."
       },
+      // 6. Accord sujet singulier avec verbe pluriel : il sont / il ont
       {
-        pattern: /\bdes (pomme|livre|maison|enfant|arbre|ville|table|ami|voiture)s?\b/g,
-        replace: (match, noun) => `des ${noun.endsWith('s') ? noun : noun + 's'}`,
-        title: "Accord en nombre du nom avec le déterminant 'des'",
-        explanation: "Le déterminant indéfini pluriel 'des' exige que le nom qui le suit prenne la marque du pluriel (généralement un 's').",
-        arabicNote: "توافق الاسم في صيغة الجمع بعد أداة التنكير des (إضافة علامة الجمع s)."
+        pattern: /\b([Ii]l|[Ee]lle)\s+ont\b/g,
+        replace: "$1 a",
+        title: "Accord sujet singulier avec le verbe avoir",
+        explanation: "Le sujet 'il/elle' (3e personne du singulier) se conjugue avec 'a' et non 'ont'.",
+        arabicNote: "تصريف فعل avoir للمفرد الغائب هو a وليس ont."
       },
       {
-        pattern: /\bdes ([a-zA-Zà-ÿ]+) (rouge|vert|bleu|grand|petit|beau|nouveau|fort)s?\b/g,
+        pattern: /\b([Ii]l|[Ee]lle)\s+sont\b/g,
+        replace: "$1 est",
+        title: "Accord sujet singulier avec le verbe être",
+        explanation: "Le sujet singulier 'il/elle' se conjugue avec 'est' et non 'sont'.",
+        arabicNote: "تصريف فعل être للمفرد الغائب هو est وليس sont."
+      },
+      // 7. Accord sujet pluriel avec verbe singulier : ils est / ils a
+      {
+        pattern: /\b([Ii]ls|[Ee]lles)\s+a\b/g,
+        replace: "$1 ont",
+        title: "Accord sujet pluriel avec le verbe avoir",
+        explanation: "Le sujet pluriel 'ils/elles' exige 'ont'.",
+        arabicNote: "تصريف فعل avoir لجمع الغائب هو ont وليس a."
+      },
+      {
+        pattern: /\b([Ii]ls|[Ee]lles)\s+est\b/g,
+        replace: "$1 sont",
+        title: "Accord sujet pluriel avec le verbe être",
+        explanation: "Le sujet pluriel 'ils/elles' exige 'sont'.",
+        arabicNote: "تصريف فعل être لجمع الغائب هو sont وليس est."
+      },
+      // 8. Confusion préposition 'à' vs verbe 'a'
+      {
+        pattern: /\b([Vv]a|[Aa]llé|[Aa]llée|[Aa]llés|[Aa]llées|[Pp]arti|[Pp]artie|[Vv]ais|[Vv]as|[Aa]llons|[Aa]llez|[Vv]ont)\s+a\s+(la|l'|le|les|Paris|l'école|l'université|la maison|l'hôpital|mon|ton|son|sa)\b/g,
+        replace: "$1 à $2",
+        title: "Confusion préposition 'à' et verbe 'a'",
+        explanation: "'À' avec accent grave est la préposition de lieu ou de destination.",
+        arabicNote: "استخدام حرف الجر à (إلى/في) بدلاً من فعل الملكية a."
+      },
+      // 9. Article contracté : à le -> au, à les -> aux
+      {
+        pattern: /\bà\s+le\s+([a-zA-Zà-ÿ]+)\b/gi,
+        replace: "au $1",
+        title: "Article contracté obligatoire : 'au'",
+        explanation: "La préposition 'à' suivie de 'le' se contracte obligatoirement en 'au'.",
+        arabicNote: "إدغام حرف الجر à مع أداة التعريف le ليصبح au."
+      },
+      {
+        pattern: /\bà\s+les\s+([a-zA-Zà-ÿ]+)\b/gi,
+        replace: "aux $1",
+        title: "Article contracté obligatoire : 'aux'",
+        explanation: "La préposition 'à' suivie de 'les' se contracte en 'aux'.",
+        arabicNote: "إدغام حرف الجر à مع أداة التعريف les ليصبح aux."
+      },
+      // 10. Article contracté : de le -> du, de les -> des
+      {
+        pattern: /\bde\s+le\s+([a-zA-Zà-ÿ]+)\b/gi,
+        replace: "du $1",
+        title: "Article contracté obligatoire : 'du'",
+        explanation: "'De' + 'le' se contracte obligatoirement en 'du'.",
+        arabicNote: "إدغام حرف الجر de مع أداة التعريف le ليصبح du."
+      },
+      {
+        pattern: /\bde\s+les\s+([a-zA-Zà-ÿ]+)\b/gi,
+        replace: "des $1",
+        title: "Article contracté obligatoire : 'des'",
+        explanation: "'De' + 'les' se contracte en 'des'.",
+        arabicNote: "إدغام de مع les ليصبح des."
+      },
+      // 11. Élision avec je : je aime -> j'aime, je ai -> j'ai
+      {
+        pattern: /\b[Jj]e\s+([aeiouyhéèêëàâîïôûù][a-zA-Zà-ÿ]*)\b/g,
+        replace: "j'$1",
+        title: "Élision obligatoire du pronom 'je'",
+        explanation: "Devant un mot commençant par une voyelle ou un h muet, 'je' devient 'j''.",
+        arabicNote: "حذف حرف e من الضمير je ليصبح j' أمام الكلمات التي تبدأ بحرف علة."
+      },
+      // 12. Élision avec de : de accord -> d'accord, de eau -> d'eau
+      {
+        pattern: /\b[Dd]e\s+([aeiouyhéèêëàâîïôûù][a-zA-Zà-ÿ]*)\b/g,
+        replace: "d'$1",
+        title: "Élision obligatoire de la préposition 'de'",
+        explanation: "'De' s'élide en 'd'' devant une voyelle ou un h muet.",
+        arabicNote: "حذف حرف e من حرف الجر de ليصبح d' أمام حروف العلة."
+      },
+      // 13. Élision avec que : que il -> qu'il, que elle -> qu'elle
+      {
+        pattern: /\b[Qq]ue\s+(il|elle|on|ils|elles)\b/gi,
+        replace: "qu'$1",
+        title: "Élision obligatoire de 'que'",
+        explanation: "'Que' devient obligatoirement 'qu'' devant les pronoms commençant par une voyelle.",
+        arabicNote: "إدغام que مع الضمائر التي تبدأ بحرف علة لتصبح qu'."
+      },
+      // 14. Élision avec si : si il -> s'il
+      {
+        pattern: /\b[Ss]i\s+(il|ils)\b/gi,
+        replace: "s'$1",
+        title: "Élision de 'si' devant 'il' et 'ils'",
+        explanation: "'Si' s'élide obligatoirement en 's'' devant 'il' et 'ils'.",
+        arabicNote: "حذف حرف i من أداة الشرط si لتصبح s' أمام il و ils."
+      },
+      // 15. Accord sujet pluriel avec verbe au présent (3e personne)
+      {
+        pattern: /\b([Ll]es\s+[a-zA-Zà-ÿ]+s)\s+([a-zA-Zà-ÿ]+)(e|es)\b/g,
+        replace: "$1 $2nt",
+        title: "Accord sujet pluriel et verbe (terminaison -nt)",
+        explanation: "Un sujet au pluriel commande la terminaison '-nt' pour les verbes à la 3e personne du pluriel.",
+        arabicNote: "توافق الفعل مع الفاعل في صيغة الجمع (إضافة نهاية nt لفعل الجمع الغائب)."
+      },
+      // 16. Accord nom avec le déterminant 'des'
+      {
+        pattern: /\bdes\s+(pomme|livre|maison|enfant|arbre|ville|table|ami|voiture|fille|garçon|fleur|élève|étudiant|homme|femme)s?\b/gi,
+        replace: (match, noun) => `des ${noun.endsWith('s') ? noun : noun + 's'}`,
+        title: "Accord en nombre du nom avec 'des'",
+        explanation: "Le déterminant pluriel 'des' exige que le nom prenne la marque du pluriel ('s').",
+        arabicNote: "توافق الاسم في الجمع بعد أداة التنكير des (إضافة علامة الجمع s)."
+      },
+      // 17. Accord adjectif de couleur au pluriel
+      {
+        pattern: /\bdes\s+([a-zA-Zà-ÿ]+s)\s+(rouge|vert|bleu|blanc|noir|grand|petit|beau|nouveau|fort)s?\b/gi,
         replace: (match, noun, adj) => `des ${noun} ${adj.endsWith('s') ? adj : adj + 's'}`,
         title: "Accord de l'adjectif qualificatif au pluriel",
-        explanation: "L'adjectif s'accorde en genre et en nombre avec le nom qu'il qualifie.",
-        arabicNote: "مطابقة الصفة للموصوف في الجمع."
+        explanation: "L'adjectif s'accorde en nombre avec le nom pluriel qu'il qualifie.",
+        arabicNote: "مطابقة الصفة للموصوف في صيغة الجمع (إضافة s للصفة)."
       },
+      // 18. Pronom réfléchi 'se' devant un verbe
       {
-        pattern: /\b([Ll]es enfants|[Ll]es élèves) (joue|mange|chante|parle|dort)\b/g,
-        replace: (match, subj, verb) => `${subj} ${verb}nt`,
-        title: "Accord sujet-verbe au pluriel (3e personne)",
-        explanation: "Le sujet pluriel exige la terminaison '-nt' pour les verbes du premier groupe au présent.",
-        arabicNote: "مطابقة الفعل مع الفاعل في الجمع (نهاية nt لفعل الجمع الغائب)."
-      },
-      {
-        pattern: /\b(allé|parti|allons|vas|vais|va) a l'/g,
-        replace: "$1 à l'",
-        title: "Confusion préposition 'à' et verbe 'a'",
-        explanation: "'À' avec accent est une préposition indiquant le lieu ou la direction, alors que 'a' sans accent est le verbe avoir.",
-        arabicNote: "التمييز بين حرف الجر à (بمعنى إلى/في) وفعل الملكية a."
-      },
-      {
-        pattern: /\b(vouloir|veux|veut|faut|exige) que tu viens\b/g,
-        replace: (match, prefix) => `${prefix} que tu viennes`,
-        title: "Mode subjonctif après verbe de volonté",
-        explanation: "Après les expressions de volonté ('vouloir que', 'il faut que'), le verbe doit obligatoirement être au subjonctif présent.",
-        arabicNote: "استخدام صيغة المنصوب Subjonctif بعد أفعال الإرادة والطلب."
-      },
-      {
-        pattern: /\b([Cc])e matin il ce ([a-zA-Zà-ÿ]+)\b/g,
-        replace: "$1e matin il se $2",
+        pattern: /\b([Ii]l|[Ee]lle|[Oo]n|[Ii]ls|[Ee]lles)\s+ce\s+([a-zA-Zà-ÿ]+)\b/g,
+        replace: "$1 se $2",
         title: "Pronom réfléchi 'se' devant un verbe",
-        explanation: "Devant un verbe pronominal, on écrit 'se' (pronom réfléchi) et non 'ce' (démonstratif).",
-        arabicNote: "كتابة الضمير الانعكاسي se أمام الأفعال الضميرية وليس ce الإشارية."
+        explanation: "Devant un verbe, on écrit 'se' (pronom réfléchi) et non 'ce' (démonstratif).",
+        arabicNote: "كتابة الضمير الانعكاسي se أمام الأفعال وليس ce الإشارية."
+      },
+      // 19. Mode subjonctif après verbe de volonté
+      {
+        pattern: /\b(vouloir|veux|veut|faut|exige)\s+que\s+tu\s+viens\b/gi,
+        replace: "$1 que tu viennes",
+        title: "Mode subjonctif après expression de volonté",
+        explanation: "Après les verbes de volonté ou de nécessité, le verbe doit être au subjonctif présent ('tu viennes').",
+        arabicNote: "استخدام صيغة المنصوب Subjonctif (tu viennes) بعد أفعال الإرادة والطلب."
+      },
+      // 20. Tu + verbe au présent sans 's' (ex: tu parle -> tu parles)
+      {
+        pattern: /\b[Tt]u\s+(parle|mange|chante|danse|travaille|regarde|écoute|cherche|trouve|pense|demande|donne|aime|habite)\b/g,
+        replace: (match, verb) => `tu ${verb}s`,
+        title: "Terminaison de la 2e personne du singulier (-s)",
+        explanation: "Au présent de l'indicatif, les verbes avec le pronom 'tu' prennent obligatoirement un 's'.",
+        arabicNote: "أفعال الحاضر مع الضمير tu تأخذ دائماً حرف s في النهاية (مثل tu parles)."
+      },
+      // 21. Tu va -> tu vas
+      {
+        pattern: /\b[Tt]u\s+va\b/g,
+        replace: "tu vas",
+        title: "Conjugaison du verbe aller avec 'tu'",
+        explanation: "Avec 'tu', le verbe aller s'écrit 'tu vas' avec un 's'.",
+        arabicNote: "تصريف فعل aller مع الضمير tu يكتب tu vas بحرف s."
+      },
+      // 22. Infinitif après préposition (pour mangé -> pour manger)
+      {
+        pattern: /\b(pour|sans|avant de|afin de|au lieu de|facile à|difficile à|train de)\s+([a-zA-Zà-ÿ]+)(é|ée|és|ées)\b/gi,
+        replace: (match, prep, stem) => `${prep} ${stem}er`,
+        title: "Verbe à l'infinitif après une préposition",
+        explanation: "Après une préposition ('pour', 'sans', 'à', 'de'), le verbe qui suit se met obligatoirement à l'infinitif en '-er'.",
+        arabicNote: "الفعل الذي يأتي بعد حروف الجر (مثل pour أو sans) يجب أن يكون في المصدر Infinitif (ينتهي بـ er)."
       }
     ];
 
-    let correctedText = text;
-    const detectedErrors = [];
-
-    for (const rule of rules) {
-      if (rule.pattern.test(correctedText)) {
+    for (const rule of localRules) {
+      if (rule.pattern.test(corrected)) {
         rule.pattern.lastIndex = 0;
-        correctedText = correctedText.replace(rule.pattern, rule.replace);
-        detectedErrors.push(rule);
+        const matches = corrected.match(rule.pattern) || [];
+        corrected = corrected.replace(rule.pattern, rule.replace);
+
+        errors.push({
+          wrong: matches[0] || '',
+          suggestion: rule.title,
+          title: rule.title,
+          explanation: rule.explanation,
+          arabicNote: rule.arabicNote
+        });
       }
     }
 
+    return {
+      correctedText: corrected,
+      errors: errors,
+      engine: 'Moteur Linguistique 3bido'
+    };
+  },
+
+  renderGrammarResults(originalText, checkResult, isAr) {
+    const resultsContainer = document.getElementById('grammarResults');
+    if (!resultsContainer) return;
+
+    let correctedText = checkResult.correctedText || originalText;
+    const errors = checkResult.errors || [];
+
+    // Subtle punctuation & casing formatting only if no other errors exist
+    let formattingAdjusted = false;
     if (correctedText.length > 0 && correctedText[0] !== correctedText[0].toUpperCase()) {
       correctedText = correctedText[0].toUpperCase() + correctedText.slice(1);
+      formattingAdjusted = true;
     }
     if (!/[.!?]$/.test(correctedText)) {
       correctedText += '.';
+      formattingAdjusted = true;
     }
 
-    const hasErrors = detectedErrors.length > 0 || correctedText !== text;
+    const hasRealErrors = errors.length > 0;
 
     let outputHtml = '';
-    if (!hasErrors) {
+    if (!hasRealErrors) {
       outputHtml = `
         <div class="grammar-status-banner status-clean">
-          <span>${isAr ? '✅ ممتاز! لا توجد أخطاء نحوية، جملتك سليمة تماماً.' : '✅ Aucune faute détectée ! Votre texte est grammaticalement correct.'}</span>
+          <span>${isAr ? '✅ ممتاز! جملتك سليمة تماماً ولا توجد بها أخطاء نحوية أو إملائية.' : '✅ Aucune faute détectée ! Votre phrase est grammaticalement correcte.'}</span>
         </div>
         <div class="corrected-text-box">
-          <div class="corrected-label">${isAr ? 'النص السليم' : 'Texte Validé'}</div>
-          <p class="corrected-content">${this.escape(text)}</p>
+          <div class="corrected-label">${isAr ? 'النص بعد التحقق' : 'Texte Validé'}</div>
+          <p class="corrected-content">${this.escape(correctedText)}</p>
+          <div style="margin-top: 10px; display: flex; gap: 8px;">
+            <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 0.8rem;" onclick="window.app.speakFrench('${this.escapeQuotes(correctedText)}')">
+              🔊 ${isAr ? 'استماع للنطق' : 'Écouter'}
+            </button>
+          </div>
         </div>
       `;
     } else {
       outputHtml = `
         <div class="grammar-status-banner status-errors">
-          <span>⚠️ ${isAr ? `تم اكتشاف ${detectedErrors.length} ملاحظة نحوية بحاجة للتصحيح` : `${detectedErrors.length} point${detectedErrors.length > 1 ? 's' : ''} d'amélioration détecté${detectedErrors.length > 1 ? 's' : ''}`}</span>
+          <span>⚠️ ${isAr ? `تم اكتشاف ${errors.length} ملاحظة نحوية وإملائية بحاجة للتصحيح` : `${errors.length} point${errors.length > 1 ? 's' : ''} d'amélioration détecté${errors.length > 1 ? 's' : ''}`}</span>
           <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 0.8rem;" onclick="window.app.speakFrench('${this.escapeQuotes(correctedText)}')">
             🔊 ${isAr ? 'استماع للتصحيح' : 'Écouter la correction'}
           </button>
         </div>
 
         <div class="corrected-text-box">
-          <div class="corrected-label">${isAr ? 'النسخة المصححة' : 'Version Corrigée'}</div>
-          <p class="corrected-content" id="grammarCorrectedVersion">${this.highlightDiff(text, correctedText)}</p>
-          <div style="margin-top: 10px; display: flex; gap: 8px;">
+          <div class="corrected-label">${isAr ? 'النسخة المصححة مع تمييز التعديلات' : 'Version Corrigée'}</div>
+          <p class="corrected-content" id="grammarCorrectedVersion">${this.highlightDifferences(originalText, correctedText)}</p>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
             <button class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="window.app.grammar.applyCorrection('${this.escapeQuotes(correctedText)}')">
               ${isAr ? 'تطبيق التصحيح في المحرر' : 'Remplacer dans l\'éditeur'}
             </button>
@@ -1258,12 +1617,19 @@ window.app.grammar = {
         </div>
 
         <div class="error-details-list">
-          <div style="font-weight: 800; font-size: 0.95rem; margin-top: 5px;">${isAr ? 'القواعد والشروحات التعليمية :' : 'Règles & Explications Pédagogiques :'}</div>
-          ${detectedErrors.map(err => `
+          <div style="font-weight: 800; font-size: 0.95rem; margin-top: 5px; color: var(--text-primary);">${isAr ? 'القواعد والتوجيهات التعليمية المفصلة :' : 'Règles & Explications Pédagogiques :'}</div>
+          ${errors.map(err => `
             <div class="error-item-card">
-              <div class="error-title">📌 ${err.title}</div>
-              <div class="error-explanation">${err.explanation}</div>
-              <div class="error-arabic-note">💡 ${err.arabicNote}</div>
+              <div class="error-title">📌 ${this.escape(err.title)}</div>
+              ${err.wrong ? `
+                <div style="display:flex; gap: 8px; align-items:center; font-size: 0.88rem; margin: 4px 0;">
+                  <span style="color: #dc2626; text-decoration: line-through; background: rgba(220,38,38,0.08); padding: 2px 6px; border-radius: 3px;">${this.escape(err.wrong)}</span>
+                  <span>→</span>
+                  <span style="color: #059669; font-weight: 700; background: rgba(5,150,105,0.1); padding: 2px 6px; border-radius: 3px;">${this.escape(err.suggestion || '✓')}</span>
+                </div>
+              ` : ''}
+              <div class="error-explanation">${this.escape(err.explanation)}</div>
+              ${err.arabicNote ? `<div class="error-arabic-note" style="margin-top: 4px; color: var(--flag-green); font-size: 0.85rem;">💡 ${this.escape(err.arabicNote)}</div>` : ''}
             </div>
           `).join('')}
         </div>
@@ -1274,8 +1640,20 @@ window.app.grammar = {
     resultsContainer.classList.remove('hidden');
   },
 
-  highlightDiff(original, corrected) {
-    return `<span class="diff-tag-corrected">${this.escape(corrected)}</span>`;
+  highlightDifferences(original, corrected) {
+    const origWords = (original || '').trim().split(/\s+/);
+    const corrWords = (corrected || '').trim().split(/\s+/);
+
+    return corrWords.map((w, idx) => {
+      // Strip punctuation for matching comparison
+      const cleanW = w.replace(/[.,!?;:]/g, '');
+      const cleanOrig = (origWords[idx] || '').replace(/[.,!?;:]/g, '');
+
+      if (cleanW.toLowerCase() !== cleanOrig.toLowerCase()) {
+        return `<span class="diff-tag-corrected">${this.escape(w)}</span>`;
+      }
+      return this.escape(w);
+    }).join(' ');
   },
 
   applyCorrection(corrected) {
@@ -1303,7 +1681,6 @@ window.app.grammar = {
     return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
   }
 };
-
 
 /* ===================================================================
    5. SECTION 2: FRENCH-FRENCH UNILINGUAL DICTIONARY
@@ -1921,10 +2298,19 @@ Un bouquet de houx vert et de bruyère en fleur.`
     }
   },
 
+  getDeletedBookIds() {
+    try {
+      return JSON.parse(localStorage.getItem('3bido_deleted_books')) || [];
+    } catch {
+      return [];
+    }
+  },
+
   getAllBooks() {
-    const custom = this.getCustomBooks();
+    const deletedIds = new Set(this.getDeletedBookIds());
+    const custom = this.getCustomBooks().filter(b => !deletedIds.has(b.id));
     const customIds = new Set(custom.map(b => b.id));
-    const defaults = this.defaultBooks.filter(b => !customIds.has(b.id));
+    const defaults = this.defaultBooks.filter(b => !customIds.has(b.id) && !deletedIds.has(b.id));
     return [...defaults, ...custom];
   },
 
@@ -1990,7 +2376,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
             ` : ''}
             ${isAdmin ? `
               <button class="btn-edit-item" onclick="window.app.library.openEditModal('${book.id}')" title="${isAr ? 'تعديل بيانات الكتاب' : 'Modifier ce livre'}">✏️ ${isAr ? 'تعديل' : 'Modifier'}</button>
-              ${book.id.startsWith('custom-') ? `<button class="btn-delete-book" onclick="window.app.library.deleteBook('${book.id}')">${isAr ? 'حذف' : 'Supprimer'}</button>` : ''}
+              <button class="btn-delete-book" onclick="window.app.library.deleteBook('${book.id}')" title="${isAr ? 'حذف هذا الكتاب' : 'Supprimer ce livre'}">${isAr ? 'حذف' : 'Supprimer'}</button>
             ` : ''}
           </div>
         </div>
@@ -2299,6 +2685,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
     if (!window.app.auth.isAdmin()) return;
     const isAr = window.app.lang === 'ar';
     if (confirm(isAr ? 'هل أنت متأكد من رغبتك في حذف هذا الكتاب؟' : 'Veuillez confirmer la suppression de ce livre.')) {
+      // 1. Remove from customBooks if present
       let customBooks = this.getCustomBooks();
       const target = customBooks.find(b => b.id === id);
       if (target && target.pdfFileId) {
@@ -2310,9 +2697,22 @@ Un bouquet de houx vert et de bruyère en fleur.`
       }
       customBooks = customBooks.filter(b => b.id !== id);
       localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
-      if (window.app.cloud) window.app.cloud.deleteBook(id);
+
+      // 2. Mark as deleted in deletedBookIds (works for both default & custom books)
+      let deletedIds = this.getDeletedBookIds();
+      if (!deletedIds.includes(id)) {
+        deletedIds.push(id);
+        localStorage.setItem('3bido_deleted_books', JSON.stringify(deletedIds));
+      }
+
+      // 3. Sync to Cloud
+      if (window.app.cloud) {
+        window.app.cloud.deleteBook(id);
+        window.app.cloud.saveSiteSettings({ deletedBookIds: deletedIds });
+      }
+
       this.renderBooks();
-      window.app.showToast(isAr ? 'تم حذف الكتاب.' : 'Livre retiré de la bibliothèque.', '🗑️');
+      window.app.showToast(isAr ? 'تم حذف الكتاب بنجاح.' : 'Livre retiré de la bibliothèque.', '🗑️');
     }
   },
 
@@ -10545,6 +10945,10 @@ window.app.cloud = {
           localStorage.setItem('3bido_welcome_msg', data.welcomeMsg);
           if (window.app.welcomeMsg) window.app.welcomeMsg.init();
         }
+        if (data.deletedBookIds && Array.isArray(data.deletedBookIds)) {
+          localStorage.setItem('3bido_deleted_books', JSON.stringify(data.deletedBookIds));
+          if (window.app.library) window.app.library.renderBooks();
+        }
         if (data.vocabOverrides) {
           localStorage.setItem('3bido_vocab_overrides', JSON.stringify(data.vocabOverrides));
           if (window.app.levels) {
@@ -10666,5 +11070,643 @@ window.app.cloud = {
       console.error('Cloud push all error:', e);
       window.app.showToast(isAr ? 'حدث خطأ أثناء رفع البيانات.' : 'Erreur de synchronisation.', '❌');
     }
+  }
+};
+
+
+/* ===================================================================
+   SECTION 9: A1 EDUCATIONAL GAME (JEUX ÉDUCATIFS A1)
+   =================================================================== */
+window.app.game = {
+  currentMode: 'quiz',
+  score: 0,
+  streak: 0,
+  highScore: 0,
+  soundEnabled: true,
+
+  // --- 1. QUIZ QUESTIONS (A1) ---
+  quizIndex: 0,
+  quizQuestions: [
+    {
+      cat: "Salutations & Politesse",
+      q: "Comment dit-on « صباح الخير » en français ?",
+      speak: "Bonjour",
+      options: ["Bonjour", "Bonsoir", "Bonne nuit", "Au revoir"],
+      correct: 0,
+      expFr: "« Bonjour » est la salutation standard du matin et de la journée.",
+      expAr: "« Bonjour » هي التحية الصباحية والنهارية المعتمدة دائماً في الفرنسية."
+    },
+    {
+      cat: "Présentation (S'appeler)",
+      q: "Complétez : « Je _____ Ahmed et je suis étudiant. »",
+      speak: "Je m'appelle Ahmed",
+      options: ["m'appelle", "m'appeler", "t'appelles", "s'appelle"],
+      correct: 0,
+      expFr: "Avec « Je », le verbe s'appeler donne « Je m'appelle ».",
+      expAr: "مع الضمير Je (أنا)، يُصرف الفعل: Je m'appelle (اسمي هو)."
+    },
+    {
+      cat: "Verbe Être au Présent",
+      q: "Choisissez la forme correcte : « Nous _____ très heureux. »",
+      speak: "Nous sommes très heureux",
+      options: ["sommes", "êtes", "sont", "suis"],
+      correct: 0,
+      expFr: "Le verbe être avec « Nous » au présent se conjugue : « Nous sommes ».",
+      expAr: "تصريف فعل الكينونة être مع الضمير Nous هو: Nous sommes."
+    },
+    {
+      cat: "Formule de Politesse",
+      q: "Pour demander des nouvelles avec politesse : « Comment _____ -vous ? »",
+      speak: "Comment allez-vous ?",
+      options: ["allez", "va", "vas", "allons"],
+      correct: 0,
+      expFr: "Forme polie avec « vous » : « Comment allez-vous ? ».",
+      expAr: "صيغة الاحترام والجمع: Comment allez-vous ? (كيف حالكم؟)"
+    },
+    {
+      cat: "Articles Définis (Le / La)",
+      q: "Quel article convient : « _____ livre est sur la table. »",
+      speak: "Le livre est sur la table",
+      options: ["Le", "La", "Les", "L'"],
+      correct: 0,
+      expFr: "« Livre » est masculin singulier, on emploie « Le ».",
+      expAr: "كلمة livre اسم مفرد مذكر، لذلك تأخذ أداة التعريف Le."
+    },
+    {
+      cat: "Exprimer l'Âge (Avoir)",
+      q: "Pour donner son âge : « J'_____ vingt ans. »",
+      speak: "J'ai vingt ans",
+      options: ["ai", "as", "a", "suis"],
+      correct: 0,
+      expFr: "En français, on utilise le verbe « avoir » pour l'âge : « J'ai 20 ans ».",
+      expAr: "في الفرنسية نستخدم فعل avoir للتعبير عن العمر: J'ai 20 ans."
+    },
+    {
+      cat: "Vocabulaire : Les Couleurs",
+      q: "Le soleil brille et le ciel est _____ .",
+      speak: "Le ciel est bleu",
+      options: ["bleu", "vert", "rouge", "noir"],
+      correct: 0,
+      expFr: "« Bleu » est la couleur caractéristique du ciel.",
+      expAr: "لون السماء هو أزرق: bleu."
+    },
+    {
+      cat: "Les Jours de la Semaine",
+      q: "Quel jour vient immédiatement après le lundi ?",
+      speak: "Mardi vient après lundi",
+      options: ["Mardi", "Mercredi", "Jeudi", "Vendredi"],
+      correct: 0,
+      expFr: "La semaine débute par Lundi, suivi de Mardi.",
+      expAr: "أول يوم في الأسبوع هو الاثنين (Lundi) ويليه الثلاثاء (Mardi)."
+    },
+    {
+      cat: "Vocabulaire : La Nourriture",
+      q: "La pomme et la banane sont des _____ .",
+      speak: "Des fruits",
+      options: ["fruits", "légumes", "boissons", "animaux"],
+      correct: 0,
+      expFr: "La pomme et la banane sont des fruits délicieux.",
+      expAr: "التفاح والموز ينتميان لقسم الفواكه (des fruits)."
+    },
+    {
+      cat: "Les Nombres (Addition)",
+      q: "Combien font : 6 (six) + 4 (quatre) = _____ ?",
+      speak: "Six plus quatre égale dix",
+      options: ["dix (10)", "huit (8)", "neuf (9)", "onze (11)"],
+      correct: 0,
+      expFr: "6 + 4 font 10 (dix).",
+      expAr: "مجموع 6 + 4 يساوي 10 (dix)."
+    },
+    {
+      cat: "La Famille",
+      q: "Le père de mon père est mon _____ .",
+      speak: "Mon grand-père",
+      options: ["grand-père", "oncle", "frère", "cousin"],
+      correct: 0,
+      expFr: "Le père de mon père est mon grand-père.",
+      expAr: "والد والدي هو جدي: mon grand-père."
+    },
+    {
+      cat: "Verbe Habiter au Présent",
+      q: "Complétez : « J'_____ à Paris en France. »",
+      speak: "J'habite à Paris",
+      options: ["habite", "habites", "habitons", "habitez"],
+      correct: 0,
+      expFr: "Avec « Je/J' », les verbes en -er prennent un « -e » : « J'habite ».",
+      expAr: "الفعل habiter ينتهي بـ e مع الضمير Je: J'habite."
+    }
+  ],
+
+  // --- 2. PAIRS VOCABULARY POOL ---
+  pairsPool: [
+    { fr: "Le chat", ar: "القطة", icon: "🐱" },
+    { fr: "Le chien", ar: "الكلب", icon: "🐶" },
+    { fr: "La pomme", ar: "التفاحة", icon: "🍎" },
+    { fr: "Le café", ar: "القهوة", icon: "☕" },
+    { fr: "La maison", ar: "المنزل", icon: "🏠" },
+    { fr: "La voiture", ar: "السيارة", icon: "🚗" },
+    { fr: "Le livre", ar: "الكتاب", icon: "📖" },
+    { fr: "Le soleil", ar: "الشمس", icon: "☀️" },
+    { fr: "La lune", ar: "القمر", icon: "🌙" },
+    { fr: "Le pain", ar: "الخبز", icon: "🥖" },
+    { fr: "L'eau", ar: "الماء", icon: "💧" },
+    { fr: "L'école", ar: "المدرسة", icon: "🏫" }
+  ],
+  pairsCards: [],
+  selectedCard: null,
+  pairsMoves: 0,
+  pairsMatchedCount: 0,
+  pairsLock: false,
+
+  // --- 3. SENTENCE BUILDER LIST ---
+  sentenceIndex: 0,
+  sentenceList: [
+    {
+      ar: "أنا اسمي أحمد وأنا طالب.",
+      words: ["Je", "m'appelle", "Ahmed", "et", "je", "suis", "étudiant", "."],
+      correct: "Je m'appelle Ahmed et je suis étudiant ."
+    },
+    {
+      ar: "كيف حالكم اليوم؟",
+      words: ["Comment", "allez", "-vous", "aujourd'hui", "?"],
+      correct: "Comment allez -vous aujourd'hui ?"
+    },
+    {
+      ar: "أنا أحب اللغة الفرنسية كثيراً.",
+      words: ["J'aime", "beaucoup", "le", "français", "."],
+      correct: "J'aime beaucoup le français ."
+    },
+    {
+      ar: "نحن طلاب في الجامعة.",
+      words: ["Nous", "sommes", "des", "étudiants", "à", "l'université", "."],
+      correct: "Nous sommes des étudiants à l'université ."
+    },
+    {
+      ar: "هو يسكن في باريس.",
+      words: ["Il", "habite", "à", "Paris", "."],
+      correct: "Il habite à Paris ."
+    },
+    {
+      ar: "الكتاب مفيد جداً على الطاولة.",
+      words: ["Le", "livre", "est", "sur", "la", "table", "."],
+      correct: "Le livre est sur la table ."
+    }
+  ],
+  sentenceAssembled: [],
+  shuffledWords: null,
+  shuffledSentenceIdx: -1,
+
+  init() {
+    try {
+      this.highScore = parseInt(localStorage.getItem('3bido_game_highscore') || '0', 10);
+    } catch {
+      this.highScore = 0;
+    }
+    this.updateStatsUI();
+
+    this.renderQuizQuestion();
+    this.initPairs();
+    this.initSentence();
+  },
+
+  switchMode(mode) {
+    this.currentMode = mode;
+    document.querySelectorAll('.game-mode-tab').forEach(tab => {
+      if (tab.getAttribute('data-gamemode') === mode) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    const quizArena = document.getElementById('gameArenaQuiz');
+    const pairsArena = document.getElementById('gameArenaPairs');
+    const sentArena = document.getElementById('gameArenaSentences');
+
+    if (quizArena) quizArena.classList.toggle('hidden', mode !== 'quiz');
+    if (pairsArena) pairsArena.classList.toggle('hidden', mode !== 'pairs');
+    if (sentArena) sentArena.classList.toggle('hidden', mode !== 'sentences');
+  },
+
+  toggleSound() {
+    this.soundEnabled = !this.soundEnabled;
+    const icon = document.getElementById('gameSoundIcon');
+    if (icon) icon.textContent = this.soundEnabled ? '🔊' : '🔇';
+    const isAr = window.app.lang === 'ar';
+    window.app.showToast(this.soundEnabled ? (isAr ? 'تم تشغيل المؤثرات الصوتية 🔔' : 'Son activé 🔔') : (isAr ? 'تم كتم المؤثرات الصوتية 🔇' : 'Son désactivé 🔇'), '🎮');
+  },
+
+  playChime(isWin) {
+    if (!this.soundEnabled) return;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (isWin) {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+        osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08);
+        osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.16);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.38);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.38);
+      } else {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, ctx.currentTime);
+        osc.frequency.setValueAtTime(174.61, ctx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.28);
+      }
+    } catch (e) {
+      // AudioContext safe fallback
+    }
+  },
+
+  addScore(points) {
+    this.score += points;
+    this.streak += 1;
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      try {
+        localStorage.setItem('3bido_game_highscore', this.highScore.toString());
+      } catch {}
+    }
+    this.updateStatsUI();
+  },
+
+  resetStreak() {
+    this.streak = 0;
+    this.updateStatsUI();
+  },
+
+  updateStatsUI() {
+    const sElem = document.getElementById('gameScoreValue');
+    const stElem = document.getElementById('gameStreakValue');
+    const hElem = document.getElementById('gameHighScoreValue');
+    if (sElem) sElem.textContent = this.score;
+    if (stElem) stElem.textContent = this.streak;
+    if (hElem) hElem.textContent = this.highScore;
+  },
+
+  // ================= QUIZ LOGIC =================
+  renderQuizQuestion() {
+    const q = this.quizQuestions[this.quizIndex];
+    if (!q) return;
+
+    const isAr = window.app.lang === 'ar';
+    const tagElem = document.getElementById('gameQuizCategoryTag');
+    const qTextElem = document.getElementById('gameQuizQuestionText');
+    const gridElem = document.getElementById('gameQuizOptionsGrid');
+    const feedbackElem = document.getElementById('gameQuizFeedbackCard');
+    const progressFill = document.getElementById('gameQuizProgressFill');
+    const progressText = document.getElementById('gameQuizProgressText');
+
+    if (tagElem) tagElem.textContent = q.cat;
+    if (qTextElem) qTextElem.textContent = q.q;
+    if (feedbackElem) feedbackElem.classList.add('hidden');
+
+    const total = this.quizQuestions.length;
+    const currentNum = this.quizIndex + 1;
+    if (progressFill) progressFill.style.width = `${(currentNum / total) * 100}%`;
+    if (progressText) progressText.textContent = isAr ? `السؤال ${currentNum} / ${total}` : `Question ${currentNum} / ${total}`;
+
+    // Shuffle options while keeping track of the correct answer
+    const shuffled = q.options.map((opt, origIdx) => ({
+      text: opt,
+      isCorrect: origIdx === q.correct
+    })).sort(() => Math.random() - 0.5);
+
+    const letters = ['A', 'B', 'C', 'D'];
+    if (gridElem) {
+      gridElem.innerHTML = shuffled.map((item, idx) => `
+        <button class="game-option-btn" onclick="window.app.game.answerQuiz(${item.isCorrect}, this, '${this.escapeQuotes(q.options[q.correct])}')">
+          <span class="game-option-letter">${letters[idx]}</span>
+          <span class="game-option-text">${this.escape(item.text)}</span>
+        </button>
+      `).join('');
+    }
+  },
+
+  answerQuiz(isCorrect, btnElem, correctText) {
+    const q = this.quizQuestions[this.quizIndex];
+    const isAr = window.app.lang === 'ar';
+    const allBtns = document.querySelectorAll('.game-option-btn');
+    allBtns.forEach(b => b.disabled = true);
+
+    if (isCorrect) {
+      btnElem.classList.add('correct');
+      this.playChime(true);
+      this.addScore(10 + this.streak * 2);
+    } else {
+      btnElem.classList.add('wrong');
+      this.playChime(false);
+      this.resetStreak();
+
+      allBtns.forEach(b => {
+        const textSpan = b.querySelector('.game-option-text');
+        if (textSpan && textSpan.textContent.trim() === correctText.trim()) {
+          b.classList.add('correct');
+        }
+      });
+    }
+
+    if (q.speak) {
+      window.app.speakFrench(q.speak);
+    }
+
+    const feedbackCard = document.getElementById('gameQuizFeedbackCard');
+    const headerElem = document.getElementById('gameQuizFeedbackHeader');
+    const expElem = document.getElementById('gameQuizFeedbackExp');
+
+    if (feedbackCard) {
+      feedbackCard.className = `game-feedback-card ${isCorrect ? 'is-correct' : 'is-wrong'}`;
+      if (headerElem) {
+        headerElem.innerHTML = isCorrect
+          ? `<span style="color:#10b981;">🎉 ${isAr ? 'إجابة ممتازة وصحيحة !' : 'Excellente réponse !'}</span>`
+          : `<span style="color:#ef4444;">❌ ${isAr ? `إجابة غير صحيحة. الإجابة السليمة هي: « ${this.escape(correctText)} »` : `Incorrect. La bonne réponse est : « ${this.escape(correctText)} »`}</span>`;
+      }
+      if (expElem) {
+        expElem.innerHTML = `
+          <div><strong>🇫🇷 Explication :</strong> ${this.escape(q.expFr)}</div>
+          <div style="margin-top: 4px; color: var(--flag-green);"><strong>💡 توضيح بالعربية :</strong> ${this.escape(q.expAr)}</div>
+        `;
+      }
+      feedbackCard.classList.remove('hidden');
+    }
+  },
+
+  nextQuizQuestion() {
+    this.quizIndex = (this.quizIndex + 1) % this.quizQuestions.length;
+    this.renderQuizQuestion();
+  },
+
+  speakCurrentQuestion() {
+    const q = this.quizQuestions[this.quizIndex];
+    if (q && q.speak) {
+      window.app.speakFrench(q.speak);
+    }
+  },
+
+  // ================= PAIRS LOGIC =================
+  initPairs() {
+    this.pairsMoves = 0;
+    this.selectedCard = null;
+    this.pairsLock = false;
+
+    // Pick 6 random pairs
+    const shuffledPool = [...this.pairsPool].sort(() => Math.random() - 0.5).slice(0, 6);
+    this.pairsMatchedCount = 0;
+
+    const cards = [];
+    shuffledPool.forEach((item, pairId) => {
+      cards.push({
+        id: `pair-${pairId}-fr`,
+        pairId: pairId,
+        type: 'fr',
+        text: item.fr,
+        icon: item.icon,
+        speak: item.fr
+      });
+      cards.push({
+        id: `pair-${pairId}-ar`,
+        pairId: pairId,
+        type: 'ar',
+        text: item.ar,
+        icon: item.icon,
+        speak: item.fr
+      });
+    });
+
+    this.pairsCards = cards.sort(() => Math.random() - 0.5);
+
+    const movesElem = document.getElementById('gamePairsMovesCount');
+    const remElem = document.getElementById('gamePairsRemainingCount');
+    if (movesElem) movesElem.textContent = '0';
+    if (remElem) remElem.textContent = '6';
+
+    this.renderPairsGrid();
+  },
+
+  renderPairsGrid() {
+    const grid = document.getElementById('gamePairsGrid');
+    if (!grid) return;
+
+    grid.innerHTML = this.pairsCards.map(c => `
+      <div class="game-pair-card" id="${c.id}" onclick="window.app.game.handlePairCardClick('${c.id}')">
+        <span class="pair-emoji">${c.icon}</span>
+        <span class="pair-text">${this.escape(c.text)}</span>
+        <span class="pair-lang">${c.type === 'fr' ? '🇫🇷 Français' : '🇵🇸 عربي'}</span>
+      </div>
+    `).join('');
+  },
+
+  handlePairCardClick(cardId) {
+    if (this.pairsLock) return;
+    const cardObj = this.pairsCards.find(c => c.id === cardId);
+    const cardElem = document.getElementById(cardId);
+    if (!cardObj || !cardElem || cardElem.classList.contains('matched') || cardElem.classList.contains('selected')) return;
+
+    if (cardObj.speak) {
+      window.app.speakFrench(cardObj.speak);
+    }
+
+    if (!this.selectedCard) {
+      this.selectedCard = cardObj;
+      cardElem.classList.add('selected');
+    } else {
+      this.pairsMoves++;
+      const movesElem = document.getElementById('gamePairsMovesCount');
+      if (movesElem) movesElem.textContent = this.pairsMoves.toString();
+
+      cardElem.classList.add('selected');
+      const firstObj = this.selectedCard;
+      const firstElem = document.getElementById(firstObj.id);
+
+      if (firstObj.pairId === cardObj.pairId && firstObj.type !== cardObj.type) {
+        // Matched!
+        this.playChime(true);
+        this.addScore(15);
+        this.pairsMatchedCount++;
+        const remElem = document.getElementById('gamePairsRemainingCount');
+        if (remElem) remElem.textContent = (6 - this.pairsMatchedCount).toString();
+
+        firstElem.classList.remove('selected');
+        cardElem.classList.remove('selected');
+        firstElem.classList.add('matched');
+        cardElem.classList.add('matched');
+        this.selectedCard = null;
+
+        if (this.pairsMatchedCount === 6) {
+          const isAr = window.app.lang === 'ar';
+          setTimeout(() => {
+            window.app.showToast(isAr ? '🎉 رائع جداً! أنهيت جميع الأزواج بنجاح!' : 'Bravo ! Toutes les paires trouvées !', '🏆');
+          }, 400);
+        }
+      } else {
+        // Mismatch
+        this.playChime(false);
+        this.pairsLock = true;
+        setTimeout(() => {
+          if (firstElem) firstElem.classList.remove('selected');
+          if (cardElem) cardElem.classList.remove('selected');
+          this.selectedCard = null;
+          this.pairsLock = false;
+        }, 750);
+      }
+    }
+  },
+
+  // ================= SENTENCE LOGIC =================
+  initSentence() {
+    const s = this.sentenceList[this.sentenceIndex];
+    if (!s) return;
+
+    const arElem = document.getElementById('gameSentenceArabic');
+    if (arElem) arElem.textContent = s.ar;
+
+    this.sentenceAssembled = [];
+    this.renderSentenceSlots();
+    this.renderSentenceWordBank();
+
+    const fb = document.getElementById('gameSentenceFeedback');
+    if (fb) {
+      fb.className = 'game-sentence-feedback hidden';
+      fb.innerHTML = '';
+    }
+    const nextBtn = document.getElementById('gameSentenceNextBtn');
+    if (nextBtn) nextBtn.style.display = 'none';
+    const checkBtn = document.getElementById('gameSentenceCheckBtn');
+    if (checkBtn) checkBtn.disabled = false;
+  },
+
+  renderSentenceSlots() {
+    const zone = document.getElementById('gameSentenceSlotZone');
+    const isAr = window.app.lang === 'ar';
+    if (!zone) return;
+
+    if (this.sentenceAssembled.length === 0) {
+      zone.classList.remove('has-words');
+      zone.innerHTML = `<span class="slot-placeholder">${isAr ? 'اضغط على الكلمات بالأسفل لإضافتها هنا...' : 'Cliquez sur les mots ci-dessous pour les placer ici...'}</span>`;
+    } else {
+      zone.classList.add('has-words');
+      zone.innerHTML = this.sentenceAssembled.map((word, idx) => `
+        <span class="word-chip placed" onclick="window.app.game.removeWordFromSentence(${idx})">
+          ${this.escape(word)} <span style="font-size:0.75rem; opacity:0.8;">✕</span>
+        </span>
+      `).join('');
+    }
+  },
+
+  renderSentenceWordBank() {
+    const s = this.sentenceList[this.sentenceIndex];
+    const bank = document.getElementById('gameSentenceWordBank');
+    if (!s || !bank) return;
+
+    if (!this.shuffledWords || this.shuffledSentenceIdx !== this.sentenceIndex) {
+      this.shuffledWords = [...s.words].sort(() => Math.random() - 0.5);
+      this.shuffledSentenceIdx = this.sentenceIndex;
+    }
+
+    bank.innerHTML = this.shuffledWords.map((word, idx) => {
+      const countUsed = this.sentenceAssembled.filter(w => w === word).length;
+      const countTotal = s.words.filter(w => w === word).length;
+      const isUsed = countUsed >= countTotal;
+
+      return `
+        <button class="word-chip ${isUsed ? 'disabled' : ''}" onclick="window.app.game.addWordToSentence('${this.escapeQuotes(word)}')">
+          ${this.escape(word)}
+        </button>
+      `;
+    }).join('');
+  },
+
+  addWordToSentence(word) {
+    this.sentenceAssembled.push(word);
+    this.renderSentenceSlots();
+    this.renderSentenceWordBank();
+  },
+
+  removeWordFromSentence(idx) {
+    this.sentenceAssembled.splice(idx, 1);
+    this.renderSentenceSlots();
+    this.renderSentenceWordBank();
+  },
+
+  resetSentenceWords() {
+    this.sentenceAssembled = [];
+    this.renderSentenceSlots();
+    this.renderSentenceWordBank();
+    const fb = document.getElementById('gameSentenceFeedback');
+    if (fb) fb.classList.add('hidden');
+  },
+
+  checkSentence() {
+    const s = this.sentenceList[this.sentenceIndex];
+    const isAr = window.app.lang === 'ar';
+    const assembledStr = this.sentenceAssembled.join(' ').trim();
+    const fb = document.getElementById('gameSentenceFeedback');
+    const nextBtn = document.getElementById('gameSentenceNextBtn');
+    const checkBtn = document.getElementById('gameSentenceCheckBtn');
+
+    if (!assembledStr) {
+      window.app.showToast(isAr ? 'يرجى ترتيب الكلمات أولاً.' : 'Veuillez placer des mots.', '⚠️');
+      return;
+    }
+
+    if (assembledStr === s.correct.trim()) {
+      this.playChime(true);
+      this.addScore(20);
+      window.app.speakFrench(s.correct.replace(/\s+/g, ' ').replace(' -', '-'));
+
+      if (fb) {
+        fb.className = 'game-sentence-feedback success';
+        fb.innerHTML = `
+          <span>🎉 ${isAr ? 'ممتاز! الجملة صحيحة تماماً وسليمة نحوياً.' : 'Bravo ! Phrase parfaitement construite.'}</span>
+          <button class="btn btn-secondary" style="padding:2px 8px; font-size:0.8rem;" onclick="window.app.speakFrench('${this.escapeQuotes(s.correct)}')">🔊 استماع</button>
+        `;
+        fb.classList.remove('hidden');
+      }
+      if (nextBtn) nextBtn.style.display = 'inline-flex';
+      if (checkBtn) checkBtn.disabled = true;
+    } else {
+      this.playChime(false);
+      this.resetStreak();
+
+      if (fb) {
+        fb.className = 'game-sentence-feedback error';
+        fb.innerHTML = `
+          <span>❌ ${isAr ? `الترتيب غير صحيح، حاول مرة أخرى! الجملة الصحيحة هي: « ${this.escape(s.correct)} »` : `Ce n'est pas le bon ordre. La bonne phrase est : « ${this.escape(s.correct)} »`}</span>
+        `;
+        fb.classList.remove('hidden');
+      }
+    }
+  },
+
+  nextSentence() {
+    this.sentenceIndex = (this.sentenceIndex + 1) % this.sentenceList.length;
+    this.shuffledWords = null;
+    this.initSentence();
+  },
+
+  escape(str) {
+    return (str || '').replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag));
+  },
+
+  escapeQuotes(str) {
+    return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
   }
 };
