@@ -435,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.app.levels.init();
   if (window.app.videos) window.app.videos.init();
   window.app.welcomeMsg.init();
+  if (window.app.cloud) window.app.cloud.init();
   if (typeof window.app.initWelcomeDuaModal === 'function') window.app.initWelcomeDuaModal();
 
   // Set current year in footer
@@ -824,6 +825,14 @@ window.app.auth = {
           <div class="user-avatar-mini">${firstLetter}</div>
           <span class="user-name-mini">${this.escape(this.currentUser.username)}</span>
           ${isAdm ? `<span class="admin-tag-badge">${isAr ? 'مشرف' : 'Admin'}</span>` : ''}
+          ${isAdm ? `
+            <button class="cloud-status-pill" onclick="window.app.cloud.openModal()" title="${isAr ? 'حالة وإعدادات السحابة' : 'Base de données Cloud'}" id="cloudNavPill">
+              ☁️ <span id="cloudNavStatusText">${window.app.cloud && window.app.cloud.isReady ? (isAr ? 'متصل' : 'En ligne') : (isAr ? 'السحابة' : 'Cloud')}</span>
+            </button>
+            <button class="btn-logout" onclick="window.app.sync.openModal()" title="${isAr ? 'مزامنة ونقل البيانات بين الأجهزة' : 'Synchroniser les données'}" style="margin: 0 2px; padding: 2px 5px; font-size: 0.85rem; background: transparent; border: none; cursor: pointer;">
+              🔄
+            </button>
+          ` : ''}
           <button class="btn-logout" onclick="window.app.auth.openModal('changePass')" title="${isAr ? 'تغيير كلمة المرور' : 'Changer mot de passe'}" style="margin: 0 4px; padding: 2px 5px; font-size: 0.8rem; background: transparent; border: none; cursor: pointer;">
             🔑
           </button>
@@ -2227,6 +2236,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
         }
 
         localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+        if (window.app.cloud) window.app.cloud.saveBook(existing);
         document.getElementById('addBookForm').reset();
         this.closeAddModal();
         this.renderBooks();
@@ -2277,6 +2287,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
     const customBooks = this.getCustomBooks();
     customBooks.unshift(newBook);
     localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+    if (window.app.cloud) window.app.cloud.saveBook(newBook);
 
     document.getElementById('addBookForm').reset();
     this.closeAddModal();
@@ -2299,6 +2310,7 @@ Un bouquet de houx vert et de bruyère en fleur.`
       }
       customBooks = customBooks.filter(b => b.id !== id);
       localStorage.setItem('3bido_custom_books', JSON.stringify(customBooks));
+      if (window.app.cloud) window.app.cloud.deleteBook(id);
       this.renderBooks();
       window.app.showToast(isAr ? 'تم حذف الكتاب.' : 'Livre retiré de la bibliothèque.', '🗑️');
     }
@@ -2580,6 +2592,7 @@ window.app.videos = {
         }
 
         localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+        if (window.app.cloud) window.app.cloud.saveVideo(existing);
         document.getElementById('addVideoForm').reset();
         this.closeAddModal();
         this.renderVideos();
@@ -2639,6 +2652,7 @@ window.app.videos = {
     const customList = this.getCustomVideos();
     customList.unshift(newVideo);
     localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+    if (window.app.cloud) window.app.cloud.saveVideo(newVideo);
 
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -2666,6 +2680,7 @@ window.app.videos = {
       }
       customList = customList.filter(v => v.id !== id);
       localStorage.setItem('3bido_custom_videos', JSON.stringify(customList));
+      if (window.app.cloud) window.app.cloud.deleteVideo(id);
       this.renderVideos();
       window.app.showToast(isAr ? 'تم حذف الفيديو.' : 'Vidéo supprimée.', '🗑️');
     }
@@ -9750,6 +9765,7 @@ window.app.levels = {
       };
       this.saveVocabOverrides(overrides);
       this.applyVocabOverrides();
+      if (window.app.cloud) window.app.cloud.saveSiteSettings({ vocabOverrides: overrides });
 
       document.getElementById('addVocabForm').reset();
       this.closeAddVocabModal();
@@ -9772,6 +9788,7 @@ window.app.levels = {
         existing.ex = ex || '';
 
         localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+        if (window.app.cloud) window.app.cloud.saveVocab(existing);
         document.getElementById('addVocabForm').reset();
         this.closeAddVocabModal();
         this.renderVocab();
@@ -9795,6 +9812,7 @@ window.app.levels = {
     const list = this.getCustomVocab();
     list.unshift(newWord);
     localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+    if (window.app.cloud) window.app.cloud.saveVocab(newWord);
 
     document.getElementById('addVocabForm').reset();
     this.closeAddVocabModal();
@@ -9809,6 +9827,7 @@ window.app.levels = {
       let list = this.getCustomVocab();
       list = list.filter(w => w.id !== id);
       localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+      if (window.app.cloud) window.app.cloud.deleteVocab(id);
       this.renderVocab();
       window.app.showToast(isAr ? 'تم حذف الكلمة.' : 'Mot supprimé.', '🗑️');
     }
@@ -10190,6 +10209,7 @@ window.app.welcomeMsg = {
     const val = input ? input.value.trim() : '';
     if (!val) return;
     localStorage.setItem('3bido_welcome_msg', val);
+    if (window.app.cloud) window.app.cloud.saveSiteSettings({ welcomeMsg: val });
     const msgEl = document.getElementById('welcomeMsgText');
     if (msgEl) msgEl.textContent = val;
     const popupTextEl = document.getElementById('popupWelcomeText');
@@ -10204,5 +10224,447 @@ window.app.welcomeMsg = {
     const editor = document.getElementById('welcomeMsgEditor');
     if (display) display.classList.remove('hidden');
     if (editor) editor.classList.add('hidden');
+  }
+};
+
+/* ===================================================================
+   DATA SYNC & BACKUP SYSTEM (مزامنة ونقل البيانات بين الأجهزة)
+   =================================================================== */
+window.app.sync = {
+  openModal() {
+    const modal = document.getElementById('syncModal');
+    if (modal) modal.classList.remove('hidden');
+  },
+
+  closeModal() {
+    const modal = document.getElementById('syncModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  exportData() {
+    const isAr = window.app.lang === 'ar';
+    const data = {
+      app: '3bido',
+      version: '1.0',
+      exportedAt: new Date().toISOString(),
+      videos: JSON.parse(localStorage.getItem('3bido_custom_videos') || '[]'),
+      books: JSON.parse(localStorage.getItem('3bido_custom_books') || '[]'),
+      vocab: JSON.parse(localStorage.getItem('3bido_custom_vocab') || '[]'),
+      vocabOverrides: JSON.parse(localStorage.getItem('3bido_vocab_overrides') || '{}'),
+      welcomeMsg: localStorage.getItem('3bido_welcome_msg') || null
+    };
+
+    const count = data.videos.length + data.books.length + data.vocab.length;
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `3bido-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    window.app.showToast(
+      isAr ? `تم تصدير ملف النسخة بنجاح (${count} عنصر) 📥` : `Sauvegarde exportée avec succès (${count} éléments) 📥`,
+      '💾'
+    );
+  },
+
+  importData(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const isAr = window.app.lang === 'ar';
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target.result);
+        if (!data || typeof data !== 'object') {
+          throw new Error('Format de fichier invalide');
+        }
+
+        let updatedCount = 0;
+        if (Array.isArray(data.videos)) {
+          localStorage.setItem('3bido_custom_videos', JSON.stringify(data.videos));
+          updatedCount += data.videos.length;
+        }
+        if (Array.isArray(data.books)) {
+          localStorage.setItem('3bido_custom_books', JSON.stringify(data.books));
+          updatedCount += data.books.length;
+        }
+        if (Array.isArray(data.vocab)) {
+          localStorage.setItem('3bido_custom_vocab', JSON.stringify(data.vocab));
+          updatedCount += data.vocab.length;
+        }
+        if (data.vocabOverrides && typeof data.vocabOverrides === 'object') {
+          localStorage.setItem('3bido_vocab_overrides', JSON.stringify(data.vocabOverrides));
+        }
+        if (data.welcomeMsg) {
+          localStorage.setItem('3bido_welcome_msg', data.welcomeMsg);
+        }
+
+        if (window.app.videos) window.app.videos.renderVideos();
+        if (window.app.library) window.app.library.renderBooks();
+        if (window.app.levels) {
+          window.app.levels.applyVocabOverrides();
+          window.app.levels.renderVocab();
+        }
+        if (window.app.welcomeMsg) window.app.welcomeMsg.init();
+
+        this.closeModal();
+        window.app.showToast(
+          isAr ? `تم استيراد ${updatedCount} عنصر ونقل كافة البيانات بنجاح! 🎉` : `${updatedCount} éléments importés avec succès ! 🎉`,
+          '✅'
+        );
+      } catch (err) {
+        console.error('Import error:', err);
+        window.app.showToast(isAr ? 'فشل قراءة الملف: الملف تالف أو غير صالح.' : 'Échec : fichier de sauvegarde non valide.', '❌');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  }
+};
+
+
+/* ===================================================================
+   FIREBASE CLOUD REALTIME DATABASE SYSTEM (مزامنة السحابة الفورية)
+   =================================================================== */
+window.app.FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDdfhFhHXlhb5Ywun4742XGanvjcg6VVgU",
+  authDomain: "bido-f7197.firebaseapp.com",
+  projectId: "bido-f7197",
+  storageBucket: "bido-f7197.firebasestorage.app",
+  messagingSenderId: "1089798335295",
+  appId: "1:1089798335295:web:e930a4e6dac0fce7e4418a",
+  measurementId: "G-BC53QT6FC8"
+};
+
+window.app.cloud = {
+  db: null,
+  isReady: false,
+  status: 'offline',
+
+  init() {
+    if (typeof firebase === 'undefined') {
+      console.log('Firebase SDK loading, retrying in 400ms...');
+      setTimeout(() => {
+        if (typeof firebase !== 'undefined' && !this.isReady) {
+          this.init();
+        }
+      }, 400);
+      this.updateStatusUI('offline');
+      return;
+    }
+
+    const config = this.getConfig();
+    if (!config || !config.projectId) {
+      this.updateStatusUI('not_configured');
+      return;
+    }
+
+    try {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+      }
+      this.db = firebase.firestore();
+      this.isReady = true;
+      this.updateStatusUI('connected');
+      console.log('Firebase Cloud Realtime Database active for 3bido!');
+
+      this.startRealtimeSync();
+    } catch (err) {
+      console.error('Firebase Cloud initialization error:', err);
+      this.updateStatusUI('error');
+    }
+  },
+
+  getConfig() {
+    if (window.app.FIREBASE_CONFIG && window.app.FIREBASE_CONFIG.projectId) {
+      return window.app.FIREBASE_CONFIG;
+    }
+    try {
+      return JSON.parse(localStorage.getItem('3bido_firebase_config')) || null;
+    } catch {
+      return null;
+    }
+  },
+
+  openModal() {
+    const modal = document.getElementById('cloudModal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+
+    const cfg = this.getConfig();
+    const input = document.getElementById('firebaseConfigInput');
+    if (input && cfg) {
+      input.value = JSON.stringify(cfg, null, 2);
+    }
+    this.refreshModalStatus();
+  },
+
+  closeModal() {
+    const modal = document.getElementById('cloudModal');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  refreshModalStatus() {
+    const dot = document.getElementById('cloudStatusDot');
+    const text = document.getElementById('cloudStatusFullText');
+    const btnPush = document.getElementById('btnPushToCloud');
+    const isAr = window.app.lang === 'ar';
+
+    if (this.isReady && this.db) {
+      if (dot) dot.className = 'status-dot dot-online';
+      if (text) text.textContent = isAr ? 'السحابة متصلة ونشطة في وضع المزامنة الحية 🟢' : 'Base de données Cloud connectée et active 🟢';
+      if (btnPush) btnPush.style.display = 'inline-flex';
+    } else {
+      if (dot) dot.className = 'status-dot dot-offline';
+      if (text) text.textContent = isAr ? 'السحابة غير مفعلة بعد (يعمل في الوضع المحلي) ⚪' : 'Mode local actif (non connecté au Cloud)';
+      if (btnPush) btnPush.style.display = 'none';
+    }
+  },
+
+  updateStatusUI(status) {
+    this.status = status;
+    const isAr = window.app.lang === 'ar';
+    const navText = document.getElementById('cloudNavStatusText');
+    const pill = document.getElementById('cloudNavPill');
+
+    if (pill) {
+      if (status === 'connected') {
+        pill.classList.add('status-connected');
+        if (navText) navText.textContent = isAr ? 'سحابي متصل' : 'Cloud Connecté';
+      } else {
+        pill.classList.remove('status-connected');
+        if (navText) navText.textContent = isAr ? 'السحابة' : 'Cloud';
+      }
+    }
+    this.refreshModalStatus();
+  },
+
+  handleConfigSubmit(e) {
+    e.preventDefault();
+    const isAr = window.app.lang === 'ar';
+    const raw = (document.getElementById('firebaseConfigInput').value || '').trim();
+    if (!raw) {
+      window.app.showToast(isAr ? 'يرجى لصق كود الإعدادات الخاص بـ Firebase.' : 'Veuillez coller la configuration Firebase.', '⚠️');
+      return;
+    }
+
+    const config = this.parseConfigString(raw);
+    if (!config || !config.projectId) {
+      window.app.showToast(isAr ? 'تعذر قراءة الإعدادات. تأكد من وجود projectId و apiKey.' : 'Configuration invalide (projectId manquant).', '❌');
+      return;
+    }
+
+    localStorage.setItem('3bido_firebase_config', JSON.stringify(config));
+    window.app.FIREBASE_CONFIG = config;
+    this.init();
+
+    if (this.isReady) {
+      window.app.showToast(isAr ? 'تم تفعيل الاتصال السحابي بنجاح! ☁️🎉' : 'Connexion Cloud activée avec succès ! ☁️🎉', '✅');
+      this.pushAllLocalToCloud();
+      this.closeModal();
+    } else {
+      window.app.showToast(isAr ? 'تم حفظ الإعدادات، يرجى إعادة تحميل الصفحة لتفعيل السحابة.' : 'Configuration enregistrée. Veuillez actualiser.', 'ℹ️');
+    }
+  },
+
+  parseConfigString(str) {
+    try {
+      return JSON.parse(str);
+    } catch (e) {}
+
+    try {
+      const apiKeyMatch = str.match(/apiKey\s*:\s*["']([^"']+)["']/);
+      const projectIdMatch = str.match(/projectId\s*:\s*["']([^"']+)["']/);
+      const authDomainMatch = str.match(/authDomain\s*:\s*["']([^"']+)["']/);
+      const storageBucketMatch = str.match(/storageBucket\s*:\s*["']([^"']+)["']/);
+      const appIdMatch = str.match(/appId\s*:\s*["']([^"']+)["']/);
+      const senderIdMatch = str.match(/messagingSenderId\s*:\s*["']([^"']+)["']/);
+
+      if (projectIdMatch) {
+        return {
+          apiKey: apiKeyMatch ? apiKeyMatch[1] : '',
+          projectId: projectIdMatch[1],
+          authDomain: authDomainMatch ? authDomainMatch[1] : (projectIdMatch[1] + '.firebaseapp.com'),
+          storageBucket: storageBucketMatch ? storageBucketMatch[1] : (projectIdMatch[1] + '.appspot.com'),
+          messagingSenderId: senderIdMatch ? senderIdMatch[1] : '',
+          appId: appIdMatch ? appIdMatch[1] : ''
+        };
+      }
+    } catch (err) {
+      console.warn('Regex parse error:', err);
+    }
+    return null;
+  },
+
+  startRealtimeSync() {
+    if (!this.db) return;
+
+    // 1. Realtime Videos Sync
+    this.db.collection('videos').onSnapshot((snapshot) => {
+      const list = [];
+      snapshot.forEach(doc => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      localStorage.setItem('3bido_custom_videos', JSON.stringify(list));
+      if (window.app.videos) window.app.videos.renderVideos();
+    }, err => console.warn('Cloud video sync warning:', err));
+
+    // 2. Realtime Books Sync
+    this.db.collection('books').onSnapshot((snapshot) => {
+      const list = [];
+      snapshot.forEach(doc => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      localStorage.setItem('3bido_custom_books', JSON.stringify(list));
+      if (window.app.library) window.app.library.renderBooks();
+    }, err => console.warn('Cloud books sync warning:', err));
+
+    // 3. Realtime Vocab Sync
+    this.db.collection('vocab').onSnapshot((snapshot) => {
+      const list = [];
+      snapshot.forEach(doc => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      localStorage.setItem('3bido_custom_vocab', JSON.stringify(list));
+      if (window.app.levels) window.app.levels.renderVocab();
+    }, err => console.warn('Cloud vocab sync warning:', err));
+
+    // 4. Realtime Site Settings Sync
+    this.db.collection('settings').doc('site').onSnapshot((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        if (data.welcomeMsg) {
+          localStorage.setItem('3bido_welcome_msg', data.welcomeMsg);
+          if (window.app.welcomeMsg) window.app.welcomeMsg.init();
+        }
+        if (data.vocabOverrides) {
+          localStorage.setItem('3bido_vocab_overrides', JSON.stringify(data.vocabOverrides));
+          if (window.app.levels) {
+            window.app.levels.applyVocabOverrides();
+            window.app.levels.renderVocab();
+          }
+        }
+      }
+    }, err => console.warn('Cloud settings sync warning:', err));
+  },
+
+  async saveVideo(video) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('videos').doc(video.id).set(video, { merge: true });
+      return true;
+    } catch (e) {
+      console.error('Cloud saveVideo error:', e);
+      return false;
+    }
+  },
+
+  async deleteVideo(id) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('videos').doc(id).delete();
+      return true;
+    } catch (e) {
+      console.error('Cloud deleteVideo error:', e);
+      return false;
+    }
+  },
+
+  async saveBook(book) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('books').doc(book.id).set(book, { merge: true });
+      return true;
+    } catch (e) {
+      console.error('Cloud saveBook error:', e);
+      return false;
+    }
+  },
+
+  async deleteBook(id) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('books').doc(id).delete();
+      return true;
+    } catch (e) {
+      console.error('Cloud deleteBook error:', e);
+      return false;
+    }
+  },
+
+  async saveVocab(word) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('vocab').doc(word.id).set(word, { merge: true });
+      return true;
+    } catch (e) {
+      console.error('Cloud saveVocab error:', e);
+      return false;
+    }
+  },
+
+  async deleteVocab(id) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('vocab').doc(id).delete();
+      return true;
+    } catch (e) {
+      console.error('Cloud deleteVocab error:', e);
+      return false;
+    }
+  },
+
+  async saveSiteSettings(settings) {
+    if (!this.db || !this.isReady) return false;
+    try {
+      await this.db.collection('settings').doc('site').set(settings, { merge: true });
+      return true;
+    } catch (e) {
+      console.error('Cloud saveSiteSettings error:', e);
+      return false;
+    }
+  },
+
+  async pushAllLocalToCloud() {
+    if (!this.db || !this.isReady) {
+      window.app.showToast(window.app.lang === 'ar' ? 'السحابة غير متصلة.' : 'Cloud non connecté.', '⚠️');
+      return;
+    }
+    const isAr = window.app.lang === 'ar';
+    try {
+      const videos = JSON.parse(localStorage.getItem('3bido_custom_videos') || '[]');
+      const books = JSON.parse(localStorage.getItem('3bido_custom_books') || '[]');
+      const vocab = JSON.parse(localStorage.getItem('3bido_custom_vocab') || '[]');
+      const overrides = JSON.parse(localStorage.getItem('3bido_vocab_overrides') || '{}');
+      const welcomeMsg = localStorage.getItem('3bido_welcome_msg') || null;
+
+      for (const v of videos) {
+        await this.db.collection('videos').doc(v.id).set(v, { merge: true });
+      }
+      for (const b of books) {
+        await this.db.collection('books').doc(b.id).set(b, { merge: true });
+      }
+      for (const w of vocab) {
+        await this.db.collection('vocab').doc(w.id).set(w, { merge: true });
+      }
+      await this.db.collection('settings').doc('site').set({
+        vocabOverrides: overrides,
+        welcomeMsg: welcomeMsg,
+        updatedAt: Date.now()
+      }, { merge: true });
+
+      window.app.showToast(isAr ? 'تم رفع جميع بياناتك للسحابة بنجاح! ☁️✅' : 'Données synchronisées vers le Cloud ! ☁️✅', '🎉');
+    } catch (e) {
+      console.error('Cloud push all error:', e);
+      window.app.showToast(isAr ? 'حدث خطأ أثناء رفع البيانات.' : 'Erreur de synchronisation.', '❌');
+    }
   }
 };

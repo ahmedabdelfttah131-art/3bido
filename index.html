@@ -99,6 +99,8 @@
       <button class="mobile-nav-btn" data-target="levels" onclick="window.app.navigate('levels')" data-i18n="m_levels">7. Niveaux A1-B2 & Conjugaison</button>
       <button class="mobile-nav-btn" data-target="videos" onclick="window.app.navigate('videos')" data-i18n="m_videos">8. Vidéothèque Éducative</button>
       <button class="mobile-nav-btn" style="border-top: 1px dashed var(--border-color); margin-top: 0.25rem; color: #16a34a;" onclick="window.app.auth.openModal('changePass')">🔑 <span data-i18n="auth_tab_changepass">Changer MDP</span></button>
+      <button class="mobile-nav-btn" style="color: #2563eb;" onclick="window.app.sync.openModal()">🔄 <span>مزامنة ونقل البيانات بين الأجهزة</span></button>
+      <button class="mobile-nav-btn" style="color: #0284c7;" onclick="window.app.cloud.openModal()">☁️ <span>إعدادات قاعدة البيانات السحابية (Firebase)</span></button>
     </div>
   </header>
 
@@ -957,6 +959,104 @@
     </div>
   </div>
 
+  <!-- 1.5. Sync & Backup Modal (نقل ومزامنة البيانات بين الأجهزة) -->
+  <div id="syncModal" class="modal-backdrop hidden" onclick="if(event.target.id==='syncModal')window.app.sync.closeModal()">
+    <div class="modal-card sync-modal-card">
+      <button class="modal-close-btn" onclick="window.app.sync.closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="admin-badge-inline">أداة المشرف عبيدو 👑</div>
+        <h3 class="modal-title">🔄 مزامنة ونقل البيانات بين الأجهزة</h3>
+        <p class="modal-desc">
+          استخدم هذه الأداة لنقل كل ما أضفته (فيديوهات، كتب، ومفردات) من هذا الجهاز إلى الموبايل أو أي جهاز آخر بسهولة تامة.
+        </p>
+      </div>
+
+      <div class="sync-actions-box">
+        <div class="sync-card-action">
+          <div class="sync-action-info">
+            <h4>📥 الخطوة 1: استخراج نسخة البيانات من هذا الجهاز</h4>
+            <p>اضغط لتحميل ملف النسخة الاحتياطية الذي يحتوي على جميع الفيديوهات والكتب والكلمات المضافة على هذا الجهاز.</p>
+          </div>
+          <button class="btn btn-primary" onclick="window.app.sync.exportData()">
+            📥 تحميل ملف البيانات (تصدير)
+          </button>
+        </div>
+
+        <div class="sync-card-action">
+          <div class="sync-action-info">
+            <h4>📤 الخطوة 2: استيراد البيانات على الجهاز الآخر</h4>
+            <p>افتح الموقع على الموبايل أو الجهاز الآخر، واختر نفس الملف الذي قمت بتحميله لنقل وتفعيل كافة الفيديوهات والبيانات فوراً.</p>
+          </div>
+          <label class="btn btn-secondary sync-upload-label">
+            📤 اختيار ملف النسخة (استيراد)
+            <input type="file" accept=".json" onchange="window.app.sync.importData(event)" style="display:none;">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.6. Firebase Cloud Database Setup Modal (إعدادات قاعدة البيانات السحابية) -->
+  <div id="cloudModal" class="modal-backdrop hidden" onclick="if(event.target.id==='cloudModal')window.app.cloud.closeModal()">
+    <div class="modal-card cloud-modal-card">
+      <button class="modal-close-btn" onclick="window.app.cloud.closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="admin-badge-inline">قاعدة البيانات السحابية ☁️</div>
+        <h3 class="modal-title">ربط الموقع بالسحابة (Google Firebase)</h3>
+        <p class="modal-desc">
+          عند تفعيل السحابة، ستتم مزامنة أي فيديو، كتاب، أو كلمة تضيفها وتظهر فوراً على جميع الهواتف والأجهزة في نفس اللحظة!
+        </p>
+      </div>
+
+      <div class="cloud-status-card" id="cloudStatusCard">
+        <div class="cloud-status-indicator">
+          <span class="status-dot" id="cloudStatusDot"></span>
+          <span class="status-text" id="cloudStatusFullText">جاري التحقق من الاتصال...</span>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline" onclick="window.app.cloud.pushAllLocalToCloud()" id="btnPushToCloud">
+          ⬆️ رفع البيانات المحلية الحالية للسحابة
+        </button>
+      </div>
+
+      <form id="cloudConfigForm" onsubmit="window.app.cloud.handleConfigSubmit(event)">
+        <div class="form-group">
+          <label for="firebaseConfigInput">الصق إعدادات Firebase Config هنا (أو كود JSON):</label>
+          <textarea id="firebaseConfigInput" rows="6" class="code-textarea" placeholder='const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "3bido-app.firebaseapp.com",
+  projectId: "3bido-app",
+  storageBucket: "3bido-app.appspot.com",
+  messagingSenderId: "...",
+  appId: "..."
+};'></textarea>
+          <p class="form-hint">يمكنك نسخ كود المشروع بالكامل من Firebase ولصقه كما هو مباشرة.</p>
+        </div>
+
+        <div class="cloud-instructions-box">
+          <div class="instructions-header">
+            <span>💡</span>
+            <strong>كيف تحصل على إعداداتك مجاناً في دقيقة واحدة؟</strong>
+          </div>
+          <ol class="instructions-list">
+            <li>ادخل على <a href="https://console.firebase.google.com" target="_blank" rel="noopener">console.firebase.google.com</a> بحساب جوجل واضغط <strong>Create a project</strong>.</li>
+            <li>من القائمة الجانبية ادخل <strong>Firestore Database</strong> واضغط <strong>Create Database</strong> (واختر Start in test mode).</li>
+            <li>من صفحة المشروع اضغط علامة الويب <strong>`&lt;/&gt;`</strong> وسجل اسم التطبيق 3bido.</li>
+            <li>انسخ كود <strong>firebaseConfig</strong> الذي يظهر لك، والصقه في المربع بالأعلى ثم اضغط حفظ!</li>
+          </ol>
+        </div>
+
+        <div class="modal-actions" style="display:flex; gap: 8px; margin-top: 1rem;">
+          <button type="submit" class="btn btn-primary" style="flex:1;">
+            ☁️ حفظ وتفعيل السحابة فوراً
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="window.app.cloud.closeModal()">
+            إلغاء
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- 2. Book Reader Modal -->
   <div id="readerModal" class="modal-backdrop hidden" onclick="window.app.library.handleReaderBackdrop(event)">
     <div class="modal-card reader-card">
@@ -1162,6 +1262,10 @@
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
     <span data-i18n="btn_back">رجوع</span>
   </button>
+
+  <!-- Google Firebase Cloud Database SDK (Free Realtime Cloud Persistence) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
   <!-- Main JavaScript File -->
   <script src="app.js"></script>
